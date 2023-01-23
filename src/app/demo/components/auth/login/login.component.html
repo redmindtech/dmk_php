@@ -1,0 +1,50 @@
+<div style="background-image: linear-gradient(to right, #0e24b1, #0042c6, #005cd8, #0075e8, hsl(208, 93%, 52%));">
+    <div class="flex flex-column align-items-center justify-content-center" style="padding-top:10px;">
+       <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg,  rgb(30, 4, 198) 50%, rgba(236, 50, 3, 0) 90%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <!-- <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3"> -->
+                    <!-- <p-avatar icon="pi pi-user" pBadge value="4" severity="success" size="xlarge"></p-avatar> -->
+                    <img src="assets/demo/images/dmklogo.png" alt="..." width="100px" >
+
+                <div class="text-900 text-3xl font-medium mb-3">Welcome to DMK Engineers Wing Portal</div>
+
+                 </div>
+                 <form [formGroup]="userForm" (ngSubmit)="postdata(userForm)">
+                    <div>
+                        <div class="form-group">
+                            <div class="field p-fluid flex flex-column w-full">
+                           <h5> <label for="email">Email</label></h5>
+                            <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email address" pInputText class="w-full" style="padding:1rem">
+                            </div>
+                            <div class="form-group">
+                            <h5><label for="Password">Password</label></h5>
+                            <input type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Enter Password" pInputText class="w-full" style="padding:1rem">
+                            </div>
+                            <div>
+                                <p-button label="Forgot Password?" styleClass="p-button-link"  [routerLink]="['uikit/file']" ></p-button>
+
+                            </div>
+                        </div>
+
+                            <div class="grid">
+                                <div class="col-12">
+                                <button pButton pRipple label="Sign In"  class="w-full p-3 text-xl" type="submit" label="Login"></button>
+                           <!-- <button type="submit" class="btn btn-success" >Login</button>-->
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="flex align-items-center justify-content-center">
+                           <p-button label="Sign Up" styleClass="p-button-link"  [routerLink]="['self_reg']" ></p-button>
+                        </div>
+
+                    </form>
+            </div>
+           <div style="padding-top:93px;background:rgb(3, 3, 3);width: max-content;"></div>
+        </div>
+
+    </div>
+</div>

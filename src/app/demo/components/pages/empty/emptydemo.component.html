@@ -1,0 +1,770 @@
+<!-- <div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h4>Empty Page</h4>
+            <p>This is your empty page template to start building beautiful applications.</p>
+        </div>
+    </div>
+</div> -->
+
+<div class="layout-topbar " style="height:100px;background:linear-gradient(to right, #0e24b1, #0042c6, #005cd8, #0075e8, hsl(208, 93%, 52%));">
+	<img src="assets/demo/images/dmklogo.png" alt="..." width="100" >
+	<h1 style="font-size:45px;text-align:center;padding-left: 28%;color:rgb(255, 255, 255)"> DMK Engineers Wing </h1>
+</div>
+<div >
+<div class="border-red-800 layout-sidebar " style="margin-top: 20px;padding-right: 50px;background-image: linear-gradient(#2743f7d0, #314bf5ea)">
+	<!-- <div class="flex flex-column gap-4 justify-content: center;" style="padding-top:40px;padding-left:20px;color:rgb(255, 255, 255)"> -->
+	<div class="flex flex-column gap-4 justify-content:start;" style="padding-top:40px;color:rgb(255, 255, 255)">
+
+		<!-- <p class="text-xl font-bold" (click)="toggledashboard(dashboard)">DASHBOARD </p> -->
+		<!-- <p class="text-xl font-bold" (click)="toggle(districtadmin)">DISTRICT ADMIN</p> -->
+		<!-- <p class="text-xl font-bold" (click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</p> -->
+		<!-- <p class="text-xl  font-bold" (click)="toggle2(selfregistration)">SELF-REGISTRATION</p> -->
+		<!-- <p class="text-xl font-bold" [routerLink]="['/']">SIGN-OUT</p> -->
+
+
+		<button pButton pRipple label="DASHBOARD"  class="p-button-text text-xl font-bold" style="color:rgb(248, 241, 241)"
+			(click)="toggledashboard(dashboard)"></button>
+		<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(245, 240, 240)"
+			(click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</button>
+		<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(247, 240, 240);padding-left:30%;"
+			[routerLink]="['/']">SIGN OUT</button>
+
+	</div>
+</div>
+
+<div  style="background: linear-gradient(to right, hsl(232, 85%, 37%), #0042c6, #005cd8, #0075e8, hsl(208, 93%, 52%));padding-top: 109px;">
+	<div *ngIf="home" style="padding-left:380px;height: 600px;">
+		<img src="assets/demo/images/banner.png" alt="..." width="98%" height="80%" >
+	</div>
+</div>
+
+<div *ngIf="createdistrictadmin"  class="card" style="margin-left:23%;margin-right:2%;">
+	<div>
+		<h5 *ngIf="createdistrictadmin === true" style="font-size:25px;"><b> OFFICE BEARER INFORMATION </b></h5>
+		<div *ngIf="createdistrictadmin===true" style="padding-left: 92%;padding-bottom:2%;">
+			<button  pButton type="button" label="Add" (click)="visibleSidebar5 = true" icon="pi pi-plus" class="p-button-primary"></button>
+		</div>
+	</div>
+	<p-sidebar [(visible)]="visibleSidebar5" styleclass="bg-primary-600" [fullScreen]="true" [baseZIndex]="10000" >
+	<div style="background-color:#0e24b1;">
+		<div  style="padding-left:11%;">
+			<div class="card p-fluid" style="width:1200px">
+				<h5 style="font-size:30px">Create Office Bearers </h5>
+				<div  class="flex flex-row" style="margin-left:3px;">
+					<div class="flex flex-row" style="padding-left:75px">
+						<label class="flex align-items-center"> Corporation District / கழக மாவட்டம்: </label>
+						<label class="flex align-items-center"> Salem </label>
+						<!-- <p class="flex align-items-center" style="margin-top:5px">Salem</p> -->
+						<label class="flex align-items-end justify-content-end" style="margin-left:215px;padding-left: 30px;"> Assembly Constituency / சட்டமன்ற தொகுதி: </label>
+						<label class="flex align-items-end justify-content-end"> Salem North </label>
+
+					</div>
+
+				</div>
+
+				<!-- <div  class="flex flex-row flex wrap" style="margin-left:60%;">
+					<label class="col-2 flex wrap">Assembly Constituency/சட்டமன்ற தொகுதி:</label>
+					<p class="col-2" style="margin-right:60%;padding-top:4%">Salem/சேலம்</p>
+				</div> -->
+
+					<div style="width:80%">
+								<div class="field grid" style="padding-top:3%">
+								<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name / பெயர்</label>
+									<div class="col-12 md:col-10" style="width:63%">
+										<input pInputText id="name3" type="text" />
+									</div>
+								</div>
+								<div class="field grid" >
+									<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Age / வயது</label>
+									<div class="col-12 md:col-10" style="width:25%">
+										<input pInputText id="email3" type="text" />
+									</div>
+
+									<label htmlFor="email3" class="col-12 mb-8 md:col-2 md:mb-0">Date of Birth / பிறந்த தேதி</label>
+									<span class="p-float-label">
+									<p-calendar  inputId="calendar" [(ngModel)]="value5"></p-calendar>
+									<label for="calendar">DD-MM-YYYY</label>
+								</span>
+								</div>
+
+							<div class="field grid">
+
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Father Name / தந்தை பெயர்</label>
+								<div class="col-12 md:col-10">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Degree / கல்வித் தகுதி</label>
+								<div class="col-12 md:col-10">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Additional Degree / சிறப்பு தகுதி</label>
+								<div class="col-12 md:col-10">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Phone Number / அலைபேசி எண்</label>
+								<div class="col-12 md:col-10" style="width:27%">
+									<input pInputText id="email3" type="text" />
+								</div>
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Whatsapp Number / வாட்சப் எண்</label>
+								<div class="col-12 md:col-10" style="width:27%">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email / மின்னஞ்சல்</label>
+								<div class="col-12 md:col-10">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Profession / தொழில்,வேலை</label>
+								<div class="col-12 md:col-10">
+									<input pInputText id="email3" type="text" />
+								</div>
+							</div>
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Address / முகவரி</label>
+								<div class="col-12 md:col-10">
+									<textarea rows="5" cols="30" placeholder="Address" pInputTextarea></textarea>
+								</div>
+							</div>
+
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Responsibility For Applying /விண்ணப்பிக்கும் பொறுப்பு</label>
+								   <div  style="width:50%">
+											<div class="field-radiobutton" style="padding-top: 15px;">
+												<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
+															id="city2"></p-radioButton>
+												<label for="city2">மாவட்ட அமைப்பாளர்</label>
+												<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+															id="city2" style="padding-left:10px"></p-radioButton>
+												<label for="city2">மாவட்ட துணை அமைப்பாளர்</label>
+											</div>
+											<div class="field-radiobutton" style="padding-top: 15px;">
+												<p-radioButton name="city" value="active1" [(ngModel)]="valRadio"
+															id="city2"></p-radioButton>
+												<label for="city2">ஒன்றிய அமைப்பாளர்</label>
+												<p-radioButton name="city" value="Inactive1" [(ngModel)]="valRadio"
+															id="city2" style="padding-left:10px"></p-radioButton>
+												<label for="city2">ஒன்றிய துணை அமைப்பாளர்</label>
+											</div>
+											<div class="field-radiobutton" style="padding-top: 15px;">
+												<p-radioButton name="city" value="active2" [(ngModel)]="valRadio"
+															id="city2"></p-radioButton>
+												<label for="city2">நகர அமைப்பாளர்</label>
+												<p-radioButton name="city" value="Inactive2" [(ngModel)]="valRadio"
+															id="city2" style="padding-left:10px"></p-radioButton>
+												<label for="city2">நகர துணை அமைப்பாளர்</label>
+											</div>
+											<div class="field-radiobutton" style="padding-top: 15px;">
+												<p-radioButton name="city" value="active3" [(ngModel)]="valRadio"
+															id="city2"></p-radioButton>
+												<label for="city2">பகுதி அமைப்பாளர்</label>
+												<p-radioButton name="city" value="Inactive3" [(ngModel)]="valRadio"
+															id="city2" style="padding-left:10px"></p-radioButton>
+												<label for="city2">பகுதி துணை அமைப்பாளர்</label>
+											</div>
+											<div class="field-radiobutton" style="padding-top: 15px;">
+												<p-radioButton name="city" value="active4" [(ngModel)]="valRadio"
+															id="city2"></p-radioButton>
+												<label for="city2">	ஊரக அமைப்பாளர்</label>
+												<p-radioButton name="city" value="Inactive4" [(ngModel)]="valRadio"
+															id="city2" style="padding-left:10px"></p-radioButton>
+												<label for="city2">ஊரக துணை அமைப்பாளர்</label>
+											</div>
+
+						</div>
+							</div>
+
+							<div class="field grid">
+								<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Comments / திமுக மாவட்ட அலுவலக குறிப்பு</label>
+								<div class="col-12 md:col-10">
+									<textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+				<!-- <div class="field grid">
+					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Party Designation/கட்சி பதவி</label>
+					<div class="col-12 md:col-10">
+						<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select designation" [showClear]="true"></p-dropdown>
+					</div>
+				</div>
+				<div class="field grid">
+					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile/கைபேசி</label>
+					<div class="col-12 md:col-10">
+						<input pInputText id="email3" type="text" />
+					</div>
+				</div>
+				<div class="field grid">
+					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email/மின்னஞ்சல்</label>
+					<div class="col-12 md:col-10">
+						<input pInputText id="email3" type="text" />
+					</div>
+				</div>
+
+				<div class="field grid">
+					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status/நிலை</label>
+				       <div class="col-12 md:col-4">
+								<div class="field-radiobutton" style="padding-top: 15px;">
+									<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
+												id="city2"></p-radioButton>
+									<label for="city2">Active/செயலில்</label>
+								</div>
+								<div class="field-radiobutton">
+									<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+												id="city2"></p-radioButton>
+									<label for="city2">Inactive/செயலற்றது</label>
+								</div>
+								<div class="field-radiobutton">
+									<p-radioButton name="city" value="Awaiting approval" [(ngModel)]="valRadio"
+												id="city2"></p-radioButton>
+									<label for="city2">Awaiting approval/ஒப்புதலுக்காக காத்திருக்கிறது</label>
+								</div> -->
+
+						<!-- </div>
+				</div> -->
+                <div class="col-12 mb-2 md:col-2 md:mb-0">
+                    <button pButton pRipple label="Submit"></button>
+
+
+				</div>
+
+			</div>
+			<div >
+
+			</div>
+		</div>
+</div>
+
+
+	</p-sidebar>
+    <p-sidebar [(visible)]="visibleSidebar6" styleclass="bg-primary-600" [fullScreen]="true" [baseZIndex]="10000" >
+        <div style="background-color:#0e24b1;">
+            <div  style="padding-left:11%;">
+                <div class="card p-fluid" style="width:1200px">
+                    <h5 style="font-size:30px">Create Office Bearers </h5>
+                    <div  class="flex flex-row" style="margin-left:3px;">
+                        <div class="flex flex-row" style="padding-left:75px">
+                            <label class="flex align-items-center"> Corporation District / கழக மாவட்டம்: </label>
+                            <label class="flex align-items-center"> Salem </label>
+                            <!-- <p class="flex align-items-center" style="margin-top:5px">Salem</p> -->
+                            <label class="flex align-items-end justify-content-end" style="margin-left:215px;padding-left: 30px;"> Assembly Constituency / சட்டமன்ற தொகுதி: </label>
+                            <label class="flex align-items-end justify-content-end"> Salem North </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- <div  class="flex flex-row flex wrap" style="margin-left:60%;">
+                        <label class="col-2 flex wrap">Assembly Constituency/சட்டமன்ற தொகுதி:</label>
+                        <p class="col-2" style="margin-right:60%;padding-top:4%">Salem/சேலம்</p>
+                    </div> -->
+
+                        <div style="width:80%">
+                                    <div class="field grid" style="padding-top:3%">
+                                    <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0" >Name / பெயர்</label>
+                                        <div class="col-12 md:col-10" style="width:63%">
+                                            <input pInputText id="name3" type="text" disabled="true" />
+                                        </div>
+                                    </div>
+                                    <div class="field grid" >
+                                        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Age / வயது</label>
+                                        <div class="col-12 md:col-10" style="width:25%">
+                                            <input pInputText id="email3" type="text" disabled="true" />
+                                        </div>
+
+                                        <label htmlFor="email3" class="col-12 mb-8 md:col-2 md:mb-0">Date of Birth / பிறந்த தேதி</label>
+                                        <span class="p-float-label">
+                                        <p-calendar  inputId="calendar" disabled="true" [(ngModel)]="value5"></p-calendar>
+                                        <label for="calendar">DD-MM-YYYY</label>
+                                    </span>
+                                    </div>
+
+                                <div class="field grid">
+
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Father Name / தந்தை பெயர்</label>
+                                    <div class="col-12 md:col-10">
+                                        <input pInputText id="email3" type="text" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Degree / கல்வித் தகுதி</label>
+                                    <div class="col-12 md:col-10">
+                                        <input pInputText id="email3" type="text" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Additional Degree / சிறப்பு தகுதி</label>
+                                    <div class="col-12 md:col-10">
+                                        <input pInputText id="email3" type="text" disabled="true" />
+                                    </div>
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Phone Number / அலைபேசி எண்</label>
+                                    <div class="col-12 md:col-10" style="width:27%">
+                                        <input pInputText id="email3" type="text" disabled="true" />
+                                    </div>
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Whatsapp Number / வாட்சப் எண்</label>
+                                    <div class="col-12 md:col-10" style="width:27%">
+                                        <input pInputText id="email3" type="text" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="field grid">
+
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email / மின்னஞ்சல்</label>
+                                    <div class="col-12 md:col-10">
+                                        <input pInputText id="email3" type="text" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Profession / தொழில்,வேலை</label>
+                                    <div class="col-12 md:col-10">
+                                        <input pInputText id="email3" type="text" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0" >Address / முகவரி</label>
+                                    <div class="col-12 md:col-10">
+                                        <textarea rows="5" cols="30" disabled="true" placeholder="Address" pInputTextarea></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Responsibility For Applying /விண்ணப்பிக்கும் பொறுப்பு</label>
+                                       <div  style="width:50%">
+                                                <div class="field-radiobutton" style="padding-top: 15px;">
+                                                    <p-radioButton name="city" value="active"  [(ngModel)]="valRadio"
+                                                                id="city2"></p-radioButton>
+                                                    <label for="city2">மாவட்ட அமைப்பாளர்</label>
+                                                    <p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+                                                                id="city2" style="padding-left:10px"></p-radioButton>
+                                                    <label for="city2">மாவட்ட துணை அமைப்பாளர்</label>
+                                                </div>
+                                                <div class="field-radiobutton" style="padding-top: 15px;">
+                                                    <p-radioButton name="city" value="active1" [(ngModel)]="valRadio"
+                                                                id="city2"></p-radioButton>
+                                                    <label for="city2">ஒன்றிய அமைப்பாளர்</label>
+                                                    <p-radioButton name="city" value="Inactive1" [(ngModel)]="valRadio"
+                                                                id="city2" style="padding-left:10px"></p-radioButton>
+                                                    <label for="city2">ஒன்றிய துணை அமைப்பாளர்</label>
+                                                </div>
+                                                <div class="field-radiobutton" style="padding-top: 15px;">
+                                                    <p-radioButton name="city" value="active2" [(ngModel)]="valRadio"
+                                                                id="city2"></p-radioButton>
+                                                    <label for="city2">நகர அமைப்பாளர்</label>
+                                                    <p-radioButton name="city" value="Inactive2" [(ngModel)]="valRadio"
+                                                                id="city2" style="padding-left:10px"></p-radioButton>
+                                                    <label for="city2">நகர துணை அமைப்பாளர்</label>
+                                                </div>
+                                                <div class="field-radiobutton" style="padding-top: 15px;">
+                                                    <p-radioButton name="city" value="active3" [(ngModel)]="valRadio"
+                                                                id="city2"></p-radioButton>
+                                                    <label for="city2">பகுதி அமைப்பாளர்</label>
+                                                    <p-radioButton name="city" value="Inactive3" [(ngModel)]="valRadio"
+                                                                id="city2" style="padding-left:10px"></p-radioButton>
+                                                    <label for="city2">பகுதி துணை அமைப்பாளர்</label>
+                                                </div>
+                                                <div class="field-radiobutton" style="padding-top: 15px;">
+                                                    <p-radioButton name="city" value="active4" [(ngModel)]="valRadio"
+                                                                id="city2"></p-radioButton>
+                                                    <label for="city2">	ஊரக அமைப்பாளர்</label>
+                                                    <p-radioButton name="city" value="Inactive4" [(ngModel)]="valRadio"
+                                                                id="city2" style="padding-left:10px"></p-radioButton>
+                                                    <label for="city2">ஊரக துணை அமைப்பாளர்</label>
+                                                </div>
+
+                            </div>
+                                </div>
+
+                                <div class="field grid">
+                                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Comments / திமுக மாவட்ட அலுவலக குறிப்பு</label>
+                                    <div class="col-12 md:col-10">
+                                        <textarea rows="5" cols="30" placeholder="Your Message" disabled="true" pInputTextarea></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                    <!-- <div class="field grid">
+                        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Party Designation/கட்சி பதவி</label>
+                        <div class="col-12 md:col-10">
+                            <p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select designation" [showClear]="true"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile/கைபேசி</label>
+                        <div class="col-12 md:col-10">
+                            <input pInputText id="email3" type="text" />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email/மின்னஞ்சல்</label>
+                        <div class="col-12 md:col-10">
+                            <input pInputText id="email3" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="field grid">
+                        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status/நிலை</label>
+                           <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton" style="padding-top: 15px;">
+                                        <p-radioButton name="city" value="active" [(ngModel)]="valRadio"
+                                                    id="city2"></p-radioButton>
+                                        <label for="city2">Active/செயலில்</label>
+                                    </div>
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+                                                    id="city2"></p-radioButton>
+                                        <label for="city2">Inactive/செயலற்றது</label>
+                                    </div>
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Awaiting approval" [(ngModel)]="valRadio"
+                                                    id="city2"></p-radioButton>
+                                        <label for="city2">Awaiting approval/ஒப்புதலுக்காக காத்திருக்கிறது</label>
+                                    </div> -->
+
+                            <!-- </div>
+                    </div> -->
+                    <div class="col-12 mb-2 md:col-2 md:mb-0">
+                        <button pButton pRipple label="Submit" ></button>
+                    </div>
+
+                </div>
+                <div >
+
+                </div>
+            </div>
+    </div>
+
+
+        </p-sidebar>
+<div>
+		<!-- <h5 *ngIf="createdistrictadmin == true">OFFICE BEARER INFORMATION</h5> -->
+		<div *ngIf="districtadmin === true || createdistrictadmin === true">
+				<p-table [value]="customers1" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
+					<ng-template pTemplate="header">
+						<tr>
+							<th>Name</th>
+							<th>Designation</th>
+							<th>District</th>
+							<th>Status</th>
+							<th>Email</th>
+							<th>Show</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+						<!-- <tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
+							<td colspan="5" style="min-width: 200px;">
+								<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
+								<span class="font-bold ml-2">{{customer.representative.name}}</span>
+							</td>
+						</tr> -->
+						<tr>
+							<td style="min-width: 20px;">
+								{{customer.name}}
+							</td>
+							<td style="min-width: 20px;">
+								<span >{{customer.country}}</span>
+							</td>
+							<td style="min-width: 20px;">
+								{{customer.company}}
+							</td>
+							<td style="min-width: 20px;">
+								<span>{{customer.status}}</span>
+							</td>
+							<td style="min-width: 20px;">
+								{{customer.date}}
+							</td>
+							<td style="min-width: 20px;">
+								<button pButton class="p-button-success" icon="pi pi-eye"  (click)="visibleSidebar6= true"></button>
+							</td>
+							<td style="min-width: 20px;">
+								<button pButton icon="pi pi-user-edit"></button>
+							</td>
+							<td style="min-width: 20px;">
+								<button pButton icon="pi pi-times" class="p-button-danger"></button>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+			</div>
+
+	</div>
+
+</div>
+
+
+	<!-- <div *ngIf="districtadmin" class="col-12 md:col-6" style="padding-left:380px">
+		<div class="card p-fluid" style="width:900px">
+			<h5>District Admin Information</h5>
+			<div class="field grid">
+			  <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">First Name</label>
+				 <div class="col-12 md:col-10">
+					<input pInputText id="name3" type="text" />
+				</div>
+			</div>
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Last Name</label>
+				<div class="col-12 md:col-10">
+					<input pInputText id="email3" type="text" />
+				</div>
+			</div>
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Designation</label>
+				<div class="col-12 md:col-10">
+					<input pInputText id="email3" type="text" />
+				</div>
+			</div>
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">District</label>
+				<div class="col-12 md:col-10">
+					<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
+				</div>
+			</div>
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile</label>
+				<div class="col-12 md:col-10">
+					<input pInputText id="email3" type="text" />
+				</div>
+			</div>
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
+				<div class="col-12 md:col-10">
+					<input pInputText id="email3" type="text" />
+				</div>
+			</div>
+
+			<div class="field grid">
+				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
+
+				<div class="col-12 md:col-4">
+						<div class="field-radiobutton" style="padding-top: 15px;">
+							<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
+										id="city2"></p-radioButton>
+							<label for="city2">Active</label>
+						</div>
+						<div class="field-radiobutton">
+							<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+										id="city2"></p-radioButton>
+							<label for="city2">Inactive</label>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+
+
+
+
+<!-- <div *ngIf="selfregistration" class="col-12 md:col-6" style="padding-left:380px">
+	<div class="card p-fluid" style="width:900px">
+		<h5>Self Registration </h5>
+			<div class="field grid">
+			<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">First Name</label>
+				<div class="col-12 md:col-10">
+					<input pInputText id="name3" type="text" />
+				</div>
+			</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Last Name</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Degree</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Degree Major</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Date of Birth</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Parents Name</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Parents Mobile</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">District</label>
+			<div class="col-12 md:col-10">
+				<input pInputText id="email3" type="text" />
+			</div>
+		</div>
+		<div class="field grid">
+			<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
+			   <div class="col-12 md:col-4">
+						<div class="field-radiobutton" style="padding-top: 15px;">
+							<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
+										id="city2"></p-radioButton>
+							<label for="city2">Active</label>
+						</div>
+						<div class="field-radiobutton">
+							<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
+										id="city2"></p-radioButton>
+							<label for="city2">Inactive</label>
+						</div>
+						<div class="field-radiobutton">
+							<p-radioButton name="city" value="Awaiting approval" [(ngModel)]="valRadio"
+										id="city2"></p-radioButton>
+							<label for="city2">Awaiting approval</label>
+						</div>
+				</div>
+		</div>
+	</div> -->
+<!-- </div> -->
+<div *ngIf="dashboard">
+	<div class="grid" style="margin-left:23%;margin-top:2%;">
+		<div class="col-12 lg:col-6 xl:col-3">
+			<div class="card mb-0">
+				<div class="flex justify-content-between mb-3">
+					<div>
+						<span class="block text-500 font-medium mb-3">Registered Office Bearers</span>
+						<div class="text-900 font-medium text-xl">152</div>
+					</div>
+					<div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+						<i class="pi pi-inbox text-cyan-500 text-xl"></i>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-12 lg:col-6 xl:col-3">
+			<div class="card mb-0">
+				<div class="flex justify-content-between mb-3">
+					<div>
+						<span class="block text-500 font-medium mb-3">Approved Office Bearers</span>
+						<div class="text-900 font-medium text-xl">100</div>
+					</div>
+					<div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+						<i class="pi pi-inbox text-cyan-500 text-xl"></i>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-12 lg:col-6 xl:col-3">
+			<div class="card mb-0">
+				<div class="flex justify-content-between mb-3">
+					<div>
+						<span class="block text-500 font-medium mb-3">Active Office Bearers</span>
+						<div class="text-900 font-medium text-xl">100</div>
+					</div>
+					<div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+						<i class="pi pi-inbox text-cyan-500 text-xl"></i>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="flex align-items-center justify-content-between mb-4">
+				<h5>Notifications</h5>
+				<div>
+					<button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+					<p-menu #menu [popup]="true" [model]="items"></p-menu>
+				</div>
+			</div>
+
+			<span class="block text-600 font-medium mb-3">TODAY</span>
+			<ul class="p-0 mx-0 mt-0 mb-4 list-none">
+				<li class="flex align-items-center py-2 border-bottom-1 surface-border">
+					<div class="w-3rem h-3rem flex align-items-center justify-content-center bg-blue-100 border-circle mr-3 flex-shrink-0">
+						<i class="pi  text-xl text-blue-500"></i>
+					</div>
+					<span class="text-900 line-height-3">Meeting
+				<span class="text-700"> Schedule on 21-Decemeber-2022 </span>
+			</span>
+				</li>
+				<li class="flex align-items-center py-2">
+					<div class="w-3rem h-3rem flex align-items-center justify-content-center bg-orange-100 border-circle mr-3 flex-shrink-0">
+						<i class="pi  text-xl text-orange-500"></i>
+					</div>
+					<span class="text-700 line-height-3">Pending Approval For Bearers has been initiated.</span>
+				</li>
+			</ul>
+
+			<span class="block text-600 font-medium mb-3">YESTERDAY</span>
+			<ul class="p-0 m-0 list-none">
+				<li class="flex align-items-center py-2 border-bottom-1 surface-border">
+					<div class="w-3rem h-3rem flex align-items-center justify-content-center bg-blue-100 border-circle mr-3 flex-shrink-0">
+						<i class="pi  text-xl text-blue-500"></i>
+					</div>
+					<span class="text-900 line-height-3">Application Submission Last Date
+				<span class="text-700"> Announcement - <span class="text-blue-500">22-Dec-2022</span></span>
+			</span>
+				</li>
+
+			</ul>
+		</div>
+
+		<div class="col-12 xl:col-6">
+			<div class="card">
+				<h5>Office Bearer Registration Overview</h5>
+				<p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+			</div>
+
+
+	</div>
+
+</div>
+

@@ -1,0 +1,66 @@
+<div style="background-image: linear-gradient(to right, #0e24b1, #0042c6, #005cd8, #0075e8, hsl(208, 93%, 52%));">
+    <h2 class="text-center" style="color:white;"><img src="assets/demo/images/dmklogo.png" alt="..." width="100px" style="margin-top:60px;margin-bottom: -20px;"><span style="margin:20px;padding-bottom:30px;">DMK Engineers Wing</span></h2>
+<div  class="col-12 md:col-6" style="padding-left:300px">
+
+	<div class="card p-fluid" style="width:900px">
+
+		<h5 class="text-center">Self Registration </h5>
+        <form [formGroup]='angForm' (ngSubmit)="postdata(angForm)" autocomplete="off">
+			<div class="field grid">
+			<!--<label htmlFor="name3" class="col-6 mb-2 md:col-1 md:mb-0"></label>-->
+				<div class="col-6 md:col-6">
+					<input pInputText type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்"/>
+				</div>
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்"/>
+			</div>
+		</div>
+		<div class="field grid">
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="educational_qualification" formControlName="educational_qualification" placeholder="Degree/கல்வி தகுதி"/>
+			</div>
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="profession" formControlName="profession" placeholder="Degree Major/கல்வி தகுதின் பிரிவு"/>
+			</div>
+		</div>
+		<div class="field grid">
+			<div class="col-6 md:col-6">
+				<input pInputText  type="date" name="date_of_birth" formControlName="date_of_birth" placeholder="Date of Birth/பிறந்த தேதி"/>
+			</div>
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="contact_no" formControlName="contact_no" placeholder="Mobile/கைபேசி"/>
+			</div>
+		</div>
+		<div class="field grid">
+			<div class="col-12 md:col-12">
+				<input pInputText type="email" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"/>
+			</div>
+		</div>
+		<div class="field grid">
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="father_name" formControlName="father_name" placeholder="Parents Name/பெற்றோர் பெயர்"/>
+			</div>
+			<!--<div class="col-6 md:col-6">
+				<input pInputText type="number" name="parent_number" formControlName="parent_number" placeholder="Parents Mobile/பெற்றோர் கைபேசி"/>
+			</div>-->
+			<div class="col-6 md:col-6">
+				<input pInputText type="text" name="district" formControlName="district" placeholder="District/மாவட்டம்"/>
+			</div>
+        </div>
+        <div class="field grid">
+			<div class="col-12 md:col-12">
+				<input pInputText type="text" hidden name="location_id" formControlName="location_id" placeholder="Location Id"/>
+			</div>
+		</div>
+            <div class="field grid">
+            <div class="col-3 md:col-3"></div>
+            <div class="col-6 md:col-6">
+                <button pButton pRipple label="Self Registration"></button>
+            </div>
+            <div class="col-3 md:col-3"></div>
+        </div>
+        </form>
+	</div>
+</div>
+</div>
+

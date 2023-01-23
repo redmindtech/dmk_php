@@ -1,0 +1,68 @@
+<!--<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Advanced</h5>
+            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                          [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+
+            <h5>Basic</h5>
+            <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="onBasicUpload()"></p-fileUpload>
+
+        </div>
+    </div>
+</div>-->
+
+
+<div style="background-image: linear-gradient(to right, #0e24b1, #0042c6, #005cd8, #0075e8, hsl(208, 93%, 52%));">
+    <div class="flex flex-column align-items-center justify-content-center" style="padding-top:10px;">
+       <div style="border-radius:100px; padding:0.3rem; background: linear-gradient(180deg,  rgb(30, 4, 198) 50%, rgba(236, 50, 3, 0) 90%);">
+        <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+            <div class="text-center mb-5">
+                <img src="assets/demo/images/dmklogo.png" alt="..." width="100px" >
+                <div class="text-900 text-3xl font-medium mb-3">Welcome to DMK Engineers Wing Portal</div>
+            </div>
+            <div class="card">
+                <h5>Reset Password?</h5>
+                <div class="form-group">
+                <div class="field">
+                    <label for="firstname1">Email ID</label>
+                    <input  type="email" name="Email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>
+                <div class="field">
+                    <div class="form-group">
+                    <label for="firstname1">Old Password</label>
+                    <input  type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>
+            </div>
+                <div class="field">
+                    <div class="form-group">
+                    <label for="firstname1">New Password</label>
+                    <input type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>
+            </div>
+            </div>
+               <!--<div class="grid">
+                    <div class="col-4 col-offset-4">
+                <button pButton pRipple label="Reset" [routerLink]="['/']"></button>
+                </div>
+            </div>
+             -->
+             <div class="grid">
+                <div class="col-12">
+                <button pButton pRipple label="Sign In"  class="w-full p-3 text-xl" type="submit" label="Reset" [routerLink]="['/']"></button>
+           <!-- <button type="submit" class="btn btn-success" >Login</button>-->
+            </div>
+            </div>
+       
+            </div>
+            
+        </div>
+       </div>
+    </div>
+</div>
