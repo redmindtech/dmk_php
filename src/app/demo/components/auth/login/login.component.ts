@@ -106,7 +106,7 @@ this.dataService.userlogin(userForm.value.email,userForm.value.password)
 .pipe(first())
 .subscribe(
 data => {
-const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
+const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/uikit/formlayout';
 this.router.navigate([redirect]);
 },
 error => {

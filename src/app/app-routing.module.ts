@@ -5,6 +5,8 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
 import{LoginComponent} from './demo/components/auth/login/login.component'
 import { MediaDemoComponent } from './demo/components/uikit/media/mediademo.component';
 import { CreateStateAdminComponent } from './demo/components/create-state-admin/create-state-admin.component';
+import { CreateDistrictAdminComponent } from './demo/components/create-district-admin/create-district-admin.component';
+import { CreateOfficeBearersComponent } from './demo/components/create-office-bearers/create-office-bearers.component';
 
 @NgModule({
     imports: [
@@ -16,7 +18,13 @@ import { CreateStateAdminComponent } from './demo/components/create-state-admin/
                 path:'self_reg',component:MediaDemoComponent
             },
             {
-                path:'create_state_admin',component:CreateStateAdminComponent
+                path:'csa',component:CreateStateAdminComponent
+            },
+            {
+                path:'cda',component:CreateDistrictAdminComponent
+            },
+            {
+                path:'cob',component:CreateOfficeBearersComponent
             },
 
             { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },

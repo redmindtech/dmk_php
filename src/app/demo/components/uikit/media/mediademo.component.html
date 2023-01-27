@@ -5,51 +5,63 @@
 	<div class="card p-fluid" style="width:900px">
 
 		<h5 class="text-center">Self Registration </h5>
-        <form [formGroup]='angForm' (ngSubmit)="postdata(angForm)" autocomplete="off">
+        <form [formGroup]='angForm'
+		class="register-form"
+		action=""
+		#f="ngForm"
+		(ngSubmit)="f.form.valid&&postdata(angForm)"
+		autocomplete="off"
+		>
 			<div class="field grid">
 			<!--<label htmlFor="name3" class="col-6 mb-2 md:col-1 md:mb-0"></label>-->
 				<div class="col-6 md:col-6">
-					<input pInputText type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்"/>
+					<input pInputText type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்" required/>
+
 				</div>
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்"/>
+				<input pInputText type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்" required/>
 			</div>
 		</div>
 		<div class="field grid">
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="educational_qualification" formControlName="educational_qualification" placeholder="Degree/கல்வி தகுதி"/>
+				<input pInputText type="text" name="educational_qualification" formControlName="educational_qualification" placeholder="Degree/கல்வி தகுதி"required/>
 			</div>
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="profession" formControlName="profession" placeholder="Degree Major/கல்வி தகுதின் பிரிவு"/>
+				<input pInputText type="text" name="profession" formControlName="profession" placeholder="Degree Major/கல்வி தகுதின் பிரிவு"required/>
 			</div>
 		</div>
 		<div class="field grid">
 			<div class="col-6 md:col-6">
-				<input pInputText  type="date" name="date_of_birth" formControlName="date_of_birth" placeholder="Date of Birth/பிறந்த தேதி"/>
+				<input pInputText  type="date" name="date_of_birth" formControlName="date_of_birth" placeholder="Date of Birth/பிறந்த தேதி"required/>
 			</div>
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="contact_no" formControlName="contact_no" placeholder="Mobile/கைபேசி"/>
+				<input pInputText type="text" name="contact_no" formControlName="contact_no" placeholder="Mobile/கைபேசி"required/>
 			</div>
 		</div>
 		<div class="field grid">
 			<div class="col-12 md:col-12">
-				<input pInputText type="email" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"/>
+				<input pInputText type="email" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"required/>
 			</div>
 		</div>
 		<div class="field grid">
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="father_name" formControlName="father_name" placeholder="Parents Name/பெற்றோர் பெயர்"/>
+				<input pInputText type="text" name="father_name" formControlName="father_name" placeholder="Parents Name/பெற்றோர் பெயர்"required/>
 			</div>
 			<!--<div class="col-6 md:col-6">
 				<input pInputText type="number" name="parent_number" formControlName="parent_number" placeholder="Parents Mobile/பெற்றோர் கைபேசி"/>
 			</div>-->
 			<div class="col-6 md:col-6">
-				<input pInputText type="text" name="district" formControlName="district" placeholder="District/மாவட்டம்"/>
+				<!--<input pInputText type="text" name="district" formControlName="district" placeholder="District/மாவட்டம்"required/>-->
+                <select pInputText name="district" formControlName="district">
+                    <option *ngFor="let item of mydist">
+                        {{item.name}}
+                      </option>
+                </select>
 			</div>
         </div>
         <div class="field grid">
 			<div class="col-12 md:col-12">
-				<input pInputText type="text" hidden name="location_id" formControlName="location_id" placeholder="Location Id"/>
+				<input pInputText type="text" hidden name="location_id" formControlName="location_id" placeholder="Location Id"required/>
 			</div>
 		</div>
             <div class="field grid">

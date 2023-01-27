@@ -18,9 +18,12 @@ export class MediaDemoComponent implements OnInit {
 
     angForm :FormGroup;
 
-selfregistration: any;
+    selfregistration: any;
+    mydist:any;
 
     constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router ) {
+
+        this.mydist = this.dataService.mydist;
 
         this.angForm = this.fb.group({ //angForm
             email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
