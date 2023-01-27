@@ -21,11 +21,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateStateAdminComponent } from './demo/components/create-state-admin/create-state-admin.component';
+import { CreateDistrictAdminComponent } from './demo/components/create-district-admin/create-district-admin.component';
+import { CreateOfficeBearersComponent } from './demo/components/create-office-bearers/create-office-bearers.component';
 
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, CreateStateAdminComponent,
+        AppComponent, NotfoundComponent, CreateStateAdminComponent, CreateDistrictAdminComponent, CreateOfficeBearersComponent,
     ],
     imports: [
         AppRoutingModule,
