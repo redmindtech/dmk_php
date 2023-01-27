@@ -63,6 +63,7 @@ export class FormLayoutDemoComponent {
     dashboard:boolean=true;
     visibleSidebar4: boolean = false;
     visibleSidebar5: boolean = false;
+    stateadmin:boolean=false;
 
 
     states: any[] = [
@@ -94,6 +95,7 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.home=false;
         this.dashboard=false;
+        this.stateadmin=false;
         return this.districtadmin = true;
        }
     toggle1(a:any){
@@ -117,6 +119,15 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.dashboard=false;
         return this.home =true;
+    }
+    toggle4(stateadmin:any){
+        //console.log(this.stateadmin);
+        this.districtadmin=false;
+        this.createdistrictadmin=false;
+        this.selfregistration=false;
+        this.dashboard=false;
+        return this.stateadmin =true;
+
     }
 
     toggledashboard(a:any){
