@@ -14,7 +14,9 @@ redirectUrl!: string;
 baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
 //baseUrl:string="http://localhost/new_dmk/php"
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
-constructor(private httpClient : HttpClient) { }
+constructor(private httpClient : HttpClient) { };
+
+
 
 
 public mydist = [
@@ -40,15 +42,27 @@ public mydist = [
     },
 ];
 
+public constituencies=[
+  { name:'Select constituencies/தொகுதியைத் தேர்ந்தெடுக்கவும்'},{ name:'Salem (West)'}, { name:'Salem (North)'}, { name:'Salem (South)'}, { name:'Veerapandi'}, { name:'Rasipuram'},
+  { name:'Senthamangalam'}, { name:'Attur'}, { name:'Yercaud'}, { name:'Namakkal'}, { name:'Rasipuram'},
+  { name:'Erode (East)'}, { name:'Erode (West)'},
+
+]
+public constituency:any;
+
 
 
 public userlogin(username : any, password :any) {
 alert(username)
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
+  //console.log(Users);
+  this.constituency= Users.district
+
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
 return Users;
+//console.log(Users);
 }));
 }
 
@@ -63,7 +77,7 @@ public create_state_admin(email:any,firstname:any,lastname:any,designation:any,p
     return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=0', { email,firstname,lastname,designation,party_designation,approval_status,location_id })
     .pipe(map(Users => {
     return Users;
-    }));
+    }))
     }
 
     public create_dist_admin(email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {

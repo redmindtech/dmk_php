@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit{
     }
 }
 */
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -89,7 +89,9 @@ selector: 'app-login',
 templateUrl: './login.component.html',
 //styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
+    @Output() districtadmin_constituency: EventEmitter<any> = new EventEmitter();
     userForm: FormGroup;
 constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 this.userForm = this.fb.group({
@@ -99,6 +101,7 @@ password: ['', Validators.required]
 }
 
 ngOnInit() {
+    //console.log(this.districtadmin_constituency);
 }
 postdata(userForm : any)
 {
@@ -106,8 +109,10 @@ this.dataService.userlogin(userForm.value.email,userForm.value.password)
 .pipe(first())
 .subscribe(
 data => {
+    console.log(data);
 const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/uikit/formlayout';
 this.router.navigate([redirect]);
+this.districtadmin_constituency.emit(data[0].district);
 },
 error => {
 alert("User name or password is incorrect")

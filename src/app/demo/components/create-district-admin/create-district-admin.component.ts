@@ -14,11 +14,11 @@ import { ApiService } from '../../../api.service';
 export class CreateDistrictAdminComponent implements OnInit {
 
     distadminform !:FormGroup;
-    mydist!:any;
+    constituencies!:any;
 
     constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router ) {
 
-        this.mydist = this.dataService.mydist;
+        this.constituencies = this.dataService.constituencies;
 
       this.distadminform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],

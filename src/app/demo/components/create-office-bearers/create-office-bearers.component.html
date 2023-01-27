@@ -5,6 +5,10 @@
 	<div class="card p-fluid" style="width:900px">
 
 		<h5 class="text-center">Create office bearer</h5>
+		<div style="text-align:right;">
+			<h6>Assembly constituency/சட்டமன்ற தொகுதி: {{constituency}}</h6>
+		</div>
+		
         <form [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
 			<div class="field grid">
 				<div class="col-6 md:col-6">

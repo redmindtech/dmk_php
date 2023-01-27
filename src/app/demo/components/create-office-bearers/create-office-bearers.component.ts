@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { ApiService } from '../../../api.service';
 export class CreateOfficeBearersComponent implements OnInit {
 
   officebearerform !:FormGroup;
+  constituency:string="Non-select";
+  @Input() districtadmin_constituency: string ='';
 
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 
@@ -36,6 +38,7 @@ export class CreateOfficeBearersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log(this.dataService.constituency);
   }
 
   postdata(officebearerform : any) //officebearerform
