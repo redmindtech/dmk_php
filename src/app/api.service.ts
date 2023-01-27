@@ -19,19 +19,24 @@ constructor(private httpClient : HttpClient) { }
 
 public mydist = [
     {
-        name:'Select District'
+        name:'Select District',
+        value:''
     },
     {
       name: "Namakkal",
+      value:'Namakkal'
     },
     {
       name: "Salem",
+      value:"Salem"
     },
     {
       name: "Trichy",
+      value:"Trichy",
     },
     {
       name: "Erode",
+      value:"Erode"
     },
 ];
 
@@ -54,8 +59,8 @@ return Users;
 }));
 }
 
-public create_state_admin(email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
-    return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=0', { email,firstname,lastname,district,designation,party_designation,approval_status,location_id })
+public create_state_admin(email:any,firstname:any,lastname:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+    return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=0', { email,firstname,lastname,designation,party_designation,approval_status,location_id })
     .pipe(map(Users => {
     return Users;
     }));

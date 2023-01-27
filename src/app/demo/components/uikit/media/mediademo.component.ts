@@ -26,16 +26,16 @@ export class MediaDemoComponent implements OnInit {
         this.mydist = this.dataService.mydist;
 
         this.angForm = this.fb.group({ //angForm
-            email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-            firstname:['',Validators.required],
-            lastname:['',Validators.required],
-            father_name:['',Validators.required],
+            email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+            father_name:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
             //parent_number:['',Validators.required],
             district:['',Validators.required],
-            contact_no:['',Validators.required],
-            date_of_birth:['',Validators.required],
-            educational_qualification:['',Validators.required],
-            profession:['',Validators.required],
+            contact_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+            date_of_birth:[''],
+            educational_qualification:[''],
+            profession:[''],
             location_id:['1',Validators.required]
             });
     }
@@ -47,17 +47,23 @@ export class MediaDemoComponent implements OnInit {
     postdata(angForm1 : any) //angForm1
     {
         console.log(angForm1);
-    this.dataService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id)
-    .pipe(first())
-    .subscribe(
-    data => {
-        alert("Successfully self registration completed!")
-    this.router.navigate(['']);
-    },
-
-    error => {
-        console.log(error);
-    });
+        if(this.angForm.valid==true)
+        {
+            this.dataService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id)
+            .pipe(first())
+            .subscribe(
+            data => {
+                alert("Successfully self registration completed!")
+            this.router.navigate(['']);
+            },
+        
+            error => {
+                console.log(error);
+            });
+        }
+        else{
+            alert("Please enter the valid data")
+        }
     }
 
     get email() { return this.angForm.get('email'); } //angForm

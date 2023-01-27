@@ -16,9 +16,9 @@ return this.isLogin(routeurl);
 }
 
 isLogin(routeurl: any) { //string
-//if (this.dataService.isLoggedIn()) {
+if (this.dataService.isLoggedIn()) {
 return true;
-//}
+}
 
 this.dataService.redirectUrl = routeurl;
 this.router.navigate(['/login'], {queryParams: { returnUrl: routeurl }} );

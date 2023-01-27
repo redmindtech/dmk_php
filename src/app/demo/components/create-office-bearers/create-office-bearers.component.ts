@@ -16,20 +16,20 @@ export class CreateOfficeBearersComponent implements OnInit {
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 
     this.officebearerform = this.fb.group({ //angForm
-        email:['',Validators.required],
-        firstname:['',Validators.required],
-        lastname:['',Validators.required],
+        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
         age:['',Validators.required],
-        father_name:['',Validators.required],
+        father_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
         educational_qualification:['',Validators.required],
-        date_of_birth:['',Validators.required],
-        additional_qualification:['',Validators.required],
-        contact_no:['',Validators.required],
-        whatsapp_no:['',Validators.required],
-        profession:['',Validators.required],
-        address1:['',Validators.required],
+        date_of_birth:[''],
+        additional_qualification:[''],
+        contact_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        profession:[''], 
+        address1:[''],
         applied_role:['',Validators.required],
-        party_comments:['',Validators.required],
+        party_comments:[''],
         location_id:['1',Validators.required]
       });
 
@@ -40,19 +40,26 @@ export class CreateOfficeBearersComponent implements OnInit {
 
   postdata(officebearerform : any) //officebearerform
   {
-      //console.log(officebearerform);
-  this.dataService.create_office_bearers(officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
-  .pipe(first())
-  .subscribe(
-  data => {
-      alert("Office bearers detail was successfully created !")
-  //this.router.navigate(['']);
-  officebearerform.reset();
-  },
+      
+    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
+    {
+        this.dataService.create_office_bearers(officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        .pipe(first())
+        .subscribe(
+        data => {
+            alert("Office bearers detail was successfully created !")
+        //this.router.navigate(['']);
+        officebearerform.reset();
+        },
+      
+        error => {
+            console.log(error);
+        });
+    }
+    else{
+        alert("Please enter the valid details")
+    }
 
-  error => {
-      console.log(error);
-  });
   }
 
   get email() { return this.officebearerform.get('email'); }
