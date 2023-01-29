@@ -47,7 +47,7 @@ export class MediaDemoComponent implements OnInit {
     postdata(angForm1 : any) //angForm1
     {
         console.log(angForm1);
-        if(this.angForm.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+        if(this.angForm.valid==true)
         {
             this.dataService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id)
             .pipe(first())

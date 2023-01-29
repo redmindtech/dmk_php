@@ -136,6 +136,17 @@ export class FormLayoutDemoComponent {
         return this.dashboard=true;
 
     }
+    meeting:boolean=false;
+    togglemeeting(meeting:boolean){
+        //console.log(this.meeting)
+        this.districtadmin=false;
+        this.createdistrictadmin=false;
+        this.selfregistration=false;
+        this.dashboard=false;
+        this.stateadmin =false;
+        return this.meeting= true;
+
+    }
     customers:any=[{name:'Salem', country:'Ramesh',company:'Secretary',status:'District Secretary',date:'01/01/2022',comment:'Reason....'},
     {name:'Coimbatore', country:'Suresh',company:'Secretary',status:'District Secretary',date:'20/01/2022',comment:'Reason....'},
     {name:'Trichy', country:'Vignesh',company:'District Secretary',status:'Secretary',date:'31/01/2022',comment:'Reason....'},

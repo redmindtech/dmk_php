@@ -17,6 +17,7 @@ baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
 constructor(private httpClient : HttpClient) { };
 
 
+@Output() districtadmin_constituency: EventEmitter<any> = new EventEmitter();
 
 
 public mydist = [
@@ -48,7 +49,14 @@ public constituencies=[
   { name:'Erode (East)'}, { name:'Erode (West)'},
 
 ]
-public constituency:any;
+public districts=[
+  { name:'Salem (West)'}, { name:'Salem (North)'}, { name:'Salem (South)'}, { name:'Veerapandi'}, { name:'Rasipuram'},
+  { name:'Senthamangalam'}, { name:'Attur'}, { name:'Yercaud'}, { name:'Namakkal'}, { name:'Rasipuram'},
+  { name:'Erode (East)'}, { name:'Erode (West)'},
+
+]
+
+public constituency:any='No-Select';
 
 
 
@@ -56,8 +64,9 @@ public userlogin(username : any, password :any) {
 alert(username)
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
-  //console.log(Users);
-  this.constituency= Users.district
+  this.constituency= Users[0].district;
+  //console.log(this.constituency);
+  
 
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
@@ -73,22 +82,22 @@ return Users;
 }));
 }
 
-public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
-    return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=0', { mode,email,firstname,lastname,designation,party_designation,approval_status,location_id })
+public create_state_admin(email:any,firstname:any,lastname:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+    return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=0', { email,firstname,lastname,designation,party_designation,approval_status,location_id })
     .pipe(map(Users => {
     return Users;
     }))
     }
 
-    public create_dist_admin(mode:any,email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
-        return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=1', { mode,email,firstname,lastname,district,designation,party_designation,approval_status,location_id })
+    public create_dist_admin(email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+        return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=1', { email,firstname,lastname,district,designation,party_designation,approval_status,location_id })
         .pipe(map(Users => {
         return Users;
         }));
         }
 
-    public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,party_comments:any,location_id:any) {
-        return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=2', { mode,email,firstname,lastname,age,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id })
+    public create_office_bearers(email:any,firstname:any,lastname:any,age:any,father_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,party_comments:any,location_id:any) {
+        return this.httpClient.post<any>(this.baseUrl + '/create.php?mode=2', { email,firstname,lastname,age,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id })
         .pipe(map(Users => {
         return Users;
         }));

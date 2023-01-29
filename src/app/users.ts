@@ -22,9 +22,8 @@ export class Users {
     public address1:string;
     public applied_role:string;
     public party_comments:string;
-    public mode:number;
 
-    constructor(Id:number,pwd:string,email:string,firstname:string,lastname:string,educational_qualification:string,profession:string,date_of_birth:string,contact_no:number,father_name:string,district:string,location_id:number,designation:string,party_designation:string,approval_status:string,age:number,additional_qualification:string,whatsapp_no:number,address1:string,applied_role:string,party_comments:string,mode:number) {
+    constructor(Id:number,pwd:string,email:string,firstname:string,lastname:string,educational_qualification:string,profession:string,date_of_birth:string,contact_no:number,father_name:string,district:string,location_id:number,designation:string,party_designation:string,approval_status:string,age:number,additional_qualification:string,whatsapp_no:number,address1:string,applied_role:string,party_comments:string) {
     this.Id = Id;
     this.pwd = pwd;
     this.email = email;
@@ -45,7 +44,6 @@ export class Users {
     this.whatsapp_no=whatsapp_no;
     this.address1=address1;
     this.applied_role=applied_role;
-    this.party_comments=party_comments;
-    this.mode=mode;
+    this.party_comments=party_comments
     }
     }
