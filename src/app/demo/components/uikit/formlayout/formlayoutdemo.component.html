@@ -26,6 +26,7 @@
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle(districtadmin)">CREATE DISTRICT ADMIN</button>
 			<!-- <button pButton pRipple  class="p-button-text text-xl font-bold" style="color:red" (click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</button> -->
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle3(home)">OFFICE BEARER CHANGE</button>
+			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="togglemeeting(meeting)">CREATE MEETINGS</button>
 			<div style="padding-left:32px;margin-left: 9px;">
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255);padding-left: 28px;" [routerLink]="['/']">SIGN OUT</button>
 			</div>
@@ -251,7 +252,7 @@
 											</tr>
 										</ng-template>
 									</p-table>
-								</div>
+							</div>
 
 						</div>
 
@@ -312,6 +313,10 @@
 								</div>
 							</div>
 
+						</div>
+						<!-- CREATE MEETINGS -->
+						<div *ngIf="meeting">
+							<app-create-meeting></app-create-meeting>
 						</div>
 				</div>
 			</div>
@@ -390,6 +395,9 @@
 			</div>
 		</div>
 	</div>
+
+
+	
 
 
 

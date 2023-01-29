@@ -12,9 +12,8 @@ import { ApiService } from '../../../api.service';
 export class CreateOfficeBearersComponent implements OnInit {
 
   officebearerform !:FormGroup;
-  constituency:string="Non-select";
-  @Input() districtadmin_constituency: string ='';
-
+  constituency:string="";
+ 
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 
     this.officebearerform = this.fb.group({ //angForm
@@ -38,7 +37,10 @@ export class CreateOfficeBearersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.dataService.constituency);
+    //console.log(this.dataService.constituency);
+    this.constituency=this.dataService.constituency;
+    //console.log(this.constituency);
+
   }
 
   postdata(officebearerform : any) //officebearerform

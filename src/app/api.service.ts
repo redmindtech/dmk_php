@@ -48,7 +48,14 @@ public constituencies=[
   { name:'Erode (East)'}, { name:'Erode (West)'},
 
 ]
-public constituency:any;
+public districts=[
+  { name:'Salem (West)'}, { name:'Salem (North)'}, { name:'Salem (South)'}, { name:'Veerapandi'}, { name:'Rasipuram'},
+  { name:'Senthamangalam'}, { name:'Attur'}, { name:'Yercaud'}, { name:'Namakkal'}, { name:'Rasipuram'},
+  { name:'Erode (East)'}, { name:'Erode (West)'},
+
+]
+
+public constituency:any='No-Select';
 
 
 
@@ -56,8 +63,9 @@ public userlogin(username : any, password :any) {
 alert(username)
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
-  //console.log(Users);
-  this.constituency= Users.district
+  this.constituency= Users[0].district;
+  //console.log(this.constituency);
+  
 
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
