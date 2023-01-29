@@ -7,7 +7,6 @@ import { MediaDemoComponent } from './demo/components/uikit/media/mediademo.comp
 import { CreateStateAdminComponent } from './demo/components/create-state-admin/create-state-admin.component';
 import { CreateDistrictAdminComponent } from './demo/components/create-district-admin/create-district-admin.component';
 import { CreateOfficeBearersComponent } from './demo/components/create-office-bearers/create-office-bearers.component';
-import { CreateMeetingComponent } from './demo/components/create-meeting/create-meeting.component';
 
 @NgModule({
     imports: [
@@ -26,9 +25,6 @@ import { CreateMeetingComponent } from './demo/components/create-meeting/create-
             },
             {
                 path:'cob',component:CreateOfficeBearersComponent
-            },
-            {
-                path:'meetings',component:CreateMeetingComponent
             },
 
             { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },

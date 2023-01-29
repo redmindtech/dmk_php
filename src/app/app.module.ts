@@ -23,12 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateStateAdminComponent } from './demo/components/create-state-admin/create-state-admin.component';
 import { CreateDistrictAdminComponent } from './demo/components/create-district-admin/create-district-admin.component';
 import { CreateOfficeBearersComponent } from './demo/components/create-office-bearers/create-office-bearers.component';
-//import { CreateMeetingComponent } from './demo/components/create-meeting/create-meeting.component';
 
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, CreateStateAdminComponent, CreateDistrictAdminComponent, CreateOfficeBearersComponent, 
+        AppComponent, NotfoundComponent, CreateStateAdminComponent, CreateDistrictAdminComponent, CreateOfficeBearersComponent,
     ],
     imports: [
         AppRoutingModule,

@@ -21,8 +21,6 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ChartModule } from 'primeng/chart';
 import { StyleClassModule } from 'primeng/styleclass';
 import { MenuModule } from 'primeng/menu';
-import { CreateMeetingComponent } from 'src/app/demo/components/create-meeting/create-meeting.component';
-
 
 @NgModule({
 	imports: [
@@ -48,6 +46,6 @@ import { CreateMeetingComponent } from 'src/app/demo/components/create-meeting/c
 		StyleClassModule,
 		MenuModule
 	],
-	declarations: [FormLayoutDemoComponent,CreateMeetingComponent]
+	declarations: [FormLayoutDemoComponent]
 })
 export class FormLayoutDemoModule { }

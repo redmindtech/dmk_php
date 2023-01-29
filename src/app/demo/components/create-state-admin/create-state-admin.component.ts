@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -15,22 +16,7 @@ import { ApiService } from '../../../api.service';
 export class CreateStateAdminComponent implements OnInit {
 
   stateadminform !:FormGroup;
-
-
-  mydist = [
-    {
-      name: "Namakkal",
-    },
-    {
-      name: "Salem",
-    },
-    {
-      name: "Trichy",
-    },
-    {
-      name: "Erode",
-    },
-];
+  check_fn:boolean=true;
 
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router ) {
 
@@ -42,20 +28,20 @@ export class CreateStateAdminComponent implements OnInit {
         designation:[''],
         party_designation:[''],
         approval_status:[''],
-        location_id:['1']
+        location_id:['1'],
+        mode:['0']
         });
 }
 
   ngOnInit(): void {
   }
 
-
   postdata(angForm1 : any) //angForm1
   {
       //console.log(angForm1);
     if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
     {
-        this.dataService.create_state_admin(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
+        this.dataService.create_state_admin(angForm1.value.mode,angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
         .pipe(first())
         .subscribe(
         data => {
@@ -72,7 +58,6 @@ export class CreateStateAdminComponent implements OnInit {
         alert("Please enter the valid details");
     }
   }
-  //get f() { return this.stateadminform.controls; }
 
   get email() { return this.stateadminform.get('email'); }
   get firstname() { return this.stateadminform.get('firstname'); }
@@ -82,6 +67,7 @@ export class CreateStateAdminComponent implements OnInit {
   get party_designation() { return this.stateadminform.get('party_designation'); }
   get approval_status() { return this.stateadminform.get('approval_status'); }
   get location_id() { return this.stateadminform.get('location_id'); }
+  get mode() { return this.stateadminform.get('mode'); }
 
 
 

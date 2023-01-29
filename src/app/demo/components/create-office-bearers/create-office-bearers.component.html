@@ -8,19 +8,31 @@
 		<div style="text-align:right;">
 			<h6>Assembly constituency/சட்டமன்ற தொகுதி: {{constituency}}</h6>
 		</div>
-		
+
         <form [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
 			<div class="field grid">
 				<div class="col-6 md:col-6">
 					<input type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்"/>
+                    <span *ngIf="officebearerform.get('firstname').hasError('required') && officebearerform.get('firstname').touched"><br>
+                        <span class="invalid-msg">Please enter the valid field</span>
+                    </span>
+                    <span *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched"><br>
+                        <span class="invalid-msg">Please enter the valid input</span>
+                    </span>
 				</div>
 			<div class="col-6 md:col-6">
 				<input type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்"/>
+                <span *ngIf="officebearerform.get('lastname').hasError('required') && officebearerform.get('lastname').touched"><br>
+                    <span class="invalid-msg">Please enter the valid field</span>
+                </span>
+                <span *ngIf="officebearerform.get('lastname').hasError('pattern') && officebearerform.get('lastname').touched"><br>
+                    <span class="invalid-msg">Please enter the valid input</span>
+                </span>
 			</div>
 		</div>
 		<div class="field grid">
 			<div class="col-6 md:col-6">
-				<input type="number" name="age" formControlName="age" placeholder="Age / வயது"/>
+				<input type="number" name="age" formControlName="age" min="18" max="100" placeholder="Age / வயது"/>
 			</div>
 			<div class="col-6 md:col-6">
 				<input type="date" name="date_of_birth" formControlName="date_of_birth" placeholder="Date of Birth"/>
@@ -42,15 +54,33 @@
         <div class="field grid">
 			<div class="col-6 md:col-6">
 				<input type="text" name="contact_no" formControlName="contact_no" placeholder="Phone Number / தொலைபேசி எண்"/>
+                <span *ngIf="officebearerform.get('contact_no').hasError('required') && officebearerform.get('contact_no').touched"><br>
+                    <span class="invalid-msg">Please enter the valid field</span>
+                </span>
+                <span *ngIf="officebearerform.get('contact_no').hasError('pattern') && officebearerform.get('contact_no').touched"><br>
+                    <span class="invalid-msg">Please enter the valid Contact Number</span>
+                </span>
 			</div>
             <div class="col-6 md:col-6">
 				<input type="text" name="whatsapp_no" formControlName="whatsapp_no" placeholder="Whatsapp Number /வாட்ஸ்அப் எண்"/>
+                <span *ngIf="officebearerform.get('whatsapp_no').hasError('required') && officebearerform.get('whatsapp_no').touched"><br>
+                    <span class="invalid-msg">Please enter the valid field</span>
+                </span>
+                <span *ngIf="officebearerform.get('whatsapp_no').hasError('pattern') && officebearerform.get('whatsapp_no').touched"><br>
+                    <span class="invalid-msg">Please enter the valid Whatsapp Number</span>
+                </span>
 			</div>
         </div>
         <div class="field grid">
 			<div class="col-12 md:col-12">
 				<input type="text" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"/>
-			</div>
+                <span *ngIf="officebearerform.get('email').hasError('required') && officebearerform.get('email').touched"><br>
+                    <span class="invalid-msg">Please enter the valid field</span>
+                </span>
+                <span *ngIf="officebearerform.get('email').hasError('pattern') && officebearerform.get('email').touched"><br>
+                    <span class="invalid-msg">Please enter the valid Email Id</span>
+                </span>
+            </div>
         </div>
 		<div class="field grid">
 			<div class="col-12 md:col-12">
@@ -87,6 +117,9 @@
 			</div>
         </div>
         <div class="field grid">
+            <div class="col-6 md:col-6">
+				<input pInputText type="text" hidden name="mode" formControlName="mode"/>
+			</div>
 			<div class="col-6 md:col-6">
 				<input pInputText type="text" hidden name="location_id" formControlName="location_id"/>
 			</div>
