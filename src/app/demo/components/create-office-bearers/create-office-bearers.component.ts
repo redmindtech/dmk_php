@@ -12,8 +12,9 @@ import { ApiService } from '../../../api.service';
 export class CreateOfficeBearersComponent implements OnInit {
 
   officebearerform !:FormGroup;
-  constituency:string="";
- 
+  constituency:string="Non-select";
+  @Input() districtadmin_constituency: string ='';
+
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 
     this.officebearerform = this.fb.group({ //angForm
@@ -27,28 +28,26 @@ export class CreateOfficeBearersComponent implements OnInit {
         additional_qualification:[''],
         contact_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
         whatsapp_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
-        profession:[''], 
+        profession:[''],
         address1:[''],
         applied_role:['',Validators.required],
         party_comments:[''],
-        location_id:['1',Validators.required]
+        location_id:['1',Validators.required],
+        mode:['0',Validators.required]
       });
 
    }
 
   ngOnInit(): void {
-    //console.log(this.dataService.constituency);
-    this.constituency=this.dataService.constituency;
-    //console.log(this.constituency);
-
+    console.log(this.dataService.constituency);
   }
 
   postdata(officebearerform : any) //officebearerform
   {
-      
+
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {
-        this.dataService.create_office_bearers(officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.dataService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .pipe(first())
         .subscribe(
         data => {
@@ -56,7 +55,7 @@ export class CreateOfficeBearersComponent implements OnInit {
         //this.router.navigate(['']);
         officebearerform.reset();
         },
-      
+
         error => {
             console.log(error);
         });
@@ -67,6 +66,7 @@ export class CreateOfficeBearersComponent implements OnInit {
 
   }
 
+  get mode() { return this.officebearerform.get('mode'); }
   get email() { return this.officebearerform.get('email'); }
   get firstname() { return this.officebearerform.get('firstname'); }
   get lastname() { return this.officebearerform.get('lastname'); }
