@@ -8,6 +8,7 @@ import { CreateStateAdminComponent } from './demo/components/create-state-admin/
 import { CreateDistrictAdminComponent } from './demo/components/create-district-admin/create-district-admin.component';
 import { CreateOfficeBearersComponent } from './demo/components/create-office-bearers/create-office-bearers.component';
 import { CreateMeetingComponent } from './demo/components/create-meeting/create-meeting.component';
+import { NewpasswordComponent } from './demo/components/newpassword/newpassword.component';
 
 @NgModule({
     imports: [
@@ -29,6 +30,9 @@ import { CreateMeetingComponent } from './demo/components/create-meeting/create-
             },
             {
                 path:'meetings',component:CreateMeetingComponent
+            },
+            {
+                path:'reset_password/:email',component:NewpasswordComponent
             },
 
             { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },

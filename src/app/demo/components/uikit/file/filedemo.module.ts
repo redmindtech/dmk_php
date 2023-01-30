@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FileDemoRoutingModule } from './filedemo-routing.module';
 import { FileDemoComponent } from './filedemo.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FileDemoComponent } from './filedemo.component';
 		CommonModule,
 		FormsModule,
 		FileDemoRoutingModule,
-		FileUploadModule
+		FileUploadModule,
+        ReactiveFormsModule
 	],
 	declarations: [FileDemoComponent],
 })

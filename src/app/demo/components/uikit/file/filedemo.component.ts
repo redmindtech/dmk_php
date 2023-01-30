@@ -14,16 +14,12 @@ templateUrl: './filedemo.component.html',
 //styleUrls: ['./login.component.css']
 })
 export class FileDemoComponent implements OnInit {
-    profileForm = new FormGroup({
-        email: new FormControl(''),
-        oldpassword: new FormControl(''),
-        newpassword: new FormControl(''),
-      });
-    userForm: FormGroup;
+
+    sendmail:FormGroup;
+
 constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
-this.userForm = this.fb.group({
+this.sendmail = this.fb.group({
 email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-password: ['', Validators.required]
 });
 }
 
@@ -31,17 +27,19 @@ ngOnInit() {
 }
 postdata(forgotForm : any)
 {
-this.dataService.userlogin(forgotForm.value.email,forgotForm.value.password)
+console.log(this.sendmail)
+this.dataService.sendmail(forgotForm.value.email)
 .pipe(first())
 .subscribe(
 data => {
-const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '';
-this.router.navigate([redirect]);
+alert("Reset link was sented to your mail");
+this.sendmail.reset();
 },
 error => {
-alert("User name or password is incorrect")
+    console.log(error)
+    alert("Reset link was sented to your mail");
+    this.sendmail.reset();
 });
 }
-get email() { return this.userForm.get('email'); }
-get password() { return this.userForm.get('password'); }
+get email() { return this.sendmail.get('email'); }
 }

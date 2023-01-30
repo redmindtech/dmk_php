@@ -11,8 +11,8 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl!: string;
-baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-//baseUrl:string="http://localhost/new_dmk/php"
+//baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+baseUrl:string="http://localhost/ndw/php"
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
@@ -66,7 +66,7 @@ return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, passwo
 .pipe(map(Users => {
   this.constituency= Users[0].district;
   //console.log(this.constituency);
-  
+
 
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
@@ -145,6 +145,18 @@ public viewtableDA() {
   //                                   this.tabledataOB=users[0];
   //                                   })}              
 
+          public sendmail(email:any) {
+            return this.httpClient.post<any>(this.baseUrl + '/send_email.php', { email })
+            .pipe(map(Users => {
+            return Users;
+            }));
+            }
+            public resetpassword(email:any,password:any,cpassword:any) {
+                return this.httpClient.post<any>(this.baseUrl + '/update_password.php', { email,password,cpassword })
+                .pipe(map(Users => {
+                return Users;
+                }));
+                }
 
 //token
 setToken(token: string) {
