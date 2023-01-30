@@ -49,14 +49,7 @@
 
 			<div class="card">
             <div>
-					<div>
-						<h5 *ngIf="districtadmin === true" style="font-size:25px;"><b> DISTRICT ADMIN INFORMATION </b></h5>
-						<!-- <div *ngIf="districtadmin===true" style="padding-left: 92%;padding-bottom:10px;">
-							
-						</div> -->
-						<button *ngIf="districtadmin===true" pButton type="button" label="Add"  [routerLink]="['/cda']" icon="pi pi-plus" class="p-button-primary"></button>
-					</div>
-                    <div></div>
+					
 
 								<p-sidebar [(visible)]="visibleSidebar5" [fullScreen]="true" [baseZIndex]="10000">
                                     <div style="background-image: linear-gradient(#0e24b1, #3e4fa0)">
@@ -202,7 +195,7 @@
 								</p-sidebar>
 				</div>
 						<div>
-							<h5 *ngIf="createdistrictadmin === true">OFFICE BEARER INFORMATION</h5>
+							<!-- <h5 *ngIf="createdistrictadmin === true">OFFICE BEARER INFORMATION</h5>
 							<div *ngIf="districtadmin === true || createdistrictadmin === true">
 									<p-table [value]="customers1" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
 										<ng-template pTemplate="header">
@@ -218,13 +211,7 @@
 											</tr>
 										</ng-template>
 										<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-											<!-- <tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
-												<td colspan="5" style="min-width: 200px;">
-													<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
-													<span class="font-bold ml-2">{{customer.representative.name}}</span>
-												</td>
-											</tr> -->
-											<tr>
+											<tr *ngFor="let customer of customers1">
 												<td style="min-width: 20px;">
 													{{customer.name}}
 												</td>
@@ -252,10 +239,10 @@
 											</tr>
 										</ng-template>
 									</p-table>
-							</div>
+							</div> -->
 
 						</div>
-
+								
 						<div>
 <!-- --------state admin table 3 button table -------------------->
 							<div *ngIf="stateadmin === true">
@@ -274,29 +261,24 @@
 													<th>Edit</th>
 													<th>Delete</th>
 												</tr>
+												
 											</ng-template>
 											<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-												<!-- <tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
-													<td colspan="5" style="min-width: 200px;">
-														<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
-														<span class="font-bold ml-2">{{customer.representative.name}}</span>
-													</td>
-												</tr> -->
 												<tr>
 													<td style="min-width: 20px;">
 														{{customer.name}}
 													</td>
 													<td style="min-width: 20px;">
-														<span >{{customer.country}}</span>
+														<span >{{customer.designation}}</span>
 													</td>
 													<td style="min-width: 20px;">
-														{{customer.company}}
+														{{customer.district}}
 													</td>
 													<td style="min-width: 20px;">
-														<span>{{customer.status}}</span>
+														{{customer.approval_status}}
 													</td>
 													<td style="min-width: 20px;">
-														{{customer.date}}
+														{{customer.email}}
 													</td>
 													<td style="min-width: 20px;">
 														<button pButton class="p-button-success" icon="pi pi-eye"></button>
@@ -312,6 +294,57 @@
 										</p-table>
 								</div>
 							</div>
+
+<!-- -----------------district admin table------------------------------ -->
+<div *ngIf="districtadmin === true">
+	<h5 style="font-size:25px;"><b> DISTRICT ADMIN INFORMATION </b></h5>
+	<button  pButton type="button" label="Add"  [routerLink]="['/cda']" icon="pi pi-plus" class="p-button-primary"></button>
+	<div *ngIf="districtadmin === true">
+			<p-table [value]="customers2" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
+				<ng-template pTemplate="header">
+					<tr>
+						<th>Name</th>
+						<th>Designation</th>
+						<th>District</th>
+						<th>Status</th>
+						<th>Email</th>
+						<th>Show</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					
+				</ng-template>
+				<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+					<tr>
+						<td style="min-width: 20px;">
+							{{customer.name}}
+						</td>
+						<td style="min-width: 20px;">
+							<span >{{customer.designation}}</span>
+						</td>
+						<td style="min-width: 20px;">
+							{{customer.district}}
+						</td>
+						<td style="min-width: 20px;">
+							{{customer.approval_status}}
+						</td>
+						<td style="min-width: 20px;">
+							{{customer.email}}
+						</td>
+						<td style="min-width: 20px;">
+							<button pButton class="p-button-success" icon="pi pi-eye"></button>
+						</td>
+						<td style="min-width: 20px;">
+							<button pButton icon="pi pi-user-edit"></button>
+						</td>
+						<td style="min-width: 20px;">
+							<button pButton icon="pi pi-times" class="p-button-danger"></button>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+	</div>
+</div>
 
 						</div>
 						<!-- CREATE MEETINGS -->
@@ -333,10 +366,8 @@
 
 	<div *ngIf="home" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
 		<div>
+<!-- -----------------Office bearer table---------------------- -->
 			<div class="card" >
-				<!-- <div class="flex justify-content-end flex-wrap card-container green-container" >
-					<p-button label="Add" icon="pi pi-plus" ></p-button>
-				</div>	 -->
 				<h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER CHANGE </b></h5>
 
 					<div style="padding-top:2%">
@@ -356,12 +387,6 @@
 								</tr>
 							</ng-template>
 							<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-								<!-- <tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
-									<td colspan="5" style="min-width: 200px;">
-										<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
-										<span class="font-bold ml-2">{{customer.representative.name}}</span>
-									</td>
-								</tr> -->
 								<tr>
 									<td style="min-width: 20px;">
 										{{customer.name}}
@@ -390,7 +415,6 @@
 								</tr>
 							</ng-template>
 						</p-table>
-
 					</div>
 			</div>
 		</div>

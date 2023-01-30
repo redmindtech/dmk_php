@@ -33,7 +33,10 @@ export class CreateStateAdminComponent implements OnInit {
 }
 
   ngOnInit(): void {
-  }
+    this.dataService.viewtableSA();
+    //console.log(this.dataService.tabledata);
+    
+}
 
   postdata(angForm1 : any) //angForm1
   {

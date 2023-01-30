@@ -102,6 +102,48 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designat
           return Users;
           }));
           }
+tabledata:any[]=[]
+public viewtableSA() {
+           this.httpClient.get<any>('https://redmindtechnologies.com/dmk_dev/show.php?mode=0')
+              .pipe(map((res)=>{
+                  const users =[];
+                  for(const key in res){
+                      if(res.hasOwnProperty(key)){
+                          users.push({...res[key],id:key})}
+                  } return users;
+              })).subscribe((users:any[])=>{
+                  //console.log(users);
+                  this.tabledata=users[0];
+                  //console.log(this.tabledata);
+                  })}
+
+tabledataDA:any[]=[];
+public viewtableDA() {
+           this.httpClient.get<any>('https://redmindtechnologies.com/dmk_dev/show.php?mode=1')
+              .pipe(map((res)=>{
+                  const users =[];
+                  for(const key in res){
+                      if(res.hasOwnProperty(key)){
+                          users.push({...res[key],id:key})}
+                  } return users;
+              })).subscribe((users:any[])=>{
+                  //console.log(users);
+                  this.tabledataDA=users[0];
+                  //console.log(this.tabledataDA);
+                  })}
+                  
+  // tabledataOB:any[]=[];
+  //   public viewtableOB() {
+  //       this.httpClient.get<any>('https://redmindtechnologies.com/dmk_dev/show.php?mode=2')
+  //                         .pipe(map((res)=>{
+  //                                   const users =[];
+  //                                   for(const key in res){
+  //                                       if(res.hasOwnProperty(key)){
+  //                                           users.push({...res[key],id:key})}
+  //                                   } return users;
+  //                               })).subscribe((users:any[])=>{
+  //                                   this.tabledataOB=users[0];
+  //                                   })}              
 
 
 //token

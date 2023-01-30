@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
     templateUrl: './formlayoutdemo.component.html'
@@ -88,9 +89,14 @@ export class FormLayoutDemoComponent {
 
     city2: any = null;
     valRadio: string = '';
-
+    
+    customers2: any=[];
+    customers3: any=[];
     toggle(a:any){
-        
+        for(const prop in this.ApiService.tabledataDA) {
+            this.customers2.push(this.ApiService.tabledataDA[prop])
+          }
+        console.log(this.customers2);
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.home=false;
@@ -113,7 +119,10 @@ export class FormLayoutDemoComponent {
         this.dashboard=false;
        }
     toggle3(a:any){
-        
+        // for(const prop in this.ApiService.tabledataOB) {
+        //     this.customers3.push(this.ApiService.tabledataOB[prop])
+        //   }
+        // console.log(this.customers3);      
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
@@ -121,20 +130,20 @@ export class FormLayoutDemoComponent {
         return this.home =true;
     }
     toggle4(stateadmin:any){
-        //console.log(this.stateadmin);
+        for(const prop in this.ApiService.tabledata) {
+            this.customers1.push(this.ApiService.tabledata[prop])
+          }
+        //console.log(this.customers1);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.dashboard=false;
         return this.stateadmin =true;
-
     }
 
     toggledashboard(a:any){
-        
         this.home=false;
         return this.dashboard=true;
-
     }
     meeting:boolean=false;
     togglemeeting(meeting:boolean){
@@ -156,14 +165,17 @@ export class FormLayoutDemoComponent {
     {name:'Ariyalur', country:'kalaiyarasan',company:'Secretary',status:'District Secretary',date:'09/01/2022',comment:'Reason....'}
     ];
 
-    customers1:any=[{name:'Ramesh', country:'District Secretary',company:'Salem',status:'Active',date:'ramesh34@gmail.com'},
-    {name:'Suresh', country:'District Secretary',company:'Coimbatore',status:'No-Active',date:'suresh2.KgK@gmail.com'},
-    {name:'Rajesh', country:'District Secretary',company:'Trichy',status:'Active',date:'rajesh.0508@gmail.com'},
-    {name:'Boopathi', country:'Secretary',company:'Perambalur',status:'Active',date:'boopathi839@gmail.com'},
-    {name:'kalaiyarasan', country:'District Secretary',company:'Ariyalur',status:'Active',date:'kalaiyarasan5734@gmail.com'},
-    {name:'Raju', country:'Secretary',company:'Namakkal',status:'No-Active',date:'raja.kg@gmail.com'},
-    {name:'Malleswaran', country:'District Secretary',company:'Perambalur',status:'No-Active',date:'chinni.malleswaran@gmail.com'}
-    ];
+    // customers1:any=[{name:'Ramesh', country:'District Secretary',company:'Salem',status:'Active',date:'ramesh34@gmail.com'},
+    // {name:'Suresh', country:'District Secretary',company:'Coimbatore',status:'No-Active',date:'suresh2.KgK@gmail.com'},
+    // {name:'Rajesh', country:'District Secretary',company:'Trichy',status:'Active',date:'rajesh.0508@gmail.com'},
+    // {name:'Boopathi', country:'Secretary',company:'Perambalur',status:'Active',date:'boopathi839@gmail.com'},
+    // {name:'kalaiyarasan', country:'District Secretary',company:'Ariyalur',status:'Active',date:'kalaiyarasan5734@gmail.com'},
+    // {name:'Raju', country:'Secretary',company:'Namakkal',status:'No-Active',date:'raja.kg@gmail.com'},
+    // {name:'Malleswaran', country:'District Secretary',company:'Perambalur',status:'No-Active',date:'chinni.malleswaran@gmail.com'}
+    // ];
+    customers1:any=[];
+    //customers1=this.ApiService.tabledata[0].name;
+    
 
     items = [
         { label: 'Add New', icon: 'pi pi-fw pi-plus' },
@@ -174,10 +186,12 @@ export class FormLayoutDemoComponent {
     subscription!: Subscription;
     products!: Product[];
     
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService, public layoutService: LayoutService,
+        private ApiService:ApiService ) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
+    
     }
     // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
     ngOnInit() {
@@ -188,8 +202,16 @@ export class FormLayoutDemoComponent {
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
+        this.gettabledata();
+
     }
     
+    //---------datatable-------
+    gettabledata(){
+    this.ApiService.viewtableSA();
+    this.ApiService.viewtableDA();
+    // this.ApiService.viewtableOB();
+    }
     initChart() { 
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
