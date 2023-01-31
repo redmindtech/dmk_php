@@ -11,8 +11,8 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl!: string;
-//baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-baseUrl:string="http://localhost/ndw/php"
+baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+//baseUrl:string="http://localhost/ndw/php"
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
