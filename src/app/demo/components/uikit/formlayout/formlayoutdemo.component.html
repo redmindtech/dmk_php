@@ -26,6 +26,7 @@
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle(districtadmin)">CREATE DISTRICT ADMIN</button>
 			<!-- <button pButton pRipple  class="p-button-text text-xl font-bold" style="color:red" (click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</button> -->
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle3(home)">OFFICE BEARER CHANGE</button>
+
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="togglemeeting(meeting)">CREATE MEETINGS</button>
 			<div style="padding-left:32px;margin-left: 9px;">
 			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255);padding-left: 28px;" [routerLink]="['/']">SIGN OUT</button>
@@ -49,7 +50,7 @@
 
 			<div class="card">
             <div>
-					
+
 
 								<p-sidebar [(visible)]="visibleSidebar5" [fullScreen]="true" [baseZIndex]="10000">
                                     <div style="background-image: linear-gradient(#0e24b1, #3e4fa0)">
@@ -195,54 +196,9 @@
 								</p-sidebar>
 				</div>
 						<div>
-							<!-- <h5 *ngIf="createdistrictadmin === true">OFFICE BEARER INFORMATION</h5>
-							<div *ngIf="districtadmin === true || createdistrictadmin === true">
-									<p-table [value]="customers1" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
-										<ng-template pTemplate="header">
-											<tr>
-												<th>Name</th>
-												<th>Designation</th>
-												<th>District</th>
-												<th>Status</th>
-												<th>Email</th>
-												<th>Show</th>
-												<th>Edit</th>
-												<th>Delete</th>
-											</tr>
-										</ng-template>
-										<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-											<tr *ngFor="let customer of customers1">
-												<td style="min-width: 20px;">
-													{{customer.name}}
-												</td>
-												<td style="min-width: 20px;">
-													<span >{{customer.country}}</span>
-												</td>
-												<td style="min-width: 20px;">
-													{{customer.company}}
-												</td>
-												<td style="min-width: 20px;">
-													<span>{{customer.status}}</span>
-												</td>
-												<td style="min-width: 20px;">
-													{{customer.date}}
-												</td>
-												<td style="min-width: 20px;">
-													<button pButton class="p-button-success" icon="pi pi-eye"></button>
-												</td>
-												<td style="min-width: 20px;">
-													<button pButton icon="pi pi-user-edit"></button>
-												</td>
-												<td style="min-width: 20px;">
-													<button pButton icon="pi pi-times" class="p-button-danger"></button>
-												</td>
-											</tr>
-										</ng-template>
-									</p-table>
-							</div> -->
 
 						</div>
-								
+
 						<div>
 <!-- --------state admin table 3 button table -------------------->
 							<div *ngIf="stateadmin === true">
@@ -261,7 +217,7 @@
 													<th>Edit</th>
 													<th>Delete</th>
 												</tr>
-												
+
 											</ng-template>
 											<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
 												<tr>
@@ -282,7 +238,7 @@
 													</td>
 													<td style="min-width: 20px;">
 
-                                                        <button type="button" pButton class="p-button-success" (click)="showstateadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
+                                                        <button type="button" pButton class="p-button-success" (click)="showstateadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
                                                         <p-dialog header="State Admin" [(visible)]="display0">
                                                         <table class="table table-bordered">
                                                             <tr>
@@ -304,7 +260,7 @@
 														<button pButton icon="pi pi-user-edit"></button>
 													</td>
 													<td style="min-width: 20px;">
-														<button pButton icon="pi pi-times" class="p-button-danger"></button>
+														<button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_sa(customer.id)"></button>
 													</td>
 												</tr>
 											</ng-template>
@@ -329,7 +285,7 @@
 						<th>Edit</th>
 						<th>Delete</th>
 					</tr>
-					
+
 				</ng-template>
 				<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
 					<tr>
@@ -350,7 +306,7 @@
 						</td>
 						<td style="min-width: 20px;">
                             <button type="button" pButton class="p-button-success"
-                            (click)="showdistadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
+                            (click)="showdistadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
                             <p-dialog header="District Admin" [(visible)]="display1">
                             <table class="table table-bordered">
                                 <tr>
@@ -372,7 +328,7 @@
 							<button pButton icon="pi pi-user-edit"></button>
 						</td>
 						<td style="min-width: 20px;">
-							<button pButton icon="pi pi-times" class="p-button-danger"></button>
+							<button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_da(customer.id)"></button>
 						</td>
 					</tr>
 				</ng-template>
@@ -401,64 +357,124 @@
 	<div *ngIf="home" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
 		<div>
 <!-- -----------------Office bearer table---------------------- -->
+<div class="card" >
+    <h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER CHANGE </b></h5>
+
+        <div style="padding-top:2%">
+            <button  pButton type="button" label="Add"  [routerLink]="['/cob']" icon="pi pi-plus" class="p-button-primary"></button>
+            <p-table [value]="customers3" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
+            [scrollable]="true" scrollHeight="400px" >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>District</th>
+                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Show</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+                    <tr>
+                        <td style="min-width: 20px;">
+                            {{customer.name}}
+                        </td>
+                        <td style="min-width: 20px;">
+                            <span>{{customer.designation}}</span>
+                        </td>
+                        <td style="min-width: 20px;">
+                            {{customer.district}}
+                        </td>
+                        <td style="min-width: 20px;">
+                            <span>{{customer.approval_status}}</span>
+                        </td>
+                        <td style="min-width: 20px;">
+                            {{customer.email}}
+                        </td>
+                        <td style="min-width: 20px;">
+                            <button type="button" pButton class="p-button-success"
+                            (click)="showofficebearerDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
+                            <p-dialog header="Office Bearer" [(visible)]="display2">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Name</th><td>{{ob_name}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email Id</th><td>{{ob_email}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Designation</th><td>{{ob_designation}}</td>
+                                </tr>
+                                <tr>
+                                    <th>District</th><td>{{ob_district}}</td>
+                                </tr>
+                            </table>
+                        </p-dialog>
+                        </td>
+                        <td style="min-width: 20px;">
+                            <button pButton icon="pi pi-user-edit"></button>
+                        </td>
+                        <td style="min-width: 20px;">
+                            <button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_ob(customer.id)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+</div>
+		</div>
+	</div>
+
+
+<!--Sudha Akka
+
+    <div *ngIf="officebearerapp" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
+		<div>
+-----------------Office bearer table----------------------
 			<div class="card" >
 				<h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER CHANGE </b></h5>
 
 					<div style="padding-top:2%">
 						<button  pButton type="button" label="Add"  [routerLink]="['/cob']" icon="pi pi-plus" class="p-button-primary"></button>
-						<p-table [value]="customers3" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
+						<p-table [value]="customers4" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
 						[scrollable]="true" scrollHeight="400px" >
 							<ng-template pTemplate="header">
 								<tr>
-									<th>Name</th>
-									<th>Designation</th>
-									<th>District</th>
-									<th>Status</th>
-									<th>Email</th>
-									<th>Show</th>
-									<th>Edit</th>
-									<th>Delete</th>
+									<th>User Id</th>
+									<th>Email Id</th>
+									<th>New Designation</th>
+									<th>Old Designation</th>
+									<th>Request Date</th>
+									<th>Comments</th>
+									<th>Approve</th>
+									<th>Reject</th>
 								</tr>
 							</ng-template>
 							<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
 								<tr>
 									<td style="min-width: 20px;">
-										{{customer.name}}
+										{{customer.user_maser_id}}
 									</td>
 									<td style="min-width: 20px;">
-										<span>{{customer.designation}}</span>
+										<span >{{customer.email_id}}</span>
 									</td>
 									<td style="min-width: 20px;">
-										{{customer.district}}
+										{{customer.new_designation}}
 									</td>
 									<td style="min-width: 20px;">
-										<span>{{customer.approval_status}}</span>
+										<span>{{customer.old_designation}}</span>
 									</td>
 									<td style="min-width: 20px;">
-										{{customer.email}}
+										{{customer.date}}
 									</td>
 									<td style="min-width: 20px;">
-										<button type="button" pButton class="p-button-success"
-										(click)="showofficebearerDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
-										<p-dialog header="Office Bearer" [(visible)]="display2">
-										<table class="table table-bordered">
-											<tr>
-												<th>Name</th><td>{{ob_name}}</td>
-											</tr>
-											<tr>
-												<th>Email Id</th><td>{{ob_email}}</td>
-											</tr>
-											<tr>
-												<th>Designation</th><td>{{ob_designation}}</td>
-											</tr>
-											<tr>
-												<th>District</th><td>{{ob_district}}</td>
-											</tr>
-										</table>
-									</p-dialog>
+										{{customer.reason}}
 									</td>
+
 									<td style="min-width: 20px;">
-										<button pButton icon="pi pi-user-edit"></button>
+										<button pButton class="p-button-success" icon="pi pi-check"></button>
 									</td>
 									<td style="min-width: 20px;">
 										<button pButton icon="pi pi-times" class="p-button-danger"></button>
@@ -470,155 +486,18 @@
 			</div>
 		</div>
 	</div>
-
-
-	
-
-
+-->
+    <!--Sudha Akka-->
 
 
 
 
 
-	<!-- <div *ngIf="districtadmin" class="col-12 md:col-6" style="padding-left:380px">
-		<div class="card p-fluid" style="width:900px">
-			<h5>District Admin Information</h5>
-			<div class="field grid">
-			  <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">First Name</label>
-				 <div class="col-12 md:col-10">
-					<input pInputText id="name3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Last Name</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Designation</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">District</label>
-				<div class="col-12 md:col-10">
-					<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-            <div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Password</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-
-           <div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
-
-				<div class="col-12 md:col-4">
-						<div class="field-radiobutton" style="padding-top: 15px;">
-							<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
-										id="city2"></p-radioButton>
-							<label for="city2">Active</label>
-						</div>
-						<div class="field-radiobutton">
-							<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
-										id="city2"></p-radioButton>
-							<label for="city2">Inactive</label>
-						</div>
-						<div class="flex flex-wrap gap-2">
-							<button pButton pRipple type="button" label="Submit"></button>
-						</div>
-                    </div>
-
-                </div>
-			</div>
-
-
-		</div>
-	</div> -->
 
 
 
-<!-- <div *ngIf="createdistrictadmin" class="col-12 md:col-6" style="padding-left:380px">
-			<div class="card p-fluid" style="width:900px">
-				<h5>Create Office Bearers </h5>
-					<div class="field grid">
-					<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">First Name</label>
-						<div class="col-12 md:col-10">
-							<input pInputText id="name3" type="text" />
-						</div>
-					</div>
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Last Name</label>
-					<div class="col-12 md:col-10">
-						<input pInputText id="email3" type="text" />
-					</div>
-				</div>
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Designation</label>
-					<div class="col-12 md:col-10">
-						<input pInputText id="email3" type="text" />
-					</div>
-				</div>
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Party Designation</label>
-					<div class="col-12 md:col-10">
-						<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select designation" [showClear]="true"></p-dropdown>
-					</div>
-				</div>
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Mobile</label>
-					<div class="col-12 md:col-10">
-						<input pInputText id="email3" type="text" />
-					</div>
-				</div>
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-					<div class="col-12 md:col-10">
-						<input pInputText id="email3" type="text" />
-					</div>
-				</div>
 
-				<div class="field grid">
-					<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
-				       <div class="col-12 md:col-4">
-								<div class="field-radiobutton" style="padding-top: 15px;">
-									<p-radioButton name="city" value="active" [(ngModel)]="valRadio"
-												id="city2"></p-radioButton>
-									<label for="city2">Active</label>
-								</div>
-								<div class="field-radiobutton">
-									<p-radioButton name="city" value="Inactive" [(ngModel)]="valRadio"
-												id="city2"></p-radioButton>
-									<label for="city2">Inactive</label>
-								</div>
-								<div class="field-radiobutton">
-									<p-radioButton name="city" value="Awaiting approval" [(ngModel)]="valRadio"
-												id="city2"></p-radioButton>
-									<label for="city2">Awaiting approval</label>
-								</div>
-                                <div>
-                                    <button pButton pRipple label="Submit"></button>
-                                </div>
-						</div>
-				</div>
-			</div>
-</div> -->
+
 
 <div *ngIf="selfregistration" class="col-12 md:col-6" style="padding-left:380px">
 	<div class="card p-fluid" style="width:900px">
@@ -807,6 +686,7 @@
 
 </div>
 
+<!--State Admin Dialog-->
 
 
 
@@ -816,126 +696,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-	<!-- <div *ngIf="districtadmin" class="col-12 md:col-6" style="margin:auto;padding-top: 30px;">
-		<div class="card">
-			<h5>Advanced</h5>
-			<div class="p-fluid p-formgrid grid">
-				<div class="field col-12 md:col-6">
-					<label htmlFor="firstname2">Firstname</label>
-					<input pInputText id="firstname2" type="text" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="lastname2">Lastname</label>
-					<input pInputText id="lastname2" type="text" />
-				</div>
-				<div class="field col-12">
-					<label htmlFor="address">Address</label>
-					<input pInputTextarea id="address" rows="4" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="city">City</label>
-					<input pInputText id="city" type="text" />
-				</div>
-
-				<div class="field col-12 md:col-3">
-					<label htmlFor="state">State</label>
-					<p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
-				</div>
-				<div class="field col-12 md:col-3">
-					<label htmlFor="zip">Zip</label>
-					<input pInputText id="zip" type="text" />
-				</div>
-			</div>
-				<button pButton label="Submit"></button>
-			</div>
-		</div>
-</div> -->
-
-
-<!-- <div class="grid">
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<h5>Vertical</h5>
-			<div class="field">
-				<label htmlFor="name1">Name</label>
-				<input pInputText id="name1" type="text" />
-			</div>
-			<div class="field">
-				<label htmlFor="email1">Email</label>
-				<input pInputText id="email1" type="text" />
-			</div>
-			<div class="field">
-				<label htmlFor="age1">Age</label>
-				<input pInputText id="age1" type="text" />
-			</div>
-		</div>
-
-		<div class="card p-fluid">
-			<h5>Vertical Grid</h5>
-			<div class="p-formgrid grid">
-				<div class="field col">
-					<label htmlFor="name2">Name</label>
-					<input pInputText id="name2" type="text" />
-				</div>
-				<div class="field col">
-					<label htmlFor="email2">Email</label>
-					<input pInputText id="email2" type="text" />
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<h5>Horizontal</h5>
-			<div class="field grid">
-				<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="name3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Inline</h5>
-			<div class="formgroup-inline">
-				<div class="field">
-					<label htmlFor="firstname1" class="p-sr-only">Firstname</label>
-					<input pInputText id="firstname1" type="text" placeholder="Firstname" />
-				</div>
-				<div class="field">
-					<label htmlFor="lastname1" class="p-sr-only">Lastname</label>
-					<input pInputText id="lastname1" type="text" placeholder="Lastname" />
-				</div>
-				<button pButton label="Submit"></button>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Help Text</h5>
-			<div class="field p-fluid">
-				<label htmlFor="username">Username</label>
-				<input pInputText id="username" type="text" />
-				<small>Enter your username to reset your password.</small>
-			</div>
-		</div>
-	</div> -->
 
 

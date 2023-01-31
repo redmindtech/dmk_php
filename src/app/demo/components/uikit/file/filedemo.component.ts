@@ -32,13 +32,14 @@ this.dataService.sendmail(forgotForm.value.email)
 .pipe(first())
 .subscribe(
 data => {
-alert("Reset link was sented to your mail");
-this.sendmail.reset();
+alert("The reset link has been sent to your registeres mail");
+this.router.navigate(['']);
 },
 error => {
     console.log(error)
-    alert("Reset link was sented to your mail");
+    alert("The reset link has been sent to your registeres mail");
     this.sendmail.reset();
+    this.router.navigate(['']);
 });
 }
 get email() { return this.sendmail.get('email'); }
