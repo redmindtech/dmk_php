@@ -11,8 +11,8 @@ function randomPassword() {
     }
     return implode($pass);
 }
-$mode=$_GET['mode'];
-if($mode==0)
+ $category=$_GET['category'];
+if($category=='SA')
 {
     if(isset($postdata) && !empty($postdata))
     {
@@ -25,13 +25,15 @@ if($mode==0)
     $designation=$request->designation;
     $party_designation=$request->party_designation;
     $status_approval=$request->approval_status;
-    $mode=$request->mode;
+    $mode='0';
     $password=randomPassword();
 
-    $sql = "INSERT INTO user_master(mode,email,password,category,firstname,lastname,location_id,district,approval_status,party_designation,designation) VALUES ($mode,'$email','$password','SA','$firstname','$lastname',$location_id,'$district','$status_approval','$party_designation','$designation')";
+    
+
+    $sql = "INSERT INTO user_master(mode,email,password,category,firstname,lastname,location_id,district,approval_status,party_designation,designation) VALUES ('0','$email','$password','SA','$firstname','$lastname',$location_id,'$district','$status_approval','$party_designation','$designation')";
     if ($mysqli->query($sql) === TRUE) {
     $authdata = [
-    'mode'=>$mode,
+    'mode'=>'0',
     'password'=>$password,
     'category'=>'SA',
     'firstname' => $firstname,
@@ -46,7 +48,7 @@ if($mode==0)
     }
     }
 }
-else if($mode==1)
+else if($category=='DA')
 {
     if(isset($postdata) && !empty($postdata))
 {
@@ -61,12 +63,12 @@ $district=$request->district;
 $designation=$request->designation;
 $party_designation=$request->party_designation;
 $status_approval=$request->approval_status;
-$mode=$request->mode;
 
-$sql = "INSERT INTO user_master(mode,email,category,firstname,lastname,location_id,district,approval_status,party_designation,designation) VALUES ($mode,'$email','DA','$firstname','$lastname',$location_id,'$district','$status_approval','$party_designation','$designation')";
+
+$sql = "INSERT INTO user_master(mode,email,category,firstname,lastname,location_id,district,approval_status,party_designation,designation) VALUES ('1','$email','DA','$firstname','$lastname',$location_id,'$district','$status_approval','$party_designation','$designation')";
 if ($mysqli->query($sql) === TRUE) {
 $authdata = [
-'mode'=>$mode,
+'mode'=>'1',
 'email'=>$email,
 'category'=>'DA',
 'firstname' => $firstname,
@@ -102,17 +104,18 @@ $address1=$request->address1;
 $applied_role=$request->applied_role;
 $party_comments=$request->party_comments;
 $location_id=$request->location_id;
-$mode=$request->mode;
 
-$sql = "INSERT INTO user_master(mode,email,firstname,lastname,father_name,age,address1,location_id,contact_no,whatsapp_no,date_of_birth,educational_qualification,profession,additional_qualification,applied_role,party_comments) VALUES ($mode,'$email','$firstname','$lastname','$father_name',$age,'$address1',$location_id,$contact_no,$whatsapp_no,'$date_of_birth','$educational_qualification','$profession','$additional_qualification','$applied_role','$party_comments')";
+
+$sql = "INSERT INTO user_master(mode,email,category,firstname,lastname,father_name,age,address1,location_id,contact_no,whatsapp_no,date_of_birth,educational_qualification,profession,additional_qualification,applied_role,party_comments) VALUES ('2','$email','OB','$firstname','$lastname','$father_name',$age,'$address1',$location_id,$contact_no,$whatsapp_no,'$date_of_birth','$educational_qualification','$profession','$additional_qualification','$applied_role','$party_comments')";
 if ($mysqli->query($sql) === TRUE) {
 $authdata = [
 
 //'id' => mysqli_insert_id($mysqli)
-'mode'=>$mode,
+'mode'=>'2',
 'firstname' =>  $firstname,
 'lastname'  =>  $lastname,
 'father_name'   =>  $father_name,
+'category'=>'OB',
 'age'   =>  $age,
 'educational_qualification' =>  $educational_qualification,
 'date_of_birth' =>  $date_of_birth,

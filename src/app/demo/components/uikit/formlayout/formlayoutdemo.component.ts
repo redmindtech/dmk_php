@@ -4,6 +4,7 @@ import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ApiService } from 'src/app/api.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './formlayoutdemo.component.html'
@@ -59,7 +60,9 @@ export class FormLayoutDemoComponent {
     valCheck: string[] = [];
     createdistrictadmin:boolean=false;
     selfregistration:boolean=false;
-    display: boolean = false;
+    display0: boolean = false;
+    display1: boolean = false;
+    display2: boolean = false;
     home:boolean=false;
     dashboard:boolean=true;
     visibleSidebar4: boolean = false;
@@ -89,22 +92,19 @@ export class FormLayoutDemoComponent {
 
     city2: any = null;
     valRadio: string = '';
-    
+
     customers2: any=[];
     customers3: any=[];
     toggle(a:any){
-        this.customers2=[];
         for(const prop in this.ApiService.tabledataDA) {
             this.customers2.push(this.ApiService.tabledataDA[prop])
           }
-        this.customers2.pop();
-        //console.log(this.customers2);
+        console.log(this.customers2);
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.home=false;
         this.dashboard=false;
         this.stateadmin=false;
-        this.meeting=false;
         return this.districtadmin = true;
        }
     toggle1(a:any){
@@ -113,7 +113,6 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.home=false;
         this.dashboard=false;
-        this.meeting=false;
        }
     toggle2(a:any){
         this.selfregistration = !this.selfregistration;
@@ -123,34 +122,30 @@ export class FormLayoutDemoComponent {
         this.dashboard=false;
        }
        toggle3(a:any){
-        this.customers3=[];
+        this.customers1=[];
         for(const prop in this.ApiService.tabledataOB) {
             this.customers3.push(this.ApiService.tabledataOB[prop])
           }
-        this.customers3.pop();
+          this.customers3.pop();
         console.log(this.customers3);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.dashboard=false;
-        this.meeting=false;
-        this.home=false;
         return this.home =true;
     }
     toggle4(stateadmin:any){
-        this.customers1=[];
         for(const prop in this.ApiService.tabledata) {
             this.customers1.push(this.ApiService.tabledata[prop])
           }
-          this.customers1.pop();
         //console.log(this.customers1);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.dashboard=false;
-        this.meeting=false;
         return this.stateadmin =true;
     }
+
 
     toggledashboard(a:any){
         this.home=false;
@@ -164,7 +159,6 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.dashboard=false;
         this.stateadmin =false;
-        this.home=false;
         return this.meeting= true;
 
     }
@@ -187,7 +181,7 @@ export class FormLayoutDemoComponent {
     // ];
     customers1:any=[];
     //customers1=this.ApiService.tabledata[0].name;
-    
+
 
     items = [
         { label: 'Add New', icon: 'pi pi-fw pi-plus' },
@@ -197,17 +191,18 @@ export class FormLayoutDemoComponent {
     chartOptions: any;
     subscription!: Subscription;
     products!: Product[];
-    
+
     constructor(private productService: ProductService, public layoutService: LayoutService,
-        private ApiService:ApiService ) {
+        private ApiService:ApiService ,public router:Router) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
-    
+
     }
     // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
     ngOnInit() {
         this.initChart();
+        this.gettabledata();
         this.productService.getProductsSmall().then(data => this.products = data);
 
         this.items = [
@@ -217,14 +212,14 @@ export class FormLayoutDemoComponent {
         this.gettabledata();
 
     }
-    
+
     //---------datatable-------
     gettabledata(){
     this.ApiService.viewtableSA();
     this.ApiService.viewtableDA();
     this.ApiService.viewtableOB();
     }
-    initChart() { 
+    initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -283,9 +278,9 @@ export class FormLayoutDemoComponent {
         };
 
 }
-    display0: boolean = false;
-    display1: boolean = false;
-    display2: boolean = false;
+
+
+
     sa_name:string;
     sa_email:string;
     sa_designation:string;
@@ -324,4 +319,62 @@ export class FormLayoutDemoComponent {
         this.ob_designation=ob_designation;
         this.ob_district=ob_district;
     }
+
+
+    delete_sa(user_id : any)
+    {
+        console.log(user_id)
+            this.ApiService.delete_admin(user_id)
+            .pipe()
+            .subscribe(
+            data => {
+                alert("State admin detail was successfully Deleted !")
+                window.location.reload()
+            },
+
+            error => {
+                console.log(error);
+            });
+
+    }
+
+
+    delete_da(user_id : any)
+    {
+        console.log(user_id)
+            this.ApiService.delete_admin(user_id)
+            .pipe()
+            .subscribe(
+            data => {
+
+                alert("District admin detail has been deleted !")
+            },
+
+            error => {
+                console.log(error);
+            });
+
+    }
+
+
+    delete_ob(user_id : any)
+    {
+        console.log(user_id)
+            this.ApiService.delete_admin(user_id)
+            .pipe()
+            .subscribe(
+            data => {
+
+                this.router.navigate(['uikit/formlayout']);
+                alert("Office Bearer detail has been deleted !")
+            },
+
+            error => {
+                console.log(error);
+            });
+
+    }
+
+
+
 }
