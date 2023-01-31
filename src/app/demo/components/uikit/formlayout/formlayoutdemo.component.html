@@ -281,8 +281,25 @@
 														{{customer.email}}
 													</td>
 													<td style="min-width: 20px;">
-														<button pButton class="p-button-success" icon="pi pi-eye"></button>
-													</td>
+
+                                                        <button type="button" pButton class="p-button-success" (click)="showstateadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
+                                                        <p-dialog header="State Admin" [(visible)]="display0">
+                                                        <table class="table table-bordered">
+                                                            <tr>
+                                                                <th>Name</th><td>{{sa_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Email Id</th><td>{{sa_email}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Designation</th><td>{{sa_designation}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>District</th><td>{{sa_district}}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </p-dialog>
+                                                    </td>
 													<td style="min-width: 20px;">
 														<button pButton icon="pi pi-user-edit"></button>
 													</td>
@@ -332,7 +349,24 @@
 							{{customer.email}}
 						</td>
 						<td style="min-width: 20px;">
-							<button pButton class="p-button-success" icon="pi pi-eye"></button>
+                            <button type="button" pButton class="p-button-success"
+                            (click)="showdistadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
+                            <p-dialog header="District Admin" [(visible)]="display1">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Name</th><td>{{da_name}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email Id</th><td>{{da_email}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Designation</th><td>{{da_designation}}</td>
+                                </tr>
+                                <tr>
+                                    <th>District</th><td>{{da_district}}</td>
+                                </tr>
+                            </table>
+                        </p-dialog>
 						</td>
 						<td style="min-width: 20px;">
 							<button pButton icon="pi pi-user-edit"></button>
@@ -372,18 +406,18 @@
 
 					<div style="padding-top:2%">
 						<button  pButton type="button" label="Add"  [routerLink]="['/cob']" icon="pi pi-plus" class="p-button-primary"></button>
-						<p-table [value]="customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
+						<p-table [value]="customers3" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
 						[scrollable]="true" scrollHeight="400px" >
 							<ng-template pTemplate="header">
 								<tr>
+									<th>Name</th>
+									<th>Designation</th>
 									<th>District</th>
-									<th>Office Bearer Name</th>
-									<th>Old Designation</th>
-									<th>New Designation</th>
-									<th>Request Date</th>
-									<th>Comments</th>
-									<th>Approve</th>
-									<th>Reject</th>
+									<th>Status</th>
+									<th>Email</th>
+									<th>Show</th>
+									<th>Edit</th>
+									<th>Delete</th>
 								</tr>
 							</ng-template>
 							<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
@@ -392,22 +426,39 @@
 										{{customer.name}}
 									</td>
 									<td style="min-width: 20px;">
-										<span >{{customer.country}}</span>
+										<span>{{customer.designation}}</span>
 									</td>
 									<td style="min-width: 20px;">
-										{{customer.company}}
+										{{customer.district}}
 									</td>
 									<td style="min-width: 20px;">
-										<span>{{customer.status}}</span>
+										<span>{{customer.approval_status}}</span>
 									</td>
 									<td style="min-width: 20px;">
-										{{customer.date}}
+										{{customer.email}}
 									</td>
 									<td style="min-width: 20px;">
-										{{customer.comment}}
+										<button type="button" pButton class="p-button-success"
+										(click)="showofficebearerDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label=""></button>
+										<p-dialog header="Office Bearer" [(visible)]="display2">
+										<table class="table table-bordered">
+											<tr>
+												<th>Name</th><td>{{ob_name}}</td>
+											</tr>
+											<tr>
+												<th>Email Id</th><td>{{ob_email}}</td>
+											</tr>
+											<tr>
+												<th>Designation</th><td>{{ob_designation}}</td>
+											</tr>
+											<tr>
+												<th>District</th><td>{{ob_district}}</td>
+											</tr>
+										</table>
+									</p-dialog>
 									</td>
 									<td style="min-width: 20px;">
-										<button pButton class="p-button-success" icon="pi pi-check"></button>
+										<button pButton icon="pi pi-user-edit"></button>
 									</td>
 									<td style="min-width: 20px;">
 										<button pButton icon="pi pi-times" class="p-button-danger"></button>

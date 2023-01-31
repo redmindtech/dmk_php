@@ -93,10 +93,12 @@ export class FormLayoutDemoComponent {
     customers2: any=[];
     customers3: any=[];
     toggle(a:any){
+        this.customers2=[];
         for(const prop in this.ApiService.tabledataDA) {
             this.customers2.push(this.ApiService.tabledataDA[prop])
           }
-        console.log(this.customers2);
+        this.customers2.pop();
+        //console.log(this.customers2);
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.home=false;
@@ -119,10 +121,12 @@ export class FormLayoutDemoComponent {
         this.dashboard=false;
        }
     toggle3(a:any){
-        // for(const prop in this.ApiService.tabledataOB) {
-        //     this.customers3.push(this.ApiService.tabledataOB[prop])
-        //   }
-        // console.log(this.customers3);      
+        this.customers1=[];
+        for(const prop in this.ApiService.tabledataOB) {
+            this.customers3.push(this.ApiService.tabledataOB[prop])
+          }
+          this.customers3.pop();
+        console.log(this.customers3);      
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
@@ -130,10 +134,13 @@ export class FormLayoutDemoComponent {
         return this.home =true;
     }
     toggle4(stateadmin:any){
+        this.customers1=[];
         for(const prop in this.ApiService.tabledata) {
             this.customers1.push(this.ApiService.tabledata[prop])
           }
-        //console.log(this.customers1);
+        this.customers1.pop();
+        //console.log(this.ApiService.tabledata.lastIndexOf);
+        console.log(this.customers1);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
@@ -210,7 +217,7 @@ export class FormLayoutDemoComponent {
     gettabledata(){
     this.ApiService.viewtableSA();
     this.ApiService.viewtableDA();
-    // this.ApiService.viewtableOB();
+    this.ApiService.viewtableOB();
     }
     initChart() { 
         const documentStyle = getComputedStyle(document.documentElement);
@@ -271,4 +278,45 @@ export class FormLayoutDemoComponent {
         };
 
 }
+    display0: boolean = false;
+    display1: boolean = false;
+    display2: boolean = false;
+    sa_name:string;
+    sa_email:string;
+    sa_designation:string;
+    sa_district:string;
+    showstateadminDialog(customer:any,email:any,sa_designation:any,sa_district:any) {
+        console.log(customer);
+        this.sa_name=customer;
+        this.sa_email=email;
+        this.display0 = true;
+        this.sa_designation=sa_designation;
+        this.sa_district=sa_district;
+    }
+
+    da_name:string;
+    da_email:string;
+    da_designation:string;
+    da_district:string;
+    showdistadminDialog(customer:any,email:any,da_designation:any,da_district:any) {
+        console.log(customer);
+        this.da_name=customer;
+        this.da_email=email;
+        this.display1 = true;
+        this.da_designation=da_designation;
+        this.da_district=da_district;
+    }
+
+    ob_name:string;
+    ob_email:string;
+    ob_designation:string;
+    ob_district:string;
+    showofficebearerDialog(customer:any,email:any,ob_designation:any,ob_district:any) {
+        console.log(customer);
+        this.ob_name=customer;
+        this.ob_email=email;
+        this.display2 = true;
+        this.ob_designation=ob_designation;
+        this.ob_district=ob_district;
+    }
 }
