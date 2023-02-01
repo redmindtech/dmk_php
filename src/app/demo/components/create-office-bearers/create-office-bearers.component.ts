@@ -51,7 +51,7 @@ export class CreateOfficeBearersComponent implements OnInit {
         .pipe(first())
         .subscribe(
         data => {
-            alert("Office bearers detail was successfully created !")
+            alert("Office bearers user has been created successfully!")
         //this.router.navigate(['']);
         officebearerform.reset();
         },

@@ -53,7 +53,7 @@ export class MediaDemoComponent implements OnInit {
             .pipe(first())
             .subscribe(
             data => {
-                alert("Successfully self registration completed!")
+                alert("Self registration is completed successfully!")
             this.router.navigate(['']);
             },
         

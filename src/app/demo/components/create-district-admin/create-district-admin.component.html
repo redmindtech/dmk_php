@@ -9,6 +9,7 @@
 			<div class="field grid">
 				<div class="col-6 md:col-6">
 					<input type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்"/>
+                    <span class="required "> *</span>
                     <span *ngIf="distadminform.get('firstname').hasError('required') && distadminform.get('firstname').touched"><br>
                         <span class="invalid-msg">Please enter the valid field</span>
                     </span>
@@ -18,6 +19,7 @@
 				</div>
 			<div class="col-6 md:col-6">
 				<input type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்"/>
+                <span class="required "> *</span>
                 <span *ngIf="distadminform.get('lastname').hasError('required') && distadminform.get('lastname').touched"><br>
                     <span class="invalid-msg">Please enter the valid field</span>
                 </span>
@@ -37,16 +39,30 @@
         <div class="field grid">
 			<div class="col-6 md:col-6">
 				<!--<input type="text" name="district" formControlName="district" placeholder="District/மாவட்டம்"/>-->
-                <select name="constituencies" formControlName="district">
-                    <option *ngFor="let item of constituencies">
-                        {{item.name}}
-                      </option>
+                <select  name="constituencies" formControlName="district"   >             
+               
+                    <option value="">Select constituencies</option>
+                    <option value="Salem (West)">Salem (West)</option>
+                    <option value="Salem (North)">Salem (North)</option>
+                    <option value="Salem (South)">Salem (South)</option>
+                    <option value="Veerapandi">Veerapandi</option>
+                    <option value="Rasipuram">Rasipuram</option>
+                    <option value="Senthamangalam">Senthamangalam</option>
+                    <option value="Attur">Attur</option>
+                    <option value="Yercaud">Yercaud</option>
+                    <option value="Namakkal">Namakkal</option>
+                    <option value="Erode (East)">Erode (East)</option>
+                    <option value="Erode (West)">Erode (West)</option>
+                 
+                      <!-- <option [ngValue]="null" selected disabled>Select User</option> -->
                 </select>
+                <span class="required "> *</span>
 			</div>
         </div>
         <div class="field grid">
 			<div class="col-12 md:col-12">
 				<input type="text" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"/>
+                <span class="required "> *</span>
                 <span *ngIf="distadminform.get('email').hasError('required') && distadminform.get('email').touched"><br>
                     <span class="invalid-msg">Please enter the valid field</span>
                 </span>

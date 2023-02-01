@@ -24,3 +24,11 @@ $gutter: 1rem; //for primeflex grid system
     margin-top:10px;
     color:red;
 }
+.show_popup {
+    width: 50%;
+    height: 70%;
+} 
+.required {
+        content:" *";
+        color: red;
+      }

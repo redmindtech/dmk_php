@@ -239,7 +239,7 @@
 													<td style="min-width: 20px;">
 
                                                         <button type="button" pButton class="p-button-success" (click)="showstateadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
-                                                        <p-dialog header="State Admin" [(visible)]="display0">
+                                                        <p-dialog header="State Admin"  styleClass="show_popup" [(visible)]="display0">
                                                         <table class="table table-bordered">
                                                             <tr>
                                                                 <th>Name</th><td>{{sa_name}}</td>
@@ -375,7 +375,7 @@
 						<td style="min-width: 20px;">
                             <button type="button" pButton class="p-button-success"
                             (click)="showdistadminDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
-                            <p-dialog header="District Admin" [(visible)]="display1">
+                            <p-dialog header="District Admin"  styleClass="show_popup" [(visible)]="display1">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>Name</th><td>{{da_name}}</td>
@@ -468,7 +468,7 @@
                         <td style="min-width: 20px;">
                             <button type="button" pButton class="p-button-success"
                             (click)="showofficebearerDialog(customer.name,customer.email,customer.designation,customer.district)" icon="pi pi-eye" label="Show"></button>
-                            <p-dialog header="Office Bearer" [(visible)]="display2">
+                            <p-dialog header="Office Bearer"  styleClass="show_popup" [(visible)]="display2">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>Name</th><td>{{ob_name}}</td>

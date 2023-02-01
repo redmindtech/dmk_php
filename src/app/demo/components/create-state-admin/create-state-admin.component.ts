@@ -47,7 +47,7 @@ export class CreateStateAdminComponent implements OnInit {
         .pipe(first())
         .subscribe(
         data => {
-            alert("State admin detail was successfully created !");
+            alert("State admin user has been created successfully!");
         //this.router.navigate(['']);
         angForm1.reset();
         },

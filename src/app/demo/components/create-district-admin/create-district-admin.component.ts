@@ -45,7 +45,7 @@ export class CreateDistrictAdminComponent implements OnInit {
             .pipe(first())
             .subscribe(
             data => {
-                alert("District admin detail was successfully created !")
+                alert("District admin user has been created successfully!")
             angForm1.reset();
             },
 

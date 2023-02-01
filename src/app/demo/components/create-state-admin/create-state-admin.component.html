@@ -10,6 +10,7 @@
 			<div class="field grid">
 				<div class="col-6 md:col-6">
 					<input type="text" name="firstname" formControlName="firstname" placeholder="First Name/முதல் பெயர்"/>
+                    <span class="required "> *</span>
                     <span *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched"><br>
                         <span class="invalid-msg">Please enter the valid field</span>
                     </span>
@@ -20,6 +21,7 @@
 				</div>
 			<div class="col-6 md:col-6">
 				<input type="text" name="lastname" formControlName="lastname" placeholder="Last Name/குடும்ப பெயர்"/>
+                <span class="required "> *</span>
                 <span *ngIf="stateadminform.get('lastname').hasError('required') && stateadminform.get('lastname').touched"><br>
                     <span class="invalid-msg">Please enter the valid field</span>
                 </span>
@@ -39,6 +41,7 @@
         <div class="field grid">
 			<div class="col-6 md:col-6">
 				<input type="text" name="email" formControlName="email" placeholder="Email/மின்னஞ்சல்"/>
+                <span class="required "> *</span>
                 <span *ngIf="stateadminform.get('email').hasError('required') && stateadminform.get('email').touched"><br>
                     <span class="invalid-msg">Please enter the valid field</span>
                 </span>

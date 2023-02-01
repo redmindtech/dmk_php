@@ -11,8 +11,8 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl!: string;
-//baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-baseUrl:string="http://localhost//New_git/dmk_php/php/php/php";
+baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+// baseUrl:string="http://localhost//New_git/dmk_php/php/php/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
@@ -61,7 +61,7 @@ public constituency:any='No-Select';
 
 
 public userlogin(username : any, password :any) {
-alert(username)
+
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
   this.constituency= Users[0].district;
