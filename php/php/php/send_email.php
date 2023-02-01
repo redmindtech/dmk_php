@@ -15,7 +15,7 @@ if(isset($postdata) && !empty($postdata))
 {
     $request = json_decode($postdata);
     $emailId = mysqli_real_escape_string($mysqli, trim($request->email));
-    $link = "<a href='https://redmindtechnologies.com/dmk_dev/reset_password/".$emailId."'>Click To Reset password</a>";
+    $link = "<a href='https://redmindtech.github.io/dmk_php/reset_password/".$emailId."'>Click To Reset password</a>";
     $mail=new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host='smtp.gmail.com';

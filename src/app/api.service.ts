@@ -12,7 +12,7 @@ providedIn: 'root'
 export class ApiService {
 redirectUrl!: string;
 //baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-baseUrl:string="http://localhost/php"
+baseUrl:string="http://localhost//New_git/dmk_php/php/php/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
