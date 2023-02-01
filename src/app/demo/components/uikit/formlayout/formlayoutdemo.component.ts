@@ -96,15 +96,19 @@ export class FormLayoutDemoComponent {
     customers2: any=[];
     customers3: any=[];
     toggle(a:any){
+        this.customers2=[];
         for(const prop in this.ApiService.tabledataDA) {
             this.customers2.push(this.ApiService.tabledataDA[prop])
           }
+        this.customers2.pop();
         console.log(this.customers2);
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.home=false;
         this.dashboard=false;
         this.stateadmin=false;
+        this.districtadmin=false;
+        this.meeting=false;
         return this.districtadmin = true;
        }
     toggle1(a:any){
@@ -121,28 +125,34 @@ export class FormLayoutDemoComponent {
         this.home=false;
         this.dashboard=false;
        }
-       toggle3(a:any){
-        this.customers1=[];
+    toggle3(a:any){
+        this.customers3=[];
         for(const prop in this.ApiService.tabledataOB) {
             this.customers3.push(this.ApiService.tabledataOB[prop])
           }
-          this.customers3.pop();
+        this.customers3.pop();
         console.log(this.customers3);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.dashboard=false;
+        this.districtadmin=false;
         return this.home =true;
     }
     toggle4(stateadmin:any){
+        this.customers1=[];
         for(const prop in this.ApiService.tabledata) {
             this.customers1.push(this.ApiService.tabledata[prop])
           }
+          this.customers1.pop();
         //console.log(this.customers1);
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.selfregistration=false;
         this.dashboard=false;
+        this.districtadmin=false;
+        this.meeting=false;
+        this.home=false;
         return this.stateadmin =true;
     }
 
@@ -159,6 +169,7 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.dashboard=false;
         this.stateadmin =false;
+        this.home=false;
         return this.meeting= true;
 
     }
