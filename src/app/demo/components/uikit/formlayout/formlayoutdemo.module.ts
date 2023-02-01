@@ -22,6 +22,9 @@ import { ChartModule } from 'primeng/chart';
 import { StyleClassModule } from 'primeng/styleclass';
 import { MenuModule } from 'primeng/menu';
 import { CreateMeetingComponent } from 'src/app/demo/components/create-meeting/create-meeting.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MessageService } from 'primeng/api';
+import {ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -46,8 +49,10 @@ import { CreateMeetingComponent } from 'src/app/demo/components/create-meeting/c
 		SidebarModule,
 		ChartModule,
 		StyleClassModule,
-		MenuModule
+		MenuModule,
+		OverlayPanelModule,ReactiveFormsModule
 	],
-	declarations: [FormLayoutDemoComponent,CreateMeetingComponent]
+	declarations: [FormLayoutDemoComponent,CreateMeetingComponent],
+	providers: [MessageService]
 })
 export class FormLayoutDemoModule { }

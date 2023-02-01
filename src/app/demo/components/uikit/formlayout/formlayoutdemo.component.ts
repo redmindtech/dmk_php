@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { first, Subscription } from 'rxjs';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
     templateUrl: './formlayoutdemo.component.html'
@@ -202,12 +204,25 @@ export class FormLayoutDemoComponent {
     chartOptions: any;
     subscription!: Subscription;
     products!: Product[];
+    //stateadminform !:FormGroup;
 
     constructor(private productService: ProductService, public layoutService: LayoutService,
-        private ApiService:ApiService ,public router:Router) {
+        private ApiService:ApiService ,public router:Router,private messageService: MessageService,
+        private fb: FormBuilder) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
+        this.stateadminupdateform = this.fb.group({ //angForm
+            email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+            //district:['',Validators.required],
+            designation:[''],
+            party_designation:[''],
+            approval_status:[''],
+            location_id:['1'],
+            mode:['0']
+            });
 
     }
     // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
@@ -303,6 +318,7 @@ export class FormLayoutDemoComponent {
         this.display0 = true;
         this.sa_designation=sa_designation;
         this.sa_district=sa_district;
+        
     }
 
     da_name:string;
@@ -385,7 +401,58 @@ export class FormLayoutDemoComponent {
             });
 
     }
+    
+    
+    SAname:any;
+    SAlastname:any;
+    SAdesig:any;
+    SAparty_desig:any;
+    SAmail:any;
+    SAstatus:any;
+    editbuttonviewSA(a:any){
+       let fullname=a.name.split(" ");
+    //    console.log(fullname[0]);
+    //    console.log(fullname[1]);
+       
+       this.SAname=fullname[0];
+       this.SAlastname=fullname[1];
+       this.SAdesig=a.designation;
+       this.SAparty_desig=a.party_designation;
+       this.SAmail=a.email;
+       this.SAstatus=a.approval_status;
+    }
 
+    stateadminupdateform !:FormGroup;
+    postdata(angForm1 : any) //angForm1
+     {  console.log(angForm1.value);
+        this.ApiService.updateSA('0','names',this.SAlastname,this.SAdesig,this.SAparty_desig,this.SAmail,this.SAstatus)
+        .pipe(first())
+        .subscribe(
+        data => {
+            alert("State admin detail was updated!");
+        //this.router.navigate(['']);
+        angForm1.reset();
+        },
 
+        error => {
+            console.log(error);
+        });
+        if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+    {
+        
+    }
+    else{
+        alert("Please enter the valid details");
+    }
+  }
+  get email() { return this.stateadminupdateform.get('email'); }
+  get firstname() { return this.stateadminupdateform.get('firstname'); }
+  get lastname() { return this.stateadminupdateform.get('lastname'); }
+  //get district() { return this.stateadminform.get('district'); }
+  get designation() { return this.stateadminupdateform.get('designation'); }
+  get party_designation() { return this.stateadminupdateform.get('party_designation'); }
+  get approval_status() { return this.stateadminupdateform.get('approval_status'); }
+  get location_id() { return this.stateadminupdateform.get('location_id'); }
+  get mode() { return this.stateadminupdateform.get('mode'); }
 
 }

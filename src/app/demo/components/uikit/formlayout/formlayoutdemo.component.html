@@ -22,14 +22,14 @@
 			<p class="text-xl font-bold" [routerLink]="['/']" >SIGN OUT</p> -->
 
 			<button pButton pRipple label="DASHBOARD"  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggledashboard(dashboard)"></button>
-			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="toggle4(stateadmin)">CREATE STATE ADMIN</button>
-			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle(districtadmin)">CREATE DISTRICT ADMIN</button>
+			<button pButton pRipple  label="STATE ADMIN" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="toggle4(stateadmin)"></button>
+			<button pButton pRipple  label="DISTRICT ADMIN" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle(districtadmin)"></button>
 			<!-- <button pButton pRipple  class="p-button-text text-xl font-bold" style="color:red" (click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</button> -->
-			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle3(home)">OFFICE BEARER CHANGE</button>
+			<button pButton pRipple  label="OFFICE BEARER CHANGE" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle3(home)"></button>
 
-			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="togglemeeting(meeting)">CREATE MEETINGS</button>
+			<button pButton pRipple  label="MEETINGS" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="togglemeeting(meeting)"></button>
 			<div style="padding-left:32px;margin-left: 9px;">
-			<button pButton pRipple  class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255);padding-left: 28px;" [routerLink]="['/']">SIGN OUT</button>
+			<button pButton pRipple  label="SIGN OUT" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255);padding-left: 28px;" [routerLink]="['/']"></button>
 			</div>
 
 			<!-- <p-button  label="SIGN OUT"  styleClass="p-button-link text-red-500 text-xl"></p-button> -->
@@ -257,7 +257,7 @@
                                                     </p-dialog>
                                                     </td>
 													<td style="min-width: 20px;">
-														<button pButton icon="pi pi-user-edit"></button>
+														<button pButton icon="pi pi-user-edit" (click)="op.toggle($event);editbuttonviewSA(customer)"></button>
 													</td>
 													<td style="min-width: 20px;">
 														<button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_sa(customer.id)"></button>
@@ -267,6 +267,74 @@
 										</p-table>
 								</div>
 							</div>
+		<p-overlayPanel #op [showCloseIcon]="true" [style]="{ width:'1480px',height:'600px' }">
+		    <div class="card p-fluid">
+
+				<h5 class="text-center">CREATE STATE ADMIN</h5>
+				<form [formGroup]='stateadminupdateform' (ngSubmit)="postdata(stateadminupdateform)" autocomplete="off">
+					<div class="field grid">
+						<div class="col-6 md:col-6">
+							<input type="text" name="firstname"  formControlName="firstname" [value]="SAname" placeholder="First Name/முதல் பெயர்"/>
+							<span *ngIf="stateadminupdateform.get('firstname').hasError('required') && stateadminupdateform.get('firstname').touched"><br>
+								<span class="invalid-msg">Please enter the valid field</span>
+							</span>
+							<span *ngIf="stateadminupdateform.get('firstname').hasError('pattern') && stateadminupdateform.get('firstname').touched"><br>
+							   <span class="invalid-msg">Please enter the valid input</span>
+							</span>
+							
+						</div>
+					<div class="col-6 md:col-6">
+						<input type="text" name="lastname" formControlName="lastname" [value]="SAlastname" placeholder="Last Name/குடும்ப பெயர்"/>
+						<span *ngIf="stateadminupdateform.get('lastname').hasError('required') && stateadminupdateform.get('lastname').touched"><br>
+							<span class="invalid-msg">Please enter the valid field</span>
+						</span>
+						<span *ngIf="stateadminupdateform.get('lastname').hasError('pattern') && stateadminupdateform.get('lastname').touched"><br>
+						   <span class="invalid-msg">Please enter the valid input</span>
+						</span>
+					</div>
+				</div>
+				<div class="field grid">
+					<div class="col-6 md:col-6">
+						<input type="text" name="designation" formControlName="designation" [value]="SAdesig" placeholder="Designation/பதவி"/>
+					</div>
+					<div class="col-6 md:col-6">
+						<input type="text" name="party_designation" formControlName="party_designation" [value]="SAparty_desig"placeholder="Party Designation/கட்சி பதவி"/>
+					</div>
+				</div>
+				<div class="field grid">
+					<div class="col-6 md:col-6">
+						<input type="text" name="email" formControlName="email" [value]="SAmail" placeholder="Email/மின்னஞ்சல்"/>
+						<span *ngIf="stateadminupdateform.get('email').hasError('required') && stateadminupdateform.get('email').touched"><br>
+							<span class="invalid-msg">Please enter the valid field</span>
+						</span>
+						<span *ngIf="stateadminupdateform.get('email').hasError('pattern') && stateadminupdateform.get('email').touched"><br>
+							<span class="invalid-msg">Please enter the valid Email Id</span>
+						</span>
+					</div>
+				</div>
+				<div class="field grid">
+					<div class="col-6 md:col-6">
+						<input pInputText type="text" name="approval_status" [value]="SAstatus" formControlName="approval_status" placeholder="Status/நிலை"/>
+					</div>
+				</div>
+				<div class="field grid">
+					<div class="col-6 md:col-6">
+						<input pInputText type="text" hidden name="mode" formControlName="mode"/>
+					</div>
+					<div class="col-6 md:col-6">
+						<input pInputText type="text" hidden name="location_id" formControlName="location_id"/>
+					</div>
+				</div>
+					<div class="field grid">
+					<div class="col-3 md:col-3"></div>
+					<div class="col-6 md:col-6">
+						<button>Create State Admin</button>
+					</div>
+					<div class="col-3 md:col-3"></div>
+				</div>
+				</form>
+			</div>
+		</p-overlayPanel>
 
 <!-- -----------------district admin table------------------------------ -->
 <div *ngIf="districtadmin === true">
@@ -325,7 +393,7 @@
                         </p-dialog>
 						</td>
 						<td style="min-width: 20px;">
-							<button pButton icon="pi pi-user-edit"></button>
+							<button pButton icon="pi pi-user-edit" (click)="op1.toggle($event);editbuttonviewSA(customer)"></button>
 						</td>
 						<td style="min-width: 20px;">
 							<button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_da(customer.id)"></button>
@@ -334,6 +402,9 @@
 				</ng-template>
 			</p-table>
 	</div>
+	<p-overlayPanel #op1 [showCloseIcon]="true" [style]="{ width:'1480px',height:'600px' }">
+		
+	</p-overlayPanel>
 </div>
 
 						</div>
@@ -374,6 +445,7 @@
                         <th>Show</th>
                         <th>Edit</th>
                         <th>Delete</th>
+						
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
@@ -414,7 +486,7 @@
                         </p-dialog>
                         </td>
                         <td style="min-width: 20px;">
-                            <button pButton icon="pi pi-user-edit"></button>
+                            <button pButton icon="pi pi-user-edit" ></button>
                         </td>
                         <td style="min-width: 20px;">
                             <button pButton icon="pi pi-times" class="p-button-danger" (click)="delete_ob(customer.id)"></button>
@@ -422,6 +494,8 @@
                     </tr>
                 </ng-template>
             </p-table>
+			
+
         </div>
 </div>
 		</div>

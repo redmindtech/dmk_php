@@ -11,12 +11,12 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl!: string;
-baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-//baseUrl:string="http://localhost/git_new_clone/dmk_php/php"
+//baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+baseUrl:string="http://localhost/php"
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
-
+ 
 @Output() districtadmin_constituency: EventEmitter<any> = new EventEmitter();
 
 
@@ -171,6 +171,15 @@ public viewtableDA() {
                 return Users;
                 }));
                 }
+
+  public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+    //let firstname='names'
+      console.log("apidata"+firstname,lastname,designation,party_designation,approval_status,mode)
+          return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,firstname,lastname,designation,party_designation,email,approval_status,location_id})
+                  .pipe(map(Users => {
+                  return Users;
+                  }));
+            }
 
 //token
 setToken(token: string) {
