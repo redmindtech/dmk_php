@@ -41,7 +41,7 @@ export class CreateDistrictAdminComponent implements OnInit {
         console.log(angForm1);
         if(this.distadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.district!=null)
         {
-            this.dataService.create_dist_admin(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
+            this.dataService.create_dist_admin('1',angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
             .pipe(first())
             .subscribe(
             data => {

@@ -97,7 +97,9 @@ export class FormLayoutDemoComponent {
 
     customers2: any=[];
     customers3: any=[];
-    toggle(a:any){
+    customers4:any=[];
+    officebearerapp: boolean;
+   toggle(a:any){
         this.customers2=[];
         for(const prop in this.ApiService.tabledataDA) {
             this.customers2.push(this.ApiService.tabledataDA[prop])
@@ -110,6 +112,7 @@ export class FormLayoutDemoComponent {
         this.dashboard=false;
         this.stateadmin=false;
         this.districtadmin=false;
+        this.officebearerapp =false;
         this.meeting=false;
         return this.districtadmin = true;
        }
@@ -118,6 +121,7 @@ export class FormLayoutDemoComponent {
         this.districtadmin=false;
         this.selfregistration=false;
         this.home=false;
+        this.officebearerapp =false;
         this.dashboard=false;
        }
     toggle2(a:any){
@@ -125,6 +129,7 @@ export class FormLayoutDemoComponent {
         this.districtadmin=false;
         this.createdistrictadmin=false;
         this.home=false;
+        this.officebearerapp =false;
         this.dashboard=false;
        }
     toggle3(a:any){
@@ -139,6 +144,7 @@ export class FormLayoutDemoComponent {
         this.selfregistration=false;
         this.dashboard=false;
         this.districtadmin=false;
+        this.officebearerapp =false;
         return this.home =true;
     }
     toggle4(stateadmin:any){
@@ -155,7 +161,25 @@ export class FormLayoutDemoComponent {
         this.districtadmin=false;
         this.meeting=false;
         this.home=false;
+        this.officebearerapp =false;
         return this.stateadmin =true;
+    }
+    toggle5(a:any){
+        this.customers4=[];
+        for(const prop in this.ApiService.tabledataOBapprove) {
+            this.customers4.push(this.ApiService.tabledataOBapprove[prop])
+          }
+          this.customers4.pop();
+       
+        this.stateadmin =false;
+        this.districtadmin=false;
+        this.createdistrictadmin=false;
+        this.selfregistration=false;
+        this.dashboard=false;
+        this.districtadmin=false;
+        this.meeting=false;
+        this.home=false;
+        return this.officebearerapp =true;
     }
 
 
@@ -213,6 +237,7 @@ export class FormLayoutDemoComponent {
             this.initChart();
         });
         this.stateadminupdateform = this.fb.group({ //angForm
+            said:[''],
             email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
             firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
             lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
@@ -244,6 +269,7 @@ export class FormLayoutDemoComponent {
     this.ApiService.viewtableSA();
     this.ApiService.viewtableDA();
     this.ApiService.viewtableOB();
+    this.ApiService.viewtableOBapprove();
     }
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -403,48 +429,101 @@ export class FormLayoutDemoComponent {
     }
     
     
-    SAname:any;
-    SAlastname:any;
-    SAdesig:any;
-    SAparty_desig:any;
-    SAmail:any;
-    SAstatus:any;
-    editbuttonviewSA(a:any){
-       let fullname=a.name.split(" ");
-    //    console.log(fullname[0]);
-    //    console.log(fullname[1]);
+//     SAname:any;
+//     SAlastname:any;
+//     SAdesig:any;
+//     SAparty_desig:any;
+//     SAmail:any;
+//     SAstatus:any;
+//     editbuttonviewSA(a:any){
+//        let fullname=a.name.split(" ");
+//     //    console.log(fullname[0]);
+//     //    console.log(fullname[1]);
        
-       this.SAname=fullname[0];
-       this.SAlastname=fullname[1];
-       this.SAdesig=a.designation;
-       this.SAparty_desig=a.party_designation;
-       this.SAmail=a.email;
-       this.SAstatus=a.approval_status;
-    }
+//        this.SAname=fullname[0];
+//        this.SAlastname=fullname[1];
+//        this.SAdesig=a.designation;
+//        this.SAparty_desig=a.party_designation;
+//        this.SAmail=a.email;
+//        this.SAstatus=a.approval_status;
+//     }
 
-    stateadminupdateform !:FormGroup;
-    postdata(angForm1 : any) //angForm1
-     {  console.log(angForm1.value);
-        this.ApiService.updateSA('0','names',this.SAlastname,this.SAdesig,this.SAparty_desig,this.SAmail,this.SAstatus)
-        .pipe(first())
-        .subscribe(
-        data => {
-            alert("State admin detail was updated!");
-        //this.router.navigate(['']);
-        angForm1.reset();
-        },
+//     stateadminupdateform !:FormGroup;
+//     postdata(angForm1 : any) //angForm1
+//      {  console.log(angForm1.value);
+//         this.ApiService.updateSA('0','sasa',this.SAlastname,this.SAdesig,this.SAparty_desig,this.SAmail,this.SAstatus)
+//         .pipe(first())
+//         .subscribe(
+//         data => {
+//             alert("State admin detail was updated!");
+//         //this.router.navigate(['']);
+//         angForm1.reset();
+//         },
 
-        error => {
-            console.log(error);
-        });
-        if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
-    {
+//         error => {
+//             console.log(error);
+//         });
+//         if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+//     {
         
-    }
-    else{
-        alert("Please enter the valid details");
-    }
-  }
+//     }
+//     else{
+//         alert("Please enter the valid details");
+//     }
+//   }
+   
+SAid:any;
+SAname:any;
+SAlastname:any;
+SAdesig:any;
+SAparty_desig:any;
+SAmail:any;
+SAstatus:any;
+editbuttonviewSA(a:any){
+   let fullname=a.name.split(" ");
+//    console.log(fullname[0]);
+//    console.log(fullname[1]);
+     console.log(a.id);
+   this.SAid=a.id;
+   console.log(this.SAid);
+   this.SAname=fullname[0];
+   this.SAlastname=fullname[1];
+   this.SAdesig=a.designation;
+   this.SAparty_desig=a.party_designation;
+   this.SAmail=a.email;
+   this.SAstatus=a.approval_status;
+}
+
+stateadminupdateform !:FormGroup;
+postdata(angForm1 : any) //angForm1
+ { 
+   
+    //  console.log(angForm1.value);
+    //  console.log(angForm1.get('firstname').value);
+     console.log(angForm1.get('said').value);
+     console.log(angForm1)
+    this.ApiService.updateSA('0',this.SAid,angForm1.get('firstname').value,angForm1.get('lastname').value,
+    angForm1.get('designation').value,
+    angForm1.get('party_designation').value,
+    angForm1.get('email').value,
+    angForm1.get('approval_status').value)
+    .pipe(first())
+    .subscribe(
+    data => {
+        alert("State admin detail was updated!");
+    },
+
+    error => {
+        console.log(error);
+    });
+//     if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+// {
+    
+// }
+// else{
+//     alert("Please enter the valid details");
+// }
+}
   get email() { return this.stateadminupdateform.get('email'); }
   get firstname() { return this.stateadminupdateform.get('firstname'); }
   get lastname() { return this.stateadminupdateform.get('lastname'); }

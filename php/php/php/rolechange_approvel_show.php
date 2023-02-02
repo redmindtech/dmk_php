@@ -8,6 +8,7 @@ if($result = mysqli_query($mysqli,$sql))
   while($row = mysqli_fetch_assoc($result))
   {
     $role_change[$cr]['user_maser_id']    = $row['user_maser_id'];
+    $role_change[$cr]['firstname']    = $row['firstname'];
     $role_change[$cr]['email_id'] = $row['email_id'];
     $role_change[$cr]['old_designation'] = $row['old_designation'];
     $role_change[$cr]['new_designation'] = $row['new_designation'];

@@ -8,6 +8,10 @@ $db_host = '217.21.87.205';
 $db_username = 'u852023448_dmk_evm_db';
 $db_password = 'Password@2023';
 $db_name = 'u852023448_dmk_evm_db';
+// $db_host = 'localhost';
+// $db_username = 'root';
+// $db_password = '';
+// $db_name = 'evm';
 $mysqli = new mysqli($db_host, $db_username, $db_password,$db_name);
 
 if ($mysqli->connect_error) {

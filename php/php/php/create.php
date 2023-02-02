@@ -11,8 +11,8 @@ function randomPassword() {
     }
     return implode($pass);
 }
-$mode=$_GET['mode'];
-if($mode==0)
+$category=$_GET['category'];
+if($category=='SA')
 {
     if(isset($postdata) && !empty($postdata))
     {
@@ -46,7 +46,7 @@ if($mode==0)
     }
     }
 }
-else if($mode==1)
+else if($category=='DA')
 {
     if(isset($postdata) && !empty($postdata))
 {
@@ -104,11 +104,12 @@ $party_comments=$request->party_comments;
 $location_id=$request->location_id;
 $mode=$request->mode;
 
-$sql = "INSERT INTO user_master(mode,email,firstname,lastname,father_name,age,address1,location_id,contact_no,whatsapp_no,date_of_birth,educational_qualification,profession,additional_qualification,applied_role,party_comments) VALUES ($mode,'$email','$firstname','$lastname','$father_name',$age,'$address1',$location_id,$contact_no,$whatsapp_no,'$date_of_birth','$educational_qualification','$profession','$additional_qualification','$applied_role','$party_comments')";
+$sql = "INSERT INTO user_master(mode,email,firstname,lastname,father_name,age,address1,location_id,contact_no,whatsapp_no,date_of_birth,educational_qualification,profession,additional_qualification,applied_role,party_comments,category) VALUES ($mode,'$email','$firstname','$lastname','$father_name',$age,'$address1',$location_id,$contact_no,$whatsapp_no,'$date_of_birth','$educational_qualification','$profession','$additional_qualification','$applied_role','$party_comments','OB')";
 if ($mysqli->query($sql) === TRUE) {
 $authdata = [
 
 //'id' => mysqli_insert_id($mysqli)
+'category'=>'OB',
 'mode'=>$mode,
 'firstname' =>  $firstname,
 'lastname'  =>  $lastname,

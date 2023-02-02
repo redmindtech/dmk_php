@@ -33,7 +33,7 @@ export class CreateOfficeBearersComponent implements OnInit {
         applied_role:['',Validators.required],
         party_comments:[''],
         location_id:['1',Validators.required],
-        mode:['0',Validators.required]
+        mode:['2',Validators.required]
       });
 
    }

@@ -40,7 +40,7 @@ export class CreateStateAdminComponent implements OnInit {
 
   postdata(angForm1 : any) //angForm1
   {
-      //console.log(angForm1);
+      console.log(angForm1);
     if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
     {
         this.dataService.create_state_admin(angForm1.value.mode,angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)

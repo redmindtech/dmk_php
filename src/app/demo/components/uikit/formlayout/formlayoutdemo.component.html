@@ -26,7 +26,7 @@
 			<button pButton pRipple  label="DISTRICT ADMIN" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle(districtadmin)"></button>
 			<!-- <button pButton pRipple  class="p-button-text text-xl font-bold" style="color:red" (click)="toggle1(createdistrictadmin)">CREATE OFFICE BEARERS</button> -->
 			<button pButton pRipple  label="OFFICE BEARER CHANGE" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle3(home)"></button>
-
+			<button pButton pRipple  label="OFFICE BEARER APPROVEL" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)" (click)="toggle5(officebearerapp)"></button>
 			<button pButton pRipple  label="MEETINGS" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255)"  (click)="togglemeeting(meeting)"></button>
 			<div style="padding-left:32px;margin-left: 9px;">
 			<button pButton pRipple  label="SIGN OUT" class="p-button-text text-xl font-bold" style="color:rgb(255, 255, 255);padding-left: 28px;" [routerLink]="['/']"></button>
@@ -48,7 +48,7 @@
 	</div> -->
 		<div *ngIf="!dashboard && !home"  style="padding-left:24%;padding-right:3%;">
 
-			<div class="card">
+			
             <div>
 
 
@@ -194,7 +194,7 @@
 									</div>
 
 								</p-sidebar>
-				</div>
+				
 						<div>
 
 						</div>
@@ -208,6 +208,7 @@
 										<p-table [value]="customers1" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
 											<ng-template pTemplate="header">
 												<tr>
+													<th>Id</th>
 													<th>Name</th>
 													<th>Designation</th>
 													<th>District</th>
@@ -221,6 +222,9 @@
 											</ng-template>
 											<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
 												<tr>
+													<td style="min-width: 20px;">
+														{{customer.id}}
+													</td>
 													<td style="min-width: 20px;">
 														{{customer.name}}
 													</td>
@@ -267,7 +271,85 @@
 										</p-table>
 								</div>
 							</div>
-		<p-overlayPanel #op [showCloseIcon]="true" [style]="{ width:'1480px',height:'600px' }">
+							<p-overlayPanel #op [showCloseIcon]="true" [style]="{ width:'1480px',height:'600px' }">
+								<div class="card p-fluid">
+					
+									<h5 class="text-center">UPDATE STATE ADMIN</h5>
+									<form [formGroup]='stateadminupdateform' (ngSubmit)="postdata(stateadminupdateform)" autocomplete="off">
+										<div class="field grid">
+											<div class="col-6 md:col-6">
+												<input type="text" name="said"  formControlName="said" [value]="SAid" placeholder="said"/>
+							<span *ngIf="stateadminupdateform.get('said').hasError('required') && stateadminupdateform.get('said').touched"><br>
+								<span class="invalid-msg">Please enter the valid field</span>
+							</span>
+							<span *ngIf="stateadminupdateform.get('said').hasError('pattern') && stateadminupdateform.get('said').touched"><br>
+								<span class="invalid-msg">Please enter the valid input</span>
+							 </span>
+						</div>
+							<div class="col-6 md:col-6">
+												<input type="text" name="firstname"  formControlName="firstname" [value]="SAname" placeholder="First Name/முதல் பெயர்"/>
+												<span *ngIf="stateadminupdateform.get('firstname').hasError('required') && stateadminupdateform.get('firstname').touched"><br>
+													<span class="invalid-msg">Please enter the valid field</span>
+												</span>
+												<span *ngIf="stateadminupdateform.get('firstname').hasError('pattern') && stateadminupdateform.get('firstname').touched"><br>
+												   <span class="invalid-msg">Please enter the valid input</span>
+												</span>
+												
+											</div>
+										<div class="col-6 md:col-6">
+											<input type="text" name="lastname" formControlName="lastname" [value]="SAlastname" placeholder="Last Name/குடும்ப பெயர்"/>
+											<span *ngIf="stateadminupdateform.get('lastname').hasError('required') && stateadminupdateform.get('lastname').touched"><br>
+												<span class="invalid-msg">Please enter the valid field</span>
+											</span>
+											<span *ngIf="stateadminupdateform.get('lastname').hasError('pattern') && stateadminupdateform.get('lastname').touched"><br>
+											   <span class="invalid-msg">Please enter the valid input</span>
+											</span>
+										</div>
+									</div>
+									<div class="field grid">
+										<div class="col-6 md:col-6">
+											<input type="text" name="designation" formControlName="designation" [value]="SAdesig" placeholder="Designation/பதவி"/>
+										</div>
+										<div class="col-6 md:col-6">
+											<input type="text" name="party_designation" formControlName="party_designation" [value]="SAparty_desig"placeholder="Party Designation/கட்சி பதவி"/>
+										</div>
+									</div>
+									<div class="field grid">
+										<div class="col-6 md:col-6">
+											<input type="text" name="email" formControlName="email" [value]="SAmail" placeholder="Email/மின்னஞ்சல்"/>
+											<span *ngIf="stateadminupdateform.get('email').hasError('required') && stateadminupdateform.get('email').touched"><br>
+												<span class="invalid-msg">Please enter the valid field</span>
+											</span>
+											<span *ngIf="stateadminupdateform.get('email').hasError('pattern') && stateadminupdateform.get('email').touched"><br>
+												<span class="invalid-msg">Please enter the valid Email Id</span>
+											</span>
+										</div>
+									</div>
+									<div class="field grid">
+										<div class="col-6 md:col-6">
+											<input pInputText type="text" name="approval_status" [value]="SAstatus" formControlName="approval_status" placeholder="Status/நிலை"/>
+										</div>
+									</div>
+									<div class="field grid">
+										<div class="col-6 md:col-6">
+											<input pInputText type="text" hidden name="mode" formControlName="mode"/>
+											<input pInputText type="text" hidden name="id" formControlName="id"/>
+										</div>
+										<div class="col-6 md:col-6">
+											<input pInputText type="text" hidden name="location_id" formControlName="location_id"/>
+										</div>
+									</div>
+										<div class="field grid">
+										<div class="col-3 md:col-3"></div>
+										<div class="col-6 md:col-6">
+											<button>Update State Admin</button>
+										</div>
+										<div class="col-3 md:col-3"></div>
+									</div>
+									</form>
+								</div>
+							</p-overlayPanel>
+		<!-- <p-overlayPanel #op [showCloseIcon]="true" [style]="{ width:'1480px',height:'600px' }">
 		    <div class="card p-fluid">
 
 				<h5 class="text-center">CREATE STATE ADMIN</h5>
@@ -334,7 +416,7 @@
 				</div>
 				</form>
 			</div>
-		</p-overlayPanel>
+		</p-overlayPanel> -->
 
 <!-- -----------------district admin table------------------------------ -->
 <div *ngIf="districtadmin === true">
@@ -426,8 +508,7 @@
 
 
 	<div *ngIf="home" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
-		<div>
-<!-- -----------------Office bearer table---------------------- -->
+		<!-- -----------------Office bearer table---------------------- -->
 <div class="card" >
     <h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER CHANGE </b></h5>
 
@@ -498,70 +579,68 @@
 
         </div>
 </div>
-		</div>
-	</div>
-
-
-<!--Sudha Akka
-
-    <div *ngIf="officebearerapp" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
 		<div>
------------------Office bearer table----------------------
-			<div class="card" >
-				<h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER CHANGE </b></h5>
 
-					<div style="padding-top:2%">
-						<button  pButton type="button" label="Add"  [routerLink]="['/cob']" icon="pi pi-plus" class="p-button-primary"></button>
-						<p-table [value]="customers4" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
-						[scrollable]="true" scrollHeight="400px" >
-							<ng-template pTemplate="header">
-								<tr>
-									<th>User Id</th>
-									<th>Email Id</th>
-									<th>New Designation</th>
-									<th>Old Designation</th>
-									<th>Request Date</th>
-									<th>Comments</th>
-									<th>Approve</th>
-									<th>Reject</th>
-								</tr>
-							</ng-template>
-							<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-								<tr>
-									<td style="min-width: 20px;">
-										{{customer.user_maser_id}}
-									</td>
-									<td style="min-width: 20px;">
-										<span >{{customer.email_id}}</span>
-									</td>
-									<td style="min-width: 20px;">
-										{{customer.new_designation}}
-									</td>
-									<td style="min-width: 20px;">
-										<span>{{customer.old_designation}}</span>
-									</td>
-									<td style="min-width: 20px;">
-										{{customer.date}}
-									</td>
-									<td style="min-width: 20px;">
-										{{customer.reason}}
-									</td>
-
-									<td style="min-width: 20px;">
-										<button pButton class="p-button-success" icon="pi pi-check"></button>
-									</td>
-									<td style="min-width: 20px;">
-										<button pButton icon="pi pi-times" class="p-button-danger"></button>
-									</td>
-								</tr>
-							</ng-template>
-						</p-table>
-					</div>
-			</div>
 		</div>
 	</div>
--->
-    <!--Sudha Akka-->
+
+	<div *ngIf="officebearerapp" style="padding-left:25%;padding-right:5%;height:500px;padding-top: 1%;">
+		<!-- -----------------Office bearer table---------------------- -->
+		<div class="card" >
+			<h5 style="padding-top:2%" style="font-size:25px;"><b> OFFICE BEARER APPROVEL </b></h5>
+
+				<div style="padding-top:2%">
+					<button  pButton type="button" label="Add"  [routerLink]="['/cob']" icon="pi pi-plus" class="p-button-primary"></button>
+					<p-table [value]="customers4" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single"  responsiveLayout="scroll"
+					[scrollable]="true" scrollHeight="400px" >
+						<ng-template pTemplate="header">
+							<tr>
+								<th>User Id</th>
+								<th>Email Id</th>
+								<th>New Designation</th>
+								<th>Old Designation</th>
+								<th>Request Date</th>
+								<th>Comments</th>
+								<th>Approve</th>
+								<th>Reject</th>
+							</tr>
+						</ng-template>
+						<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+							<tr>
+								<td style="min-width: 20px;">
+									{{customer.user_maser_id}}
+								</td>
+								<td style="min-width: 20px;">
+									<span >{{customer.email_id}}</span>
+								</td>
+								<td style="min-width: 20px;">
+									{{customer.new_designation}}
+								</td>
+								<td style="min-width: 20px;">
+									<span>{{customer.old_designation}}</span>
+								</td>
+								<td style="min-width: 20px;">
+									{{customer.date}}
+								</td>
+								<td style="min-width: 20px;">
+									{{customer.reason}}
+								</td>
+								
+								<td style="min-width: 20px;">
+									<button pButton class="p-button-success" icon="pi pi-check"></button>
+								</td>
+								<td style="min-width: 20px;">
+									<button pButton icon="pi pi-times" class="p-button-danger"></button>
+								</td>
+							</tr>
+						</ng-template>
+					</p-table>
+				</div>
+		</div>
+		<div>
+
+		</div>
+	</div>
 
 
 

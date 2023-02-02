@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AnyARecord } from 'dns';
 import { Password } from 'primeng/password';
 //import { Users } from './users';
@@ -11,8 +11,8 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl!: string;
-baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-// baseUrl:string="http://localhost//New_git/dmk_php/php/php/php";
+          // baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+        baseUrl:string="http://localhost/lat_git_dmk/dmk_php/php/php/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
@@ -83,14 +83,24 @@ return Users;
 }
 
 public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
-  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,designation,party_designation,approval_status,location_id })
+  const httpOptions : Object = {
+          headers: new HttpHeaders({
+            'Content-Type':'application/x-www-form-urlencoded'
+          })
+        };
+  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,designation,party_designation,approval_status,location_id },httpOptions )
   .pipe(map(Users => {
   return Users;
   }))
   }
 
-    public create_dist_admin(email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
-        return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', { email,firstname,lastname,district,designation,party_designation,approval_status,location_id })
+    public create_dist_admin(mode:any,email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+      const httpOptions : Object = {
+        headers: new HttpHeaders({
+          'Content-Type':'application/x-www-form-urlencoded'
+        })
+      };
+      return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', {mode, email,firstname,lastname,district,designation,party_designation,approval_status,location_id },httpOptions )
         .pipe(map(Users => {
         return Users;
         }));
@@ -103,8 +113,19 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designat
             }));
             }
 
+            // public delete_admin(user_id:any) {
+            //     return this.httpClient.post<any>(this.baseUrl + '/delete.php', { user_id})
+            //     .pipe(map(Users => {
+            //     return Users;
+            //     }));
+            //     }
             public delete_admin(user_id:any) {
-                return this.httpClient.post<any>(this.baseUrl + '/delete.php', { user_id})
+              const httpOptions : Object = {
+                headers: new HttpHeaders({
+                  'Content-Type':'application/x-www-form-urlencoded'
+                })
+              };
+                return this.httpClient.post<any>(this.baseUrl + '/delete.php', { user_id},httpOptions)
                 .pipe(map(Users => {
                 return Users;
                 }));
@@ -142,8 +163,9 @@ public viewtableDA() {
                   //console.log(this.tabledataDA);
                   })}
 
+                  
                   tabledataOB:any[]=[];
-                  public viewtableOB() {
+                      public viewtableOB() {
                       this.httpClient.get<any>(this.baseUrl +'/show.php?mode=2')
                                         .pipe(map((res)=>{
                                                   const users =[];
@@ -156,7 +178,20 @@ public viewtableDA() {
                                                   this.tabledataOB=users[0];
                                                   })}
 
-
+               tabledataOBapprove:any[]=[];
+                public viewtableOBapprove() {
+                  
+                this.httpClient.get<any>(this.baseUrl +'/rolechange_approvel_show.php')
+                .pipe(map((res)=>{
+                  const users =[];
+                  for(const key in res){
+                  if(res.hasOwnProperty(key)){
+                    users.push({...res[key],id:key})}
+                   } return users;
+                   })).subscribe((users:any[])=>{
+                    console.log(users);
+                   this.tabledataOBapprove=users[0];
+                    })}  
 
 
           public sendmail(email:any) {
@@ -171,15 +206,45 @@ public viewtableDA() {
                 return Users;
                 }));
                 }
+                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                  //let firstname='names'
+                  const httpOptions : Object = {
+                          headers: new HttpHeaders({
+                            'Content-Type':'application/x-www-form-urlencoded'
+                          })
+                        };
+                        console.log(user_id);
+                    console.log("apidata : "+user_id,firstname,lastname,designation,party_designation,approval_status)
+                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,designation,party_designation,email,approval_status,location_id},httpOptions)
+                                .pipe(map(Users => {
+                                return Users;
+                                }));
+                          }
 
-  public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
-    //let firstname='names'
-      console.log("apidata"+firstname,lastname,designation,party_designation,approval_status,mode)
-          return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,firstname,lastname,designation,party_designation,email,approval_status,location_id})
-                  .pipe(map(Users => {
-                  return Users;
-                  }));
-            }
+//    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+//  const httpOptions : Object = {
+//       headers: new HttpHeaders({
+//         'Content-Type':'application/x-www-form-urlencoded'
+//       })
+//     };
+//       console.log("apidata"+firstname,lastname,designation,party_designation,approval_status,mode)
+//           return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,firstname,lastname,designation,party_designation,email,approval_status,location_id})
+//                   .pipe(map(Users => {
+//                   return Users;
+//                   }));
+//             }
+  // public delete_admin(user_id:any) {
+  //   const httpOptions : Object = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':'application/x-www-form-urlencoded'
+  //     })
+  //   };
+  //     return this.httpClient.post<any>(this.baseUrl + '/delete.php', { user_id},httpOptions)
+  //     .pipe(map(Users => {
+  //     return Users;
+  //     }));
+  //     }
+
 
 //token
 setToken(token: string) {
