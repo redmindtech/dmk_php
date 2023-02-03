@@ -1,7 +1,7 @@
 <?php
 include("database.php");
 $role_change = [];
-$sql = "SELECT  user_maser_id,email_id,old_designation,	new_designation,reason,date FROM role_change where approval = 'pending'";
+$sql = "SELECT  user_maser_id,email_id,firstname,old_designation,	new_designation,reason,date FROM role_change where approval = 'pending'";
 if($result = mysqli_query($mysqli,$sql))
 {
   $cr = 0;

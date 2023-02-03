@@ -45,7 +45,7 @@ else if ($mode == 1) {
         $email = mysqli_real_escape_string($mysqli, trim($request->email));
         $status_approval = $request->approval_status;
         $location_id = $request->location_id;
-        $user_id= $request->$user_id;
+        $user_id= $request->user_id;
 
         $sql = "UPDATE  user_master SET firstname = '".$firstname."', lastname='".$lastname."', designation = '".$designation."',party_designation ='". $party_designation."',email = '".$email."',district='".$district."', approval_status = '".$status_approval."' where id = ". $user_id;
         if ($mysqli->query($sql) === TRUE) {
@@ -84,7 +84,7 @@ else {
         $address1 = $request->address1;
         $applied_role = $request->applied_role;
         $party_comments = $request->party_comments;
-        $user_id= $request->$user_id;
+        $user_id= $request->user_id;
 
         $sql = "UPDATE  user_master SET firstname = '".$firstname."',
         lastname='".$lastname."',

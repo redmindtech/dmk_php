@@ -14,7 +14,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angula
 export class FormLayoutDemoComponent {
 
     selectedState: any = null;
-    cities:any[] = [
+    cities: any[] = [
         { label: 'Ariyalur', value: { id: 1, name: 'Ariyalur', code: 'AL' } },
         { label: 'Chengalpattu', value: { id: 2, name: 'Chengalpattu', code: 'CP' } },
         { label: 'Chennai', value: { id: 3, name: 'Chennai', code: 'CN' } },
@@ -57,27 +57,27 @@ export class FormLayoutDemoComponent {
 
 
     ];
-    selectedDrop:any = { value: '' };
-    districtadmin:boolean=false;
+    selectedDrop: any = { value: '' };
+    districtadmin: boolean = false;
     valCheck: string[] = [];
-    createdistrictadmin:boolean=false;
-    selfregistration:boolean=false;
+    createdistrictadmin: boolean = false;
+    selfregistration: boolean = false;
     display0: boolean = false;
     display1: boolean = false;
     display2: boolean = false;
-    home:boolean=false;
-    dashboard:boolean=true;
+    home: boolean = false;
+    dashboard: boolean = true;
     visibleSidebar4: boolean = false;
     visibleSidebar5: boolean = false;
-    stateadmin:boolean=false;
+    stateadmin: boolean = false;
 
 
     states: any[] = [
-        {name: 'Arizona', code: 'Arizona'},
-        {name: 'California', value: 'California'},
-        {name: 'Florida', code: 'Florida'},
-        {name: 'Ohio', code: 'Ohio'},
-        {name: 'Washington', code: 'Washington'}
+        { name: 'Arizona', code: 'Arizona' },
+        { name: 'California', value: 'California' },
+        { name: 'Florida', code: 'Florida' },
+        { name: 'Ohio', code: 'Ohio' },
+        { name: 'Washington', code: 'Washington' }
     ];
 
     dropdownItems = [
@@ -95,117 +95,119 @@ export class FormLayoutDemoComponent {
     city2: any = null;
     valRadio: string = '';
 
-    customers2: any=[];
-    customers3: any=[];
-    customers4:any=[];
+    customers2: any = [];
+    customers3: any = [];
+    customers4: any = [];
     officebearerapp: boolean;
-   toggle(a:any){
-        this.customers2=[];
-        for(const prop in this.ApiService.tabledataDA) {
+    dataService: any;
+    // obupdateform: FormGroup<{ email2: FormControl<string>; firstname2: FormControl<string>; lastname2: FormControl<string>; age: FormControl<string>; father_name: FormControl<string>; educational_qualification: FormControl<string>; date_of_birth: FormControl<string>; additional_qualification: FormControl<string>; contact_no: FormControl<string>; whatsapp_no: FormControl<string>; profession: FormControl<string>; address1: FormControl<string>; applied_role: FormControl<string>; party_comments: FormControl<string>; location_id: FormControl<string>; mode: FormControl<string>; }>;
+    toggle(a: any) {
+        this.customers2 = [];
+        for (const prop in this.ApiService.tabledataDA) {
             this.customers2.push(this.ApiService.tabledataDA[prop])
-          }
+        }
         this.customers2.pop();
         console.log(this.customers2);
-        this.createdistrictadmin=false;
-        this.selfregistration=false;
-        this.home=false;
-        this.dashboard=false;
-        this.stateadmin=false;
-        this.districtadmin=false;
-        this.officebearerapp =false;
-        this.meeting=false;
+        this.createdistrictadmin = false;
+        this.selfregistration = false;
+        this.home = false;
+        this.dashboard = false;
+        this.stateadmin = false;
+        this.districtadmin = false;
+        this.officebearerapp = false;
+        this.meeting = false;
         return this.districtadmin = true;
-       }
-    toggle1(a:any){
-        this.createdistrictadmin= !this.createdistrictadmin;
-        this.districtadmin=false;
-        this.selfregistration=false;
-        this.home=false;
-        this.officebearerapp =false;
-        this.dashboard=false;
-       }
-    toggle2(a:any){
+    }
+    toggle1(a: any) {
+        this.createdistrictadmin = !this.createdistrictadmin;
+        this.districtadmin = false;
+        this.selfregistration = false;
+        this.home = false;
+        this.officebearerapp = false;
+        this.dashboard = false;
+    }
+    toggle2(a: any) {
         this.selfregistration = !this.selfregistration;
-        this.districtadmin=false;
-        this.createdistrictadmin=false;
-        this.home=false;
-        this.officebearerapp =false;
-        this.dashboard=false;
-       }
-    toggle3(a:any){
-        this.customers3=[];
-        for(const prop in this.ApiService.tabledataOB) {
+        this.districtadmin = false;
+        this.createdistrictadmin = false;
+        this.home = false;
+        this.officebearerapp = false;
+        this.dashboard = false;
+    }
+    toggle3(a: any) {
+        this.customers3 = [];
+        for (const prop in this.ApiService.tabledataOB) {
             this.customers3.push(this.ApiService.tabledataOB[prop])
-          }
+        }
         this.customers3.pop();
         console.log(this.customers3);
-        this.districtadmin=false;
-        this.createdistrictadmin=false;
-        this.selfregistration=false;
-        this.dashboard=false;
-        this.districtadmin=false;
-        this.officebearerapp =false;
-        return this.home =true;
+        this.districtadmin = false;
+        this.createdistrictadmin = false;
+        this.selfregistration = false;
+        this.dashboard = false;
+        this.districtadmin = false;
+        this.officebearerapp = false;
+        return this.home = true;
     }
-    toggle4(stateadmin:any){
-        this.customers1=[];
-        for(const prop in this.ApiService.tabledata) {
+    toggle4(stateadmin: any) {
+        this.customers1 = [];
+        for (const prop in this.ApiService.tabledata) {
             this.customers1.push(this.ApiService.tabledata[prop])
-          }
-          this.customers1.pop();
+        }
+        this.customers1.pop();
         //console.log(this.customers1);
-        this.districtadmin=false;
-        this.createdistrictadmin=false;
-        this.selfregistration=false;
-        this.dashboard=false;
-        this.districtadmin=false;
-        this.meeting=false;
-        this.home=false;
-        this.officebearerapp =false;
-        return this.stateadmin =true;
+        this.districtadmin = false;
+        this.createdistrictadmin = false;
+        this.selfregistration = false;
+        this.dashboard = false;
+        this.districtadmin = false;
+        this.meeting = false;
+        this.home = false;
+        this.officebearerapp = false;
+        return this.stateadmin = true;
     }
-    toggle5(a:any){
-        this.customers4=[];
-        for(const prop in this.ApiService.tabledataOBapprove) {
+    toggle5(a: any) {
+        this.customers4 = [];
+        for (const prop in this.ApiService.tabledataOBapprove) {
             this.customers4.push(this.ApiService.tabledataOBapprove[prop])
-          }
-          this.customers4.pop();
-       
-        this.stateadmin =false;
-        this.districtadmin=false;
-        this.createdistrictadmin=false;
-        this.selfregistration=false;
-        this.dashboard=false;
-        this.districtadmin=false;
-        this.meeting=false;
-        this.home=false;
-        return this.officebearerapp =true;
+        }
+        this.customers4.pop();
+
+        this.stateadmin = false;
+        this.districtadmin = false;
+        this.createdistrictadmin = false;
+        this.selfregistration = false;
+        this.dashboard = false;
+        this.districtadmin = false;
+        this.meeting = false;
+        this.home = false;
+        return this.officebearerapp = true;
     }
 
 
-    toggledashboard(a:any){
-        this.home=false;
-        return this.dashboard=true;
+    toggledashboard(a: any) {
+        this.home = false;
+        return this.dashboard = true;
     }
-    meeting:boolean=false;
-    togglemeeting(meeting:boolean){
+    meeting: boolean = false;
+    togglemeeting(meeting: boolean) {
         //console.log(this.meeting)
-        this.districtadmin=false;
-        this.createdistrictadmin=false;
-        this.selfregistration=false;
-        this.dashboard=false;
-        this.stateadmin =false;
-        this.home=false;
-        return this.meeting= true;
+        this.districtadmin = false;
+        this.createdistrictadmin = false;
+        this.selfregistration = false;
+        this.dashboard = false;
+        this.stateadmin = false;
+        this.home = false;
+        return this.meeting = true;
 
     }
-    customers:any=[{name:'Salem', country:'Ramesh',company:'Secretary',status:'District Secretary',date:'01/01/2022',comment:'Reason....'},
-    {name:'Coimbatore', country:'Suresh',company:'Secretary',status:'District Secretary',date:'20/01/2022',comment:'Reason....'},
-    {name:'Trichy', country:'Vignesh',company:'District Secretary',status:'Secretary',date:'31/01/2022',comment:'Reason....'},
-    {name:'Perambalur', country:'Boopathi',company:'Secretary',status:'District Secretary',date:'14/04/2022',comment:'Reason....'},
-    {name:'Chennai', country:'Mohan',company:'Secretary',status:'District Secretary',date:'30/01/2022',comment:'Reason....'},
-    {name:'Namakkal', country:'Raju',company:'Secretary',status:'District Secretary',date:'14/01/2022',comment:'Reason....'},
-    {name:'Ariyalur', country:'kalaiyarasan',company:'Secretary',status:'District Secretary',date:'09/01/2022',comment:'Reason....'}
+    customers: any = [{ name: 'Salem', country: 'Ramesh', company: 'Secretary', status: 'District Secretary', date: '01/01/2022', comment: 'Reason....' },
+    { name: 'Coimbatore', country: 'Suresh', company: 'Secretary', status: 'District Secretary', date: '20/01/2022', comment: 'Reason....' },
+    { name: 'Trichy', country: 'Vignesh', company: 'District Secretary', status: 'Secretary', date: '31/01/2022', comment: 'Reason....' },
+    { name: 'Perambalur', country: 'Boopathi', company: 'Secretary', status: 'District Secretary', date: '14/04/2022', comment: 'Reason....' },
+    { name: 'Chennai', country: 'Mohan', company: 'Secretary', status: 'District Secretary', date: '30/01/2022', comment: 'Reason....' },
+    { name: 'Namakkal', country: 'Raju', company: 'Secretary', status: 'District Secretary', date: '14/01/2022', comment: 'Reason....' },
+    { name: 'Ariyalur', country: 'kalaiyarasan', company: 'Secretary', status: 'District Secretary', date: '09/01/2022', comment: 'Reason....' }
     ];
 
     // customers1:any=[{name:'Ramesh', country:'District Secretary',company:'Salem',status:'Active',date:'ramesh34@gmail.com'},
@@ -216,7 +218,7 @@ export class FormLayoutDemoComponent {
     // {name:'Raju', country:'Secretary',company:'Namakkal',status:'No-Active',date:'raja.kg@gmail.com'},
     // {name:'Malleswaran', country:'District Secretary',company:'Perambalur',status:'No-Active',date:'chinni.malleswaran@gmail.com'}
     // ];
-    customers1:any=[];
+    customers1: any = [];
     //customers1=this.ApiService.tabledata[0].name;
 
 
@@ -231,23 +233,56 @@ export class FormLayoutDemoComponent {
     //stateadminform !:FormGroup;
 
     constructor(private productService: ProductService, public layoutService: LayoutService,
-        private ApiService:ApiService ,public router:Router,private messageService: MessageService,
+        private ApiService: ApiService, public router: Router, private messageService: MessageService,
         private fb: FormBuilder) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
         this.stateadminupdateform = this.fb.group({ //angForm
-            said:[''],
-            email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-            firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-            lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+            said: [''],
+            email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            firstname: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
             //district:['',Validators.required],
-            designation:[''],
-            party_designation:[''],
-            approval_status:[''],
-            location_id:['1'],
-            mode:['0']
-            });
+            designation: [''],
+            party_designation: [''],
+            approval_status: [''],
+            location_id: ['1'],
+            mode: ['0']
+        });
+        this.districtadminupdateform = this.fb.group({ //angForm
+            // this.constituencies = this.dataService.constituencies,
+            daid: [''],
+            email1: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            firstname1: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname1: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            district1: ['', Validators.required],
+            designation1: [''],
+            party_designation1: [''],
+            approval_status1: [''],
+            location_id1: ['1'],
+            mode1: ['0']
+        });
+
+        this.obupdateform = this.fb.group({ //angForm
+            obid: [''],
+            email2: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            firstname2: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname2: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            age2: ['', Validators.required],
+            father_name2: ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+            educational_qualification2: ['', Validators.required],
+            date_of_birth2: [''],
+            additional_qualification2: [''],
+            contact_no2: ['', [Validators.required, Validators.pattern('[789][0-9]{9}')]],
+            whatsapp_no2: ['', [Validators.required, Validators.pattern('[789][0-9]{9}')]],
+            profession2: [''],
+            address12: [''],
+            applied_role2: ['', Validators.required],
+            party_comments2: [''],
+            location_id2: ['1', Validators.required],
+            mode2: ['2', Validators.required]
+        });
 
     }
     // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
@@ -265,11 +300,11 @@ export class FormLayoutDemoComponent {
     }
 
     //---------datatable-------
-    gettabledata(){
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableOBapprove();
+    gettabledata() {
+        this.ApiService.viewtableSA();
+        this.ApiService.viewtableDA();
+        this.ApiService.viewtableOB();
+        this.ApiService.viewtableOBapprove();
     }
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -329,209 +364,376 @@ export class FormLayoutDemoComponent {
             }
         };
 
-}
+    }
 
 
 
-    sa_name:string;
-    sa_email:string;
-    sa_designation:string;
-    sa_district:string;
-    showstateadminDialog(customer:any,email:any,sa_designation:any,sa_district:any) {
+    sa_name: string;
+    sa_email: string;
+    sa_designation: string;
+    sa_district: string;
+    showstateadminDialog(customer: any, email: any, sa_designation: any, sa_district: any) {
         console.log(customer);
-        this.sa_name=customer;
-        this.sa_email=email;
+        this.sa_name = customer;
+        this.sa_email = email;
         this.display0 = true;
-        this.sa_designation=sa_designation;
-        this.sa_district=sa_district;
-        
+        this.sa_designation = sa_designation;
+        this.sa_district = sa_district;
+
     }
 
-    da_name:string;
-    da_email:string;
-    da_designation:string;
-    da_district:string;
-    showdistadminDialog(customer:any,email:any,da_designation:any,da_district:any) {
+    da_name: string;
+    da_email: string;
+    da_designation: string;
+    da_district: string;
+    showdistadminDialog(customer: any, email: any, da_designation: any, da_district: any) {
         console.log(customer);
-        this.da_name=customer;
-        this.da_email=email;
+        this.da_name = customer;
+        this.da_email = email;
         this.display1 = true;
-        this.da_designation=da_designation;
-        this.da_district=da_district;
+        this.da_designation = da_designation;
+        this.da_district = da_district;
     }
 
-    ob_name:string;
-    ob_email:string;
-    ob_designation:string;
-    ob_district:string;
-    showofficebearerDialog(customer:any,email:any,ob_designation:any,ob_district:any) {
+    ob_name: string;
+    ob_email: string;
+    ob_designation: string;
+    ob_district: string;
+    showofficebearerDialog(customer: any, email: any, ob_designation: any, ob_district: any) {
         console.log(customer);
-        this.ob_name=customer;
-        this.ob_email=email;
+        this.ob_name = customer;
+        this.ob_email = email;
         this.display2 = true;
-        this.ob_designation=ob_designation;
-        this.ob_district=ob_district;
+        this.ob_designation = ob_designation;
+        this.ob_district = ob_district;
     }
 
 
-    delete_sa(user_id : any)
-    {
+    delete_sa(user_id: any) {
         console.log(user_id)
-            this.ApiService.delete_admin(user_id)
+        this.ApiService.delete_admin(user_id)
             .pipe()
             .subscribe(
-            data => {
-                alert("State admin detail was successfully Deleted !")
-                window.location.reload()
-            },
+                data => {
+                    alert("State admin detail was successfully Deleted !")
+                    window.location.reload()
+                },
 
-            error => {
-                console.log(error);
-            });
+                error => {
+                    console.log(error);
+                });
 
     }
 
 
-    delete_da(user_id : any)
-    {
+    delete_da(user_id: any) {
         console.log(user_id)
-            this.ApiService.delete_admin(user_id)
+        this.ApiService.delete_admin(user_id)
             .pipe()
             .subscribe(
-            data => {
+                data => {
 
-                alert("District admin detail has been deleted !")
-            },
+                    alert("District admin detail has been deleted !")
+                },
 
-            error => {
-                console.log(error);
-            });
+                error => {
+                    console.log(error);
+                });
 
     }
 
 
-    delete_ob(user_id : any)
-    {
+    delete_ob(user_id: any) {
         console.log(user_id)
-            this.ApiService.delete_admin(user_id)
+        this.ApiService.delete_admin(user_id)
             .pipe()
             .subscribe(
-            data => {
+                data => {
 
-                this.router.navigate(['uikit/formlayout']);
-                alert("Office Bearer detail has been deleted !")
-            },
+                    this.router.navigate(['uikit/formlayout']);
+                    alert("Office Bearer detail has been deleted !")
+                },
 
-            error => {
-                console.log(error);
-            });
+                error => {
+                    console.log(error);
+                });
 
     }
-    
-    
-//     SAname:any;
-//     SAlastname:any;
-//     SAdesig:any;
-//     SAparty_desig:any;
-//     SAmail:any;
-//     SAstatus:any;
-//     editbuttonviewSA(a:any){
-//        let fullname=a.name.split(" ");
-//     //    console.log(fullname[0]);
-//     //    console.log(fullname[1]);
+
+
+    //     SAname:any;
+    //     SAlastname:any;
+    //     SAdesig:any;
+    //     SAparty_desig:any;
+    //     SAmail:any;
+    //     SAstatus:any;
+    //     editbuttonviewSA(a:any){
+    //        let fullname=a.name.split(" ");
+    //     //    console.log(fullname[0]);
+    //     //    console.log(fullname[1]);
+
+    //        this.SAname=fullname[0];
+    //        this.SAlastname=fullname[1];
+    //        this.SAdesig=a.designation;
+    //        this.SAparty_desig=a.party_designation;
+    //        this.SAmail=a.email;
+    //        this.SAstatus=a.approval_status;
+    //     }
+
+    //     stateadminupdateform !:FormGroup;
+    //     postdata(angForm1 : any) //angForm1
+    //      {  console.log(angForm1.value);
+    //         this.ApiService.updateSA('0','sasa',this.SAlastname,this.SAdesig,this.SAparty_desig,this.SAmail,this.SAstatus)
+    //         .pipe(first())
+    //         .subscribe(
+    //         data => {
+    //             alert("State admin detail was updated!");
+    //         //this.router.navigate(['']);
+    //         angForm1.reset();
+    //         },
+
+    //         error => {
+    //             console.log(error);
+    //         });
+    //         if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+    //     {
+
+    //     }
+    //     else{
+    //         alert("Please enter the valid details");
+    //     }
+    //   }
+
+    SAid: any;
+    SAname: any;
+    SAlastname: any;
+    SAdesig: any;
+    SAparty_desig: any;
+    SAmail: any;
+    SAstatus: any;
+
+    editbuttonviewSA(a: any) {
+        let fullname = a.name.split(" ");
+        //    console.log(fullname[0]);
+        //    console.log(fullname[1]);
+        console.log(a.id);
+        this.SAid = a.id;
+        console.log(this.SAid);
+        this.SAname = fullname[0];
+        this.SAlastname = fullname[1];
+        this.SAdesig = a.designation;
+        this.SAparty_desig = a.party_designation;
+        this.SAmail = a.email;
+        this.SAstatus = a.approval_status;
+    }
+
+    stateadminupdateform !: FormGroup;
+    postdata(angForm1: any) //angForm1
+    {
+
+        //  console.log(angForm1.value);
+        //  console.log(angForm1.get('firstname').value);
+        console.log(angForm1.get('said').value);
+        console.log(angForm1)
+        this.ApiService.updateSA('0', this.SAid, angForm1.get('firstname').value, angForm1.get('lastname').value,
+            angForm1.get('designation').value,
+            angForm1.get('party_designation').value,
+            angForm1.get('email').value,
+            angForm1.get('approval_status').value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    alert("State admin detail was updated!");
+                },
+
+                error => {
+                    console.log(error);
+                });
+        //     if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+        // {
+
+        // }
+        // else{
+        //     alert("Please enter the valid details");
+        // }
+    }
+    get email() { return this.stateadminupdateform.get('email'); }
+    get firstname() { return this.stateadminupdateform.get('firstname'); }
+    get lastname() { return this.stateadminupdateform.get('lastname'); }
+    //get district() { return this.stateadminform.get('district'); }
+    get designation() { return this.stateadminupdateform.get('designation'); }
+    get party_designation() { return this.stateadminupdateform.get('party_designation'); }
+    get approval_status() { return this.stateadminupdateform.get('approval_status'); }
+    get location_id() { return this.stateadminupdateform.get('location_id'); }
+    get mode() { return this.stateadminupdateform.get('mode'); }
+
+    DAid: any;
+    DAname: any;
+    DAlastname: any;
+    DAdesig: any;
+    DAparty_desig: any;
+    DAmail: any;
+    DAdistrict: any;
+    DAstatus: any;
+    editbuttonviewDA(a: any) {
+        let fullname = a.name.split(" ");
+        //    console.log(fullname[0]);
+        //    console.log(fullname[1]);
+        console.log(a.id);
+        this.DAid = a.id;
+        console.log(this.SAid);
+        this.DAname = fullname[0];
+        this.DAlastname = fullname[1];
+        this.DAdesig = a.designation;
+        this.DAdistrict = a.district;
+        this.DAparty_desig = a.party_designation;
+        this.DAmail = a.email;
+        this.DAstatus = a.approval_status;
+    }
+    districtadminupdateform !: FormGroup;
+    postdata1(angForm2: any) //angForm1
+    {
+
+        //  console.log(angForm1.value);
+        //  console.log(angForm1.get('firstname').value);
+        console.log(angForm2.get('daid').value);
+        console.log(angForm2)
+        this.ApiService.updateDA('1', this.DAid, angForm2.get('firstname1').value, angForm2.get('lastname1').value,
+            angForm2.get('designation1').value,
+            angForm2.get('party_designation1').value,
+            angForm2.get('district1').value,
+            angForm2.get('email1').value,
+            angForm2.get('approval_status1').value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    alert("district admin detail was updated!");
+                },
+
+                error => {
+                    console.log(error);
+                });
+
+
+
+    }
+    get email1() { return this.districtadminupdateform.get('email1'); }
+    get firstname1() { return this.districtadminupdateform.get('firstname1'); }
+    get lastname1() { return this.districtadminupdateform.get('lastname1'); }
+    get district1() { return this.districtadminupdateform.get('district1'); }
+    get designation1() { return this.districtadminupdateform.get('designation1'); }
+    get party_designation1() { return this.districtadminupdateform.get('party_designation1'); }
+    get approval_status1() { return this.districtadminupdateform.get('approval_status1'); }
+    get location_id1() { return this.districtadminupdateform.get('location_id1'); }
+    get mode1() { return this.districtadminupdateform.get('mode1'); }
+
+    OBid:any;
+    OBemail:any; 
+    OBfirstname:any;
+    OBlastname:any;
+    OBage:any;
+    OBfather_name:any;
+   OBeducational_qualification:any; 
+    OBdate_of_birth:any; 
+   OBadditional_qualification:any; 
+    OBcontact_no:any;
+    OBwhatsapp_no:any; 
+    OBprofession: any;
+   OBaddress1:any;
+    OBapplied_role:any; 
+    OBparty_comments:any; 
+    OBlocation_id: any;
+    OBmode: any;
+    editbuttonviewOB(a: any) {
+        let fullname = a.name.split(" ");
        
-//        this.SAname=fullname[0];
-//        this.SAlastname=fullname[1];
-//        this.SAdesig=a.designation;
-//        this.SAparty_desig=a.party_designation;
-//        this.SAmail=a.email;
-//        this.SAstatus=a.approval_status;
-//     }
+        // console.log(a.id);
+        this.OBid = a.id;
+        // console.log(this.SAid);
+       this.OBfirstname =fullname[0];    
+      this.OBlastname=fullname[1];
+      this.OBemail=a.email; 
+      this. OBage=a.age;
+      this.OBfather_name=a.father_name;
+      this.OBeducational_qualification=a.educational_qualification;
+      this.OBadditional_qualification=a.additional_qualification; 
+      this. OBdate_of_birth=a.date_of_birth; 
+     
+      this. OBcontact_no=a.contact_no;
+      this. OBwhatsapp_no=a.whatsapp_no; 
+      this. OBprofession=a.profession;
+      this.OBaddress1=a.address1;
+      this. OBapplied_role=a.applied_role; 
+      this. OBparty_comments=a.party_comments; 
+      this.OBlocation_id= a.location_id;
+      this.OBmode=a.mode;
+      
+     
+    }
+    obupdateform !: FormGroup;
+    postdata3(angForm3: any) //angForm1
+    {
 
-//     stateadminupdateform !:FormGroup;
-//     postdata(angForm1 : any) //angForm1
-//      {  console.log(angForm1.value);
-//         this.ApiService.updateSA('0','sasa',this.SAlastname,this.SAdesig,this.SAparty_desig,this.SAmail,this.SAstatus)
-//         .pipe(first())
-//         .subscribe(
-//         data => {
-//             alert("State admin detail was updated!");
-//         //this.router.navigate(['']);
-//         angForm1.reset();
-//         },
+        //  console.log(angForm1.value);
+        //  console.log(angForm1.get('firstname').value);
+        console.log(angForm3.get('obid').value);
+        console.log(angForm3)
+        this.ApiService.updateOB('2', 
+        this.OBid,
+         angForm3.get('firstname2').value, 
+         angForm3.get('lastname2').value,
+        angForm3.get('email2').value,
+            angForm3.get('age2').value,
+            angForm3.get('father_name2').value,
+            angForm3.get('educational_qualification2').value,
+            angForm3.get('additional_qualification2').value,
+            angForm3.get('date_of_birth2').value,
+            angForm3.get('contact_no2').value,
+            angForm3.get('whatsapp_no2').value,
+            angForm3.get('profession2').value,
+            angForm3.get('address12').value,        
+            angForm3.get('party_comments2').value,
+            angForm3.get('applied_role2').value,           
+            angForm3.get('location_id2').value)
+                 
+          
 
-//         error => {
-//             console.log(error);
-//         });
-//         if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
-//     {
-        
-//     }
-//     else{
-//         alert("Please enter the valid details");
-//     }
-//   }
-   
-SAid:any;
-SAname:any;
-SAlastname:any;
-SAdesig:any;
-SAparty_desig:any;
-SAmail:any;
-SAstatus:any;
-editbuttonviewSA(a:any){
-   let fullname=a.name.split(" ");
-//    console.log(fullname[0]);
-//    console.log(fullname[1]);
-     console.log(a.id);
-   this.SAid=a.id;
-   console.log(this.SAid);
-   this.SAname=fullname[0];
-   this.SAlastname=fullname[1];
-   this.SAdesig=a.designation;
-   this.SAparty_desig=a.party_designation;
-   this.SAmail=a.email;
-   this.SAstatus=a.approval_status;
-}
 
-stateadminupdateform !:FormGroup;
-postdata(angForm1 : any) //angForm1
- { 
-   
-    //  console.log(angForm1.value);
-    //  console.log(angForm1.get('firstname').value);
-     console.log(angForm1.get('said').value);
-     console.log(angForm1)
-    this.ApiService.updateSA('0',this.SAid,angForm1.get('firstname').value,angForm1.get('lastname').value,
-    angForm1.get('designation').value,
-    angForm1.get('party_designation').value,
-    angForm1.get('email').value,
-    angForm1.get('approval_status').value)
-    .pipe(first())
-    .subscribe(
-    data => {
-        alert("State admin detail was updated!");
-    },
 
-    error => {
-        console.log(error);
-    });
-//     if(this.stateadminupdateform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
-// {
-    
-// }
-// else{
-//     alert("Please enter the valid details");
-// }
-}
-  get email() { return this.stateadminupdateform.get('email'); }
-  get firstname() { return this.stateadminupdateform.get('firstname'); }
-  get lastname() { return this.stateadminupdateform.get('lastname'); }
-  //get district() { return this.stateadminform.get('district'); }
-  get designation() { return this.stateadminupdateform.get('designation'); }
-  get party_designation() { return this.stateadminupdateform.get('party_designation'); }
-  get approval_status() { return this.stateadminupdateform.get('approval_status'); }
-  get location_id() { return this.stateadminupdateform.get('location_id'); }
-  get mode() { return this.stateadminupdateform.get('mode'); }
+            .pipe(first())
+            .subscribe(
+                data => {
+                    alert("Office b admin detail was updated!");
+                },
+
+                error => {
+                    console.log(error);
+                });
+
+
+
+    }
+    get email2() { return this.obupdateform.get('email2'); }
+    get firstname2() { return this.obupdateform.get('firstname2'); }
+    get lastname2() { return this.obupdateform.get('lastname2'); }
+    get age2() { return this.obupdateform.get('age2'); }
+    get father_name2() { return this.obupdateform.get('father_name2'); }
+    get educational_qualification2() { return this.obupdateform.get('educational_qualification2'); }
+    get additional_qualification2() { return this.obupdateform.get('additional_qualification2'); }
+    get date_of_birth2() { return this.obupdateform.get('date_of_birth2'); }
+    get contact_no2() { return this.obupdateform.get('contact_no2'); }
+
+    get whatsapp_no2() { return this.obupdateform.get('whatsapp_no2'); }
+    get profession2() { return this.obupdateform.get('profession2'); }
+    get address12() { return this.obupdateform.get('address12'); }
+    get applied_role2() { return this.obupdateform.get('applied_role2'); }
+    get party_comments2() { return this.obupdateform.get('party_comments2'); }
+    get location_id2() { return this.obupdateform.get('location_id2'); }
+    get mode2() { return this.obupdateform.get('mode2'); }
+
+
+
+
+
 
 }
