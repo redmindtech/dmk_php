@@ -11,8 +11,8 @@ import { Password } from 'primeng/password';
 
 export class ApiService {
   redirectUrl!: string;
-   baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-    // baseUrl: string = "http://localhost/lat_git_dmk/dmk_php/php/php/php";
+    baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+    //  baseUrl: string = "http://localhost/lat_git_dmk/dmk_php/php/php/php";
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   constructor(private httpClient: HttpClient) { };
 
@@ -258,7 +258,28 @@ export class ApiService {
         return Users;
       }));
   }
-
+  public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
+     console.log(constituency);
+    return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
+    { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
+    .pipe(map(Users => {
+    return Users;
+    }));
+    }
+    public approve_role(user_id:any,new_role:any,status:any) {
+      console.log(new_role);
+     // new_role="head";
+     // user_id = ar_id;                                                                                                                                                                                                                                
+      const httpOptions : Object = {
+        headers: new HttpHeaders({
+          'Content-Type':'application/x-www-form-urlencoded'
+        })
+      };
+        return this.httpClient.post<any>(this.baseUrl + '/rolechange_app_rej.php', { user_id,new_role,status},httpOptions)
+        .pipe(map(Users => {
+        return Users;
+        }));
+        }
   //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
   //  const httpOptions : Object = {
   //       headers: new HttpHeaders({

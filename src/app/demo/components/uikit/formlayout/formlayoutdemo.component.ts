@@ -198,7 +198,9 @@ export class FormLayoutDemoComponent {
         this.dashboard = false;
         this.stateadmin = false;
         this.home = false;
+        this.officebearerapp = false;
         return this.meeting = true;
+
 
     }
     customers: any = [{ name: 'Salem', country: 'Ramesh', company: 'Secretary', status: 'District Secretary', date: '01/01/2022', comment: 'Reason....' },
@@ -262,6 +264,7 @@ export class FormLayoutDemoComponent {
             approval_status1: [''],
             location_id1: ['1'],
             mode1: ['0']
+
         });
 
         this.obupdateform = this.fb.group({ //angForm
@@ -371,14 +374,18 @@ export class FormLayoutDemoComponent {
     sa_name: string;
     sa_email: string;
     sa_designation: string;
+    sa_party_designation:string
     sa_district: string;
-    showstateadminDialog(customer: any, email: any, sa_designation: any, sa_district: any) {
+    sa_approval_status:string;
+    showstateadminDialog(customer: any, email: any, sa_designation: any,  sa_approval_status:any, sa_party_designation:any) {
+        console.log("sa");
         console.log(customer);
         this.sa_name = customer;
         this.sa_email = email;
         this.display0 = true;
         this.sa_designation = sa_designation;
-        this.sa_district = sa_district;
+        this.sa_party_designation=sa_party_designation;
+        this.sa_approval_status=sa_approval_status;
 
     }
 
@@ -386,30 +393,82 @@ export class FormLayoutDemoComponent {
     da_email: string;
     da_designation: string;
     da_district: string;
-    showdistadminDialog(customer: any, email: any, da_designation: any, da_district: any) {
+    da_party_designation:string;
+    da_approval_status:string;
+    showdistadminDialog(customer: any, email: any, da_designation: any, da_district: any,party_designation:any, da_approval_status:any) {
         console.log(customer);
         this.da_name = customer;
         this.da_email = email;
         this.display1 = true;
         this.da_designation = da_designation;
         this.da_district = da_district;
+         this.da_party_designation=party_designation;
+         this.da_approval_status=da_approval_status;
+
+
     }
 
     ob_name: string;
     ob_email: string;
     ob_designation: string;
     ob_district: string;
-    showofficebearerDialog(customer: any, email: any, ob_designation: any, ob_district: any) {
+    ob_age:string;
+    ob_date_of_birth:string;
+    ob_father_name:string;
+    ob_educational_qualification:string;
+    ob_additional_qualification:string;
+    ob_contact_no:string;
+    ob_whatsapp_no:string;
+    ob_profession:string;
+    ob_address1:string;
+    ob_applied_role:string;
+    ob_party_comments:string;
+
+    showofficebearerDialog(customer: any, email: any, ob_designation: any, ob_district: any, ob_age:any,ob_date_of_birth:any,ob_father_name:any,
+        ob_educational_qualification:any,ob_additional_qualification:any, ob_contact_no:any,ob_whatsapp_no:any,ob_profession:any,
+       ob_address1:any,ob_applied_role:any,ob_party_comments:any) {
         console.log(customer);
         this.ob_name = customer;
         this.ob_email = email;
         this.display2 = true;
         this.ob_designation = ob_designation;
         this.ob_district = ob_district;
+       this.ob_age=ob_age;
+       this.ob_date_of_birth=ob_date_of_birth;
+       this.ob_father_name =ob_father_name;
+      this.ob_educational_qualification= ob_educational_qualification;
+      this.ob_additional_qualification=ob_additional_qualification
+      this.ob_contact_no=ob_contact_no;
+      this.ob_whatsapp_no=ob_whatsapp_no;
+      this.ob_profession=ob_profession;
+      this.ob_address1=ob_address1;
+     this.ob_applied_role=ob_applied_role;
+     this.ob_party_comments=ob_party_comments;
     }
 
+    approve_role_change(user_id : any,new_role : any ,status:any)
+    {
+        console.log(new_role);
+        this.ApiService.approve_role(user_id,new_role,status)
+            .pipe()
+            .subscribe(
+            data => {
 
+                this.router.navigate(['uikit/formlayout']);
+                if(status == 'approve'){
+                alert("Approved !")}
+                else{
+                    alert("Rejected!")
+                }
+            },
+
+            error => {
+                console.log(error);
+            });
+    }
     delete_sa(user_id: any) {
+
+         if(confirm("Are you sure to delete ")){
         console.log(user_id)
         this.ApiService.delete_admin(user_id)
             .pipe()
@@ -422,12 +481,15 @@ export class FormLayoutDemoComponent {
                 error => {
                     console.log(error);
                 });
+            }
+           
 
     }
 
 
     delete_da(user_id: any) {
         console.log(user_id)
+        if(confirm("Are you sure to delete ")){
         this.ApiService.delete_admin(user_id)
             .pipe()
             .subscribe(
@@ -439,11 +501,13 @@ export class FormLayoutDemoComponent {
                 error => {
                     console.log(error);
                 });
+            }
 
     }
 
 
     delete_ob(user_id: any) {
+        if(confirm("Are you sure to delete ")){
         console.log(user_id)
         this.ApiService.delete_admin(user_id)
             .pipe()
@@ -457,7 +521,7 @@ export class FormLayoutDemoComponent {
                 error => {
                     console.log(error);
                 });
-
+            }
     }
 
 

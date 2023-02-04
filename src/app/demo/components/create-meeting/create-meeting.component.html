@@ -1,78 +1,79 @@
 <div class="card p-fluid">
     
-          <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Create Meeting</h1>
-          </div>
-                  <!-- Page Heading -->
-                  <form class="register-form">
-                    
-                      <div class="field grid">
-                          <div class="col-6 md:col-6">
-                              <input pInputText type="text" placeholder="Meeting Name / கூட்டத்தின் பெயர்" >
-                          </div>
-                          <div class="col-6 md:col-6">
-                              <input pInputText type="text"  id="exampleFirstName"
-                                          placeholder="Meeting Date / சந்திப்பு தேதி" >
-                          </div>
-                      </div>
-                      <div class="field grid">
-                      <div class="col-6 md:col-6">
-                          <input pInputText type="text"  placeholder="Meeting Time / சந்திப்பு நேரம்">
-                      </div>
-                      </div>
-                      <div>
-                          <div class="p-field-radiobutton">
-                            <p>Participants / பங்கேற்பாளர்கள்</p>
-                              <input class="form-check-input" type="radio" name="participantsptions" id="inlineRadio1" (click)="Participants('option1')"   value="option1">
-                              <label class="form-check-label" for="inlineRadio1">All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div> 
-                          <div class="form-check form-check-inline col-sm-6">
-                              <input class="form-check-input" type="radio" name="participantsptions" id="inlineRadio2" (click)="Participants('option2')"  value="option2">
-                              <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div>
-                          <div class="form-check form-check-inline col-sm-6">
-                              <input class="form-check-input" type="radio" name="participantsptions" id="inlineRadio3" (click)="Participants('option3')" value="option3">
-                              <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
-                          </div>
-                          <div class="col-6 md:col-6" *ngIf="participantsptions=='option2'|| participantsptions=='option3'">
-                              <p-multiSelect  [options]="districts"  optionLabel="name" defaultLabel="Select Multiple districts"></p-multiSelect>
-                          </div>
-                       </div>
-                      <span></span> 
-                      <div>
-                        <div class="col-6 md:col-6 field col">
-                            <p>Meeting Type</p>
-                            <input class="form-check-input" type="radio" name="MeetingOptions" (click)="radiobutton('online')"  value="online">
-                            <label class="form-check-label" for="option1">Online</label>
-                            <input class="form-check-input" type="radio" name="MeetingOptions" (click)="radiobutton('offline')" value="offline">
-                            <label class="form-check-label" for="option2">Offline</label>
-                            <input *ngIf="MeetingOptions=='online'" pInputText type="text" placeholder="Enter Meeting Url">
-                            <input *ngIf="MeetingOptions=='offline'"  pInputText type="text" placeholder="Enter Location">
-                        </div>
-                      </div>
-                    
-
-                      <div class="field grid">
-                          <input pInputText type="text" class="form-control form-control" id="exampleInputEmail"
-                              placeholder="Comments / கருத்துகள்">
-                      </div>
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Create Meeting</h1>
+    </div>
+            <!-- Page Heading -->
+          <form class="register-form" [formGroup]='createmeetingform' (ngSubmit)="postdata(createmeetingform)" autocomplete="off">
+                <div class="field grid">
+                    <div class="col-6 md:col-6">
+                        <input pInputText type="text" name="meeting_name" formControlName="meeting_name"  class="form-control form-control" placeholder="Meeting Name / கூட்டத்தின் பெயர்" >
+                    </div>
+                    <div class="col-6 md:col-6">
+                        <input pInputText type="text" name="meeting_date" formControlName="meeting_date" class="form-control form-control" id="exampleFirstName"
+                                    placeholder="Meeting Date / சந்திப்பு தேதி" >
+                    </div>
+                </div>
+                <div class="field grid">
+                <div class="col-6 md:col-6">
+                    <input pInputText type="text"  name="meeting_time" formControlName="meeting_time" class="form-control form-control" placeholder="Meeting Time / சந்திப்பு நேரம்">
+                </div>
+                </div>
+                <div>
+                    <div class="p-field-radiobutton">
+                      <p>Participants / பங்கேற்பாளர்கள்</p>
+                        <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio1" (click)="Participants('option1')"   value="1">
+                        <label class="form-check-label" for="inlineRadio1">All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
+                    </div> 
+                    <div class="form-check form-check-inline col-sm-6">
+                        <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio2" (click)="Participants('option2')"  value="2">
+                        <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-6">
+                        <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio3" (click)="Participants('option3')" value="3">
+                        <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
+                    </div>
+                    <!-- <div class="col-6 md:col-6" *ngIf="participantsptions=='option2'|| participantsptions=='option3'" name="participantsptions" formControlName="participantsptions">
+                        <p-multiSelect  [options]="districts"  optionLabel="name" defaultLabel="Select Multiple districts"></p-multiSelect>
+                    </div> -->
+                 </div>
+                <span></span> 
+                <div>
+                  <div class="col-6 md:col-6 field col">
+                      <p>Meeting Type</p>
+                      <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('online')"  value="online">
+                      <label class="form-check-label" for="option1">Online</label>
+                      <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('offline')" value="offline">
+                      <label class="form-check-label" for="option2">Offline</label>
+                      <input  pInputText type="text" name="meeting_location" formControlName="meeting_location" placeholder="Enter Location/Enter Meeting Url">
                   
-                      <div class="field grid">
-                          <select  aria-label="Default select example">
-                              <option selected>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
-                              <option value="1">Salem/சேலம்</option>
-                              <option value="2">Namakkal/நாமக்கல்</option>
-                              <option value="3">Chennai/சென்னை</option>
-                          </select>
-                      </div>
-                      <div class="col-6 md:col-6">
-                        <button pButton pRipple label="Create Meeting"></button>
-                      </div>
-                     <!-- <div class="col-3" style="margin-left: 42%;">
-                          <a class="btn btn-primary btn btn-block">
-                              Create Meeting
-                          </a>
-                     </div> -->
-                     
- 
+                  </div>
+                </div>
+              
+
+                <div class="field grid">
+                    <input pInputText type="text" name="comments" formControlName="comments" class="form-control form-control" id="exampleInputEmail"
+                        placeholder="Comments / கருத்துகள்">
+                </div>
+            
+                <div class="field grid">
+                    <select  aria-label="Default select example"  formControlName="district" name="district"  class="form-control form-control">
+                        <option value="">Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
+                        <!-- <option selected>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option> -->
+                        <option value="salem">Salem/சேலம்</option>
+                        <option value="namakkal">Namakkal/நாமக்கல்</option>
+                        <option value="chennai">Chennai/சென்னை</option>
+                    </select>
+                </div>
+                <div class="col-6 md:col-6">
+                  <button pButton pRipple label="Create Meeting"></button>
+                </div>
+                </form>
+               <!-- <div class="col-3" style="margin-left: 42%;">
+                    <a class="btn btn-primary btn btn-block">
+                        Create Meeting
+                    </a>
+               </div> -->
+               
+
 
