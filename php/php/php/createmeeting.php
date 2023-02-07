@@ -10,7 +10,7 @@ if(isset($postdata) && !empty($postdata))
     $meeting_time=$request->meeting_time;
     $meeting_date = $request->meeting_date;
     $participants = $request->participants;
-    $constituency = $request->$constituency;
+    $constituency = $request->constituency;
     $meeting_type = $request->meeting_type;
     $meeting_location = $request->meeting_location;	
     $comments = $request->comments;

@@ -48,7 +48,11 @@ export class CreateMeetingComponent implements OnInit {
             this.dataService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
               angForm1.value.meeting_type,angForm1.value.comments, 
+<<<<<<< HEAD
               angForm1.value.meeting_location)
+=======
+              angForm1.value.meeting_location, angForm1.value.district)
+>>>>>>> 9b6aee123ef74c64dbde6281e5e2c714c828f102
             .pipe(first())
             .subscribe(
             data => {
