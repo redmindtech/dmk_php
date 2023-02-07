@@ -1,8 +1,10 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import {Component ,Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import {Component ,Input, Output,EventEmitter}
 import { AnyARecord } from 'dns';
 import { Password } from 'primeng/password';
+import { MiscDemoComponent } from './demo/components/uikit/misc/miscdemo.component';
 //import { Users } from './users';
 
 @Injectable({
@@ -12,9 +14,16 @@ import { Password } from 'primeng/password';
 export class ApiService {
   redirectUrl!: string;
    baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-    // baseUrl: string = "http://localhost/lat_git_dmk/dmk_php/php/php/php";
+  // baseUrl: string = "http://localhost/php";
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+  MiscDemoComponent: any;
+  rq: any;
+   
+  //request_admin:any;
+ // MiscDemoComponent: any;
   constructor(private httpClient: HttpClient) { };
+  ngOnInit(): void {
+  }
 
 
   @Output() districtadmin_constituency: EventEmitter<any> = new EventEmitter();
@@ -258,7 +267,70 @@ export class ApiService {
         return Users;
       }));
   }
+  public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any) {
+    console.log("ho");
+    return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
+    { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments},)
+    .pipe(map(Users => {
+    return Users;
+    }));
+    }
+    public approve_role(user_id:any,new_role:any,status:any) {
+      console.log(new_role);
+     // new_role="head";
+     // user_id = ar_id;                                                                                                                                                                                                                                
+      const httpOptions : Object = {
+        headers: new HttpHeaders({
+          'Content-Type':'application/x-www-form-urlencoded'
+        })
+      };
+        return this.httpClient.post<any>(this.baseUrl + '/rolechange_app_rej.php', { user_id,new_role,status},httpOptions)
+        .pipe(map(Users => {
+        return Users;
+        }));
+        }
+   
 
+
+    public rq_form(name:any,user_id:any,email:any,applied_role:any,new_designation:any, reason:any) {
+      const httpOptions: Object = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      };
+   // console.log("sdf")
+      //console.log(name);
+     return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php', 
+      {name,applied_role,new_designation,reason ,user_id,email},httpOptions)
+      .pipe(map(Users => {
+      return Users;
+      }));
+
+    }
+    requestTable:any[] = [];
+    public request_admin(rq){
+      this.httpClient.get<any>(this.baseUrl + '/show.php?mode=2')
+      .pipe(map((res) => {
+        const  request_form = [];
+        for (const key in res) {
+          if (res.hasOwnProperty(key)) {
+            request_form.push({ ...res[key], id: key })
+          }
+        } return  request_form;
+      })).subscribe(( request_form: any[]) => {
+        console.log( request_form)
+        this.requestTable = request_form;
+        console.log(request_form);
+        this.requestTable=rq;
+        console.log(this.requestTable);
+    
+      })
+      
+      
+      
+      
+
+    }
   //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
   //  const httpOptions : Object = {
   //       headers: new HttpHeaders({
