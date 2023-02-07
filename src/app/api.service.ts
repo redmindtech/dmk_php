@@ -13,13 +13,8 @@ import { MiscDemoComponent } from './demo/components/uikit/misc/miscdemo.compone
 
 export class ApiService {
   redirectUrl!: string;
-<<<<<<< HEAD
    baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
   // baseUrl: string = "http://localhost/php";
-=======
-    baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-    //  baseUrl: string = "http://localhost/lat_git_dmk/dmk_php/php/php/php";
->>>>>>> 9b6aee123ef74c64dbde6281e5e2c714c828f102
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   MiscDemoComponent: any;
   rq: any;
@@ -272,17 +267,10 @@ export class ApiService {
         return Users;
       }));
   }
-<<<<<<< HEAD
   public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any) {
     console.log("ho");
     return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
     { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments},)
-=======
-  public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
-     console.log(constituency);
-    return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
-    { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
->>>>>>> 9b6aee123ef74c64dbde6281e5e2c714c828f102
     .pipe(map(Users => {
     return Users;
     }));
@@ -301,7 +289,6 @@ export class ApiService {
         return Users;
         }));
         }
-<<<<<<< HEAD
    
 
 
@@ -344,8 +331,6 @@ export class ApiService {
       
 
     }
-=======
->>>>>>> 9b6aee123ef74c64dbde6281e5e2c714c828f102
   //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
   //  const httpOptions : Object = {
   //       headers: new HttpHeaders({
